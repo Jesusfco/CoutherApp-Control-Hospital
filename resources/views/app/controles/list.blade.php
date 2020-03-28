@@ -8,8 +8,9 @@
 @section('content')
 
     <h5>Controles / Lista</h5>
+    @if(Auth::user()->user_type == 1)
     <a href="{{ url('app/control/crear') }}"><button class="btn orange">Crear Control</button></a>
-
+    @endif
     <form method="GET" class="navbar-form">
         <div class="input-field">
             <i class="material-icons prefix">search</i>

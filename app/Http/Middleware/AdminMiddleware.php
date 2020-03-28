@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
+use PharIo\Manifest\Url;
 
 class AdminMiddleware
 {
@@ -15,6 +17,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (Auth::user()->user_type > 2)        
+            return $next($request);
+        else 
+            return back()->with('error', 'No tienes el nivel para poder acceder a esta sección: ' . url()->current());
     }
 }

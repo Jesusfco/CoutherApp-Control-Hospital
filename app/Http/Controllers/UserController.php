@@ -18,7 +18,7 @@ class UserController extends Controller
     public function list(Request $re) {
 
         $objects = User::whereName($re->term)
-            // ->where('user_type', '<', 10)
+            ->where('user_type', '>', 1)
             ->orderBy('name','asc')            
             ->paginate(20);
         return view('app/user/list')->with('objects', $objects);

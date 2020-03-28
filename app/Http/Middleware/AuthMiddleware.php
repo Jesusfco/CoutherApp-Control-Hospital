@@ -16,6 +16,7 @@ class AuthMiddleware
      */
     public function handle($request, Closure $next)
     {
+        // return Auth::user();
         if (Auth::check())        
             return $next($request);
         else 

@@ -20,14 +20,14 @@
         <nav class="blue darken-4 lighten-1" role="navigation">
                 <div class="nav-wrapper container">
                   <a id="logo-container" href="{{ url('')}}" class="brand-logo">
-                    <h5>Locales Abuela</h5>
+                    <h5>COUTHER</h5>
                     {{-- <img src="{{ url('img/logo2.png')}}" height="63px;"> --}}
                   </a>
                   <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url('app') }}">Inicio</a></li>
-                    {{-- @if(Auth::user()->user_type >= 9) --}}
+                    @if(Auth::user()->user_type > 2)
                     <li><a href="{{ url('app/usuarios') }}">Usuarios</a></li>
-                    {{-- @endif --}}
+                    @endif
                     <li><a href="{{ url('app/pacientes') }}">Pacientes</a></li>
                     <li><a href="{{ url('app/control') }}">Control</a></li>
                     
