@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Helpers\MyCarbon;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Control extends Model
@@ -38,5 +40,21 @@ class Control extends Model
         return $this->belongsTo('App\User')->withDefault([
             'name' => 'Medico Desconocido',
         ]);
+    }
+
+    public function getFechaFormat() {
+        
+        $date = Carbon::parse($this->created_at);
+        
+        
+        $text = MyCarbon::getDayWeekName($date->dayOfWeek) . " ";
+        $text .= $date->day . " de " . MyCarbon::getMonthName($date->month) . " " . $date->year;
+
+        return $text;
+    }
+
+    public function getHourFormat() {
+        $date = Carbon::parse($this->created_at);
+        return $date->hour . ":" . $date->minute;
     }
 }

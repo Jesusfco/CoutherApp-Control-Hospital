@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<h5><a href="{{ url('app/pacientes') }}">Pacientes </a> / Crear usuario</h5>
+<h5><a href="{{ url('app/pacientes') }}">Pacientes </a> / Crear Paciente</h5>
 
 <form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()">
     {{ csrf_field() }}
@@ -34,31 +34,26 @@
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Correo</label>
       <input type="email" name="email" class="form-control" value="{{ old('email') }}">
-    </div>
-    
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Contraseña</label>
-      <input type="password" name="password" class="form-control" value="{{ old('password') }}">
-    </div>
+    </div>        
 
     <div class="form-group col l6">
-      <label for="exampleInputEmail1">Curp</label>
+      <label for="exampleInputEmail1">CURP</label>
       <input type="tel" name="curp" class="form-control" value="{{ old('curp') }}">
     </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Fecha de Nacimiento</label>
-      <input type="date" name="nacimiento" class="form-control" value="{{ old('nacimiento') }}">
+      <input type="date" name="nacimiento" class="form-control" value="{{ old('nacimiento') }}" required>
     </div>
     
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Numero de Empleado</label>
-      <input type="number" name="no_empleado" class="form-control" value="{{ old('no_empleado') }}">
+      <input type="number" name="no_empleado" class="form-control" value="{{ old('no_empleado') }}" required>
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Area</label>
-      <input type="text" name="area" class="form-control" value="{{ old('area') }}">
+      <input type="text" name="area" class="form-control" value="{{ old('area') }}" required>
     </div>
 
     

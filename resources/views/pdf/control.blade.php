@@ -13,7 +13,7 @@
     .linesTable tr th, .linesTable tr td {
         border: 1px solid black;
         padding: 1px !important;
-        font-size: 12px !important;
+        font-size: 10px !important;
     }
     .datitos th, .datitos td {
         width: 11%;
@@ -35,7 +35,7 @@
         margin-top: -25px
     }
 
-    p { font-size: 12px }
+    p { font-size: 10px }
 </style>
 
 <body>
@@ -47,9 +47,9 @@
     <table style="width:100%" class="linesTable w3-table">
         <tr>
             <th class="m1">FECHA</th>
-            <td class="m3">{{ $obj->created_at }}</td>
+            <td class="m3">{{ $obj->getFechaFormat() }}</td>
             <th class="m1">HORA</th>
-            <td class="m3">{{ $obj->created_at }}</td>
+            <td class="m3">{{ $obj->getHourFormat() }} HRS</td>
         </tr>
     </table>
 
@@ -83,7 +83,7 @@
     <table style="width:100%" class="linesTable w3-table">
         <tr>
             <th class="m1">F. DE NAC</th>
-            <td class="m3">{{ $obj->paciente->nacimiento }}</td>
+            <td class="m3">{{ $obj->paciente->getNacimientoFormat() }}</td>
             <th class="m1">ALERGIAS</th>
             <td class="m3">{{ $obj->alergias }}</td>
         </tr>

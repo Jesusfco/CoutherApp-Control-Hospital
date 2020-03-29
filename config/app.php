@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         Barryvdh\DomPDF\ServiceProvider::class,
+        // 'Jenssegers\Date\DateServiceProvider',
 
     ],
 
@@ -229,7 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        // 'PDF' => Barryvdh\laravel-dompdf\src\Facade::class,
+        
 
     ],
 

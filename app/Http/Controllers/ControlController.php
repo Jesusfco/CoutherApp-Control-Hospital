@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Control;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 class ControlController extends Controller
@@ -17,9 +18,21 @@ class ControlController extends Controller
 
     public function list(Request $re) {
 
-        $objects = Control::orderBy('created_at','DESC')   
-            ->with('paciente') 
-            ->paginate(20);
+        $objects = Control::whereNotNull('id');        
+
+        if($re->search_type == 1) {
+           $objects->whereHas('paciente', function ($query) use ($re){
+                $query->where(DB::raw("CONCAT(`name`, ' ', IFNULL(`paterno`, ''), ' ', IFNULL(`materno`, ''))"), 'LIKE', '%' . $re->term . '%');
+            });
+        } else {
+           $objects->whereHas('medico', function ($query) use ($re){
+                $query->where(DB::raw("CONCAT(`name`, ' ', IFNULL(`paterno`, ''), ' ', IFNULL(`materno`, ''))"), 'LIKE', '%' . $re->term . '%');
+            });
+        }        
+
+        $objects = $objects->orderBy('created_at','DESC')   
+            ->with('paciente', 'medico')->paginate(20); 
+        
         return view('app/controles/list')->with('objects', $objects);
     }
 

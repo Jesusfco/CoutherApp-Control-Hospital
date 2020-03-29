@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Helpers\MyCarbon;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -72,5 +74,12 @@ class User extends Authenticatable
 
     public function scopeWhereName($query, $name) {
         return $query->where(DB::raw("CONCAT(`name`, ' ', IFNULL(`paterno`, ''), ' ', IFNULL(`materno`, ''))"), 'LIKE', '%' . $name . '%');
+    }
+
+    public function getNacimientoFormat() {
+        if($this->nacimiento == NULL) return "-----------";
+        $nacimiento = Carbon::parse($this->nacimiento);
+
+        return $nacimiento->day . " " . MyCarbon::getMonthName($nacimiento->month) . " " . $nacimiento->year;
     }
 }

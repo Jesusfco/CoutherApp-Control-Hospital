@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<h5><a href="{{ url('app/control') }}">Control </a> / Crear Control</h5>
+<h5><a href="{{ url('app/control') }}">Controles </a> / Crear Control</h5>
 
 <form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()">
     {{ csrf_field() }}    
@@ -35,90 +35,105 @@
     </div>
     
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">TA</label>
+      <label for="exampleInputEmail1">TA/mm/hg:</label>
       <input type="text" name="TA" class="form-control" value="{{$obj->TA }}" required>
     </div>
 
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">Peso</label>
-      <input type="number" name="peso" class="form-control" value="{{$obj->peso }}" required>
+      <label for="exampleInputEmail1">Peso (kg)</label>
+      <input type="number" step="0.01" name="peso" class="form-control" value="{{$obj->peso }}" required>
     </div>
 
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">Talla</label>
+      <label for="exampleInputEmail1">Talla (cm)</label>
       <input type="number" name="talla" class="form-control" value="{{$obj->talla }}" required>
     </div>
 
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">IMC</label>
-      <input type="number" name="IMC" class="form-control" value="{{$obj->IMC }}" required>
+      <input type="number" step="0.01" name="IMC" class="form-control" value="{{$obj->IMC }}" required>
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Temperatura</label>
-      <input type="number" name="temperatura" class="form-control" value="{{$obj->temperatura }}" required>
+      <input type="number" step="0.01" name="temperatura" class="form-control" value="{{$obj->temperatura }}" required>
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">SPO2</label>
-      <input type="number" name="SPO2" class="form-control" value="{{$obj->SPO2 }}" required>
+      <input type="number" step="0.01" name="SPO2" class="form-control" value="{{$obj->SPO2 }}" required>
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FC</label>
-      <input type="number" name="FC" class="form-control" value="{{$obj->FC }}" required>
+      <input type="number" step="0.01" name="FC" class="form-control" value="{{$obj->FC }}" required>
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FR</label>
-      <input type="number" name="FR" class="form-control" value="{{$obj->FR }}" required>
+      <input type="number" step="0.01" name="FR" class="form-control" value="{{$obj->FR }}" required>
     </div>
     
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">DXTX</label>
-      <input type="number" name="DXTX" class="form-control" value="{{$obj->DXTX }}" required>
+      <label for="exampleInputEmail1">DXTX(mg/dl):</label>
+      <input type="number" step="0.01" name="DXTX" class="form-control" value="{{$obj->DXTX }}" required>
     </div>
     
     <div class="form-group col l12">
       <label for="exampleInputEmail1">P</label>
-      <textarea type="number" name="p" class="form-control" required>{{$obj->p }}</textarea>
+      <textarea oninput="auto_grow(this)" name="p" class="form-control" required>{{$obj->p }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">S</label>
-      <textarea type="number" name="s" class="form-control" required>{{$obj->s }}</textarea>
+      <textarea oninput="auto_grow(this)" name="s" class="form-control" required>{{$obj->s }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">O</label>
-      <textarea type="number" name="o" class="form-control" required>{{$obj->o }}</textarea>
+      <textarea oninput="auto_grow(this)" name="o" class="form-control" required>{{$obj->o }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">A</label>
-      <textarea type="number" name="a" class="form-control" required>{{$obj->a }}</textarea>
+      <textarea oninput="auto_grow(this)" name="a" class="form-control" required>{{$obj->a }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">Diagnóstico</label>
-      <textarea type="number" name="diagnostico" class="form-control" required>{{$obj->diagnostico }}</textarea>
+      <textarea oninput="auto_grow(this)" name="diagnostico" class="form-control" required>{{$obj->diagnostico }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">Pronóstico</label>
-      <textarea type="number" name="pronostico" class="form-control" required>{{$obj->pronostico }}</textarea>
+      <textarea oninput="auto_grow(this)" name="pronostico" class="form-control" required>{{$obj->pronostico }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">Plan</label>
-      <textarea type="number" name="plan" class="form-control" required>{{$obj->plan }}</textarea>
+      <textarea oninput="auto_grow(this)"  name="plan" class="form-control" required>{{$obj->plan }}</textarea>
     </div>
     
     <div class="col l12"><br>
-      <button type="submit" class="btn blue">Crear Nuevo Control</button>
+      <button type="submit" class="btn blue">Actualizar Control</button>
     </div>
   </form>
+
+  <style>
+    textarea {
+      resize: none;
+      overflow: hidden;
+      min-height: 80px;
+      
+  }
+  </style>
 
 @endsection
 
 @section('scripts')
+
 <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.min.js" ></script>  
 <script>
+
+function auto_grow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}
 
 function submitForm() {
   var id = document.getElementById('paciente_id').value  

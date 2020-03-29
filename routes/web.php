@@ -35,6 +35,7 @@ Route::prefix('app')->group(function () {
     Route::prefix('pacientes')->group(function () {  
         Route::get('', 'PacientesController@list');
         Route::get('ver/{id}', 'PacientesController@show');
+        Route::get('ver/{id}/controles', 'PacientesController@controles');
         Route::get('editar/{id}', 'PacientesController@edit');
         Route::post('editar/{id}', 'PacientesController@update');
         Route::get('crear', 'PacientesController@create');

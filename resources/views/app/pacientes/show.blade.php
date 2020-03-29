@@ -7,10 +7,11 @@
 
 @section('content')
 
-<h5><a href="{{ url('app/pacientes') }}">Pacientes </a> >> Ver usuario</h5>
+<h5><a href="{{ url('app/pacientes') }}">Pacientes </a> / Ver usuario</h5>
 
 <div>
   <a class="btn blue" href="{{ url('app/pacientes/editar', $obj->id) }}">Editar</a>
+  <a class="btn blue" href="{{ url('app/pacientes/ver', $obj->id) }}/controles">Controles</a>
   {{-- <a class="btn" href="{{ url()->current() }}/negocios">Negocios</a>
   <a class="btn" href="{{ url()->current() }}/recibos">Recibos</a>
   <a class="btn" href="{{ url()->current() }}/direcciones">Direcciones</a> --}}

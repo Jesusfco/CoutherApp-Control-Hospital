@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Control;
 use App\Direccion;
 use App\User;
 use Illuminate\Http\Request;
@@ -74,6 +75,15 @@ class PacientesController extends Controller
         $n = User::find($id);          
         $n->delete();
         return 'true';
+    }
+
+    public function controles($id) {
+        $user = User::find($id);          
+        $controles = Control::where('paciente_id', $id)->orderBy('created_at', 'DESC')->with('medico')->paginate(20);
+        return view('app/pacientes/controles')->with([
+                'controles' => $controles, 
+                'user' => $user
+            ]);
     }
 
     private function pushData(Request $re, User $obj) {

@@ -24,11 +24,11 @@
     </div>
     <div class="form-group col l6">
       <label for="exampleInputEmail1">A. Paterno</label>
-      <input type="text" name="paterno" class="form-control" value="{{ $obj->paterno }}"  placeholder="Apellido Paterno">
+      <input type="text" name="paterno" class="form-control" value="{{ $obj->paterno }}"  placeholder="Apellido Paterno" required>
     </div>
     <div class="form-group col l6">
       <label for="exampleInputEmail1">A. Materno</label>
-      <input type="text" name="materno" class="form-control" value="{{ $obj->materno }}"  placeholder="Apellido Materno">
+      <input type="text" name="materno" class="form-control" value="{{ $obj->materno }}"  placeholder="Apellido Materno" required>
     </div>
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Correo</label>
@@ -42,16 +42,16 @@
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Fecha de Nacimiento</label>
-      <input type="date" name="nacimiento" class="form-control" value="{{ $obj->nacimiento }}">
+      <input type="date" name="nacimiento" class="form-control" value="{{ $obj->nacimiento }}" required>
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Número de empleado</label>      
-      <input type="number" name="no_empleado" class="form-control" value="{{ $obj->no_empleado }}">
+      <input type="number" name="no_empleado" class="form-control" value="{{ $obj->no_empleado }}" required>
     </div>
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Area</label>
-      <input type="text" name="area" class="form-control" value="{{ $obj->area }}">
+      <input type="text" name="area" class="form-control" value="{{ $obj->area }}" required>
     </div>
 
     <div class="form-group col l4">

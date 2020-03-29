@@ -60,8 +60,8 @@
     <div class="form-group col l6">
       <label>Tipo de Usuario</label>
       <select name="user_type" class="browser-default">        
-        <option value="2" @if($obj->user_type == 1) selected @endif>Doctor</option>        
-        <option value="3" @if($obj->user_type == 9) selected @endif>Administrador</option>        
+        <option value="2" @if($obj->user_type == 2) selected @endif>Doctor</option>        
+        <option value="3" @if($obj->user_type == 3) selected @endif>Administrador</option>        
       </select>
     </div>
 
