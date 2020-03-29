@@ -15,11 +15,12 @@
 
 @section('content')
 
-<div class="spaceLogin">
+<div class="spaceLogin container">
 
-    <div class="container2 loginCard">  
-
-        <h3 class="text-center">Resetea tu contraseña</h3>    
+    <div class="container2 loginCard card">  
+        <div class="container">
+            <br>
+        <h2 class="text-center">Resetea tu contraseña</h2>    
         <form class="form-horizontal" method="POST" action="">
             {{ csrf_field() }}
             
@@ -55,6 +56,8 @@
                 </div>
             </div>
         </form>
+        <br><br>
+    </div>          
     </div>          
     </div>          
 @endsection

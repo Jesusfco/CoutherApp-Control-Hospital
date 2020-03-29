@@ -17,6 +17,11 @@ Route::get('/', 'AuthController@login');
 Route::post('/', 'AuthController@signIn');
 Route::get('/logout', 'AuthController@logout');
 
+Route::get('/recuperar', 'Auth\ResetPasswordController@resetPassword');
+Route::post('/recuperar', 'Auth\ResetPasswordController@reset');
+Route::get('/recuperar/{token}', 'Auth\ResetPasswordController@checkToken');
+Route::post('/recuperar/{token}', 'Auth\ResetPasswordController@changePassword');
+
 Route::prefix('app')->group(function () {   
 
     Route::get('/', 'UtilController@dashboard');
