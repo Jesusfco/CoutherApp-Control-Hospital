@@ -19,5 +19,13 @@ class DatabaseSeeder extends Seeder
             'paterno' => 'Rodriguez',            
             'user_type' => 10,
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Jessica',
+            'email' => 'jessica@gmail.com',
+            'password' => bcrypt('secret'),
+            'paterno' => 'Gumeta',            
+            'user_type' => 1,
+        ]);
     }
 }
