@@ -56,7 +56,7 @@
                     </div>
                     
                     <p class="right">
-                        <a class="forget-link" href="{{ url('login') }}">
+                        <a class="forget-link" href="{{ url('/') }}">
                             Iniciar sesión
                         </a>
                         </p>

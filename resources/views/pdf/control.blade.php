@@ -40,7 +40,7 @@
 
 <body>
 
-    <img src="{{ url('img/topImg.jpg') }}" width="100%" class="topImg">
+    {{-- <img src="{{ url('img/topImg.jpg') }}" width="100%" class="topImg"> --}}
     <br>
     <div class="topTables">
 

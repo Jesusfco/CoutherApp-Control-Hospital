@@ -14,6 +14,7 @@ class ControlController extends Controller
     {
         $this->middleware('myAuth');
         $this->middleware('doctor');
+        $this->middleware('admin', ['only' => ['delete', 'update', 'edit']]); 
     }
 
     public function list(Request $re) {

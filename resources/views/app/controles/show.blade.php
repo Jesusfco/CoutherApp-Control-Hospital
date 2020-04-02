@@ -24,7 +24,7 @@
 
   <div class="form-group col l12">    
     <p><strong>Doctor: </strong>
-      <a href="{{ url('app/usuarios/ver', $obj->medico_id) }}">
+      <a href="{{ url('app/usuarios/ver', $obj->medico_id) }}" target="_blank">
         {{ $obj->medico->fullname() }}
       </a>
       </p>
@@ -86,7 +86,7 @@
   </div>
 
   <div class="form-group col l3">    
-    <p><strong>Temperatura: </strong> {{ $obj->temperatura }} C°</p>
+    <p><strong>Temperatura (°C): </strong> {{ $obj->temperatura }} C°</p>
   </div>
   
   <div class="form-group col l3">    

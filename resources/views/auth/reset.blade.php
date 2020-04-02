@@ -4,8 +4,6 @@
 
 @section('css')
 
-    
-    
     <link href="{{ asset('css/visitor/login.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection
 

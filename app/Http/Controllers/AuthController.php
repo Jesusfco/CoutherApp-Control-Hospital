@@ -40,7 +40,7 @@ class AuthController extends Controller
 
         else 
 
-            return back()->with('error', "La contraseña o correo son incorrectos");
+            return back()->with('error', "La contraseña o correo son incorrectos")->withInput();
 
     }
 }

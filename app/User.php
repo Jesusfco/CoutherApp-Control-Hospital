@@ -80,6 +80,6 @@ class User extends Authenticatable
         if($this->nacimiento == NULL) return "-----------";
         $nacimiento = Carbon::parse($this->nacimiento);
 
-        return $nacimiento->day . " " . MyCarbon::getMonthName($nacimiento->month) . " " . $nacimiento->year;
+        return $nacimiento->isoFormat("DD") . " " . MyCarbon::getMonthName($nacimiento->month) . " " . $nacimiento->year;
     }
 }

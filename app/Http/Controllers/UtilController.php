@@ -26,6 +26,7 @@ class UtilController extends Controller
         return response()->json(
             User::whereName($re->term)
                 ->formatSujest()
+                ->where('user_type', 1)
                 ->limit(10)->get()
         );
     }

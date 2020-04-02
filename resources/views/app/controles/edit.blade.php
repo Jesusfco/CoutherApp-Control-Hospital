@@ -56,7 +56,7 @@
     </div>
 
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">Temperatura</label>
+      <label for="exampleInputEmail1">Temperatura °C</label>
       <input type="number" step="0.01" name="temperatura" class="form-control" value="{{$obj->temperatura }}" required>
     </div>
     

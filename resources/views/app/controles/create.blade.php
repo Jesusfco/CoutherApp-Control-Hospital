@@ -9,7 +9,7 @@
 @section('content')
 <h5><a href="{{ url('app/control') }}">Controles </a> / Crear Control</h5>
 
-<form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()">
+<form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()" id="form2">
     {{ csrf_field() }}    
 
     <input type="hidden" name="paciente_id" id="paciente_id" value="{{ old('paciente_id') }}">
@@ -24,6 +24,11 @@
       <label for="exampleInputEmail1">Doctor</label>
       <input class="form-control" value="{{ Auth::user()->fullname() }}" disabled>
     </div>
+
+    {{-- <div class="form-group col l4">
+      <label for="exampleInputEmail1">Paciente Seleccionado</label>
+      <input class="form-control" value="" disabled v-model="paciente">
+    </div> --}}
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Teléfono</label>
@@ -56,7 +61,7 @@
     </div>
 
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">Temperatura</label>
+      <label for="exampleInputEmail1">Temperatura °C</label>
       <input type="number" step="0.01" name="temperatura" class="form-control" value="{{ old('temperatura') }}" required>
     </div>
     
@@ -76,7 +81,7 @@
     </div>
     
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">DXTX(mg/dl):</label>
+      <label for="exampleInputEmail1">DXTX( mg/dl):</label>
       <input type="number" step="0.01" name="DXTX" class="form-control" value="{{ old('DXTX') }}" required>
     </div>
     
@@ -128,6 +133,25 @@
 @section('scripts')
 <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.min.js" ></script>  
 <script>
+
+var app = new Vue({
+  el: '#form2',
+    data: {
+      paciente: "", 
+      nacimiento: "",
+      edad: null      
+      
+    }, created: function () {
+      // this.countLines()
+    },
+    methods: {
+
+      countLines: function() { 
+
+      }
+
+    }
+})
 
 function auto_grow(element) {
     element.style.height = "5px";
