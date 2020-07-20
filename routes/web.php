@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/justForTryyaPuesttt', 'AuthController@justForTry');
+
 Route::get('/', 'AuthController@login');
 Route::post('/', 'AuthController@signIn');
 Route::get('/logout', 'AuthController@logout');
