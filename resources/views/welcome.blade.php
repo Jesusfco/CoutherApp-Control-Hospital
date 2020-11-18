@@ -79,6 +79,14 @@
                 </div>
             @endif
 
+            <img src="piedritaDondeEsta.png" onclick="initGame(0)">
+            <img src="tijeraDondeEsta.png" onclick="initGame(1)">
+            <img src="papelDondeEsta.png" onclick="initGame(2)">
+            <script>
+                function initGame(opcionUsuario) { // 0 1 2 
+
+                }
+            </script>
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
