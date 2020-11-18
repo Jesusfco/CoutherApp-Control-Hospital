@@ -13,8 +13,8 @@ class CreateDireccionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('direccions', function (Blueprint $table) {
-            
+        Schema::create('direccions', function (Blueprint $table) 
+        {            
             $table->integer('user_id')->primary();
             $table->string('calle')->nullable();
             $table->string('colonia')->nullable();

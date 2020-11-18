@@ -41,10 +41,15 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'datetime',
     ];
 
+    // public function setPasswordAttribute($value)
+    // {
+    //     $this->attributes['password'] = bcrypt($value);
+    // }
     public function direccion() {
-        return $this->hasOne('App\Direccion');
+        return $this->hasOne('App\Direccion')->withDefault();
     }
 
     public function type() {
@@ -65,9 +70,12 @@ class User extends Authenticatable
         return $ano_diferencia;
 
     }
-
+    
     public function fullname() { return "$this->name $this->paterno $this->materno"; }
-
+    public function getNombreCompletoAttribute()
+    {
+        return "{$this->name} {$this->paterno} {$this->materno}";
+    }
     public function scopeFormatSujest($query) {
         return $query->select(DB::raw("CONCAT(`name`, ' ', IFNULL(`paterno`, ''), ' ', IFNULL(`materno`, '')) AS value"), DB::raw("id AS data"));
     }
@@ -81,5 +89,22 @@ class User extends Authenticatable
         $nacimiento = Carbon::parse($this->nacimiento);
 
         return $nacimiento->isoFormat("DD") . " " . MyCarbon::getMonthName($nacimiento->month) . " " . $nacimiento->year;
+    }
+
+    public function antecedentes()
+    {
+        return $this->hasMany(Antecedente::class, 'paciente_id');
+    }
+    public function antecedentes_medico()
+    {
+        return $this->hasMany(Antecedente::class, 'medico_id');
+    }
+    public function control()
+    {
+        return $this->hasMany(Control::class, 'paciente_id');
+    }
+    public function control_medico()
+    {
+        return $this->hasMany(Control::class, 'medico_id');
     }
 }

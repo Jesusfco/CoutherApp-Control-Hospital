@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Control;
 use App\Direccion;
+use App\Http\Requests\Paciente\Store;
+use App\Http\Requests\Paciente\Update;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -28,15 +30,8 @@ class PacientesController extends Controller
         return view('app/pacientes/create');
     }
 
-    public function store(Request $re) {        
-        $check = NULL;
-        if( $re->email != NULL)
-            $check = User::where('email', 'LIKE', $re->email)->first();        
-        if($check != NULL) 
-            return back()
-            ->with('error', 'Correo repetido "'. $re->email . '" - No se puede crear otro paciente con el mismo correo')
-            ->withErrors(['email.unique', 'Correo repetido "'. $re->email . '"'])
-            ->withInput();
+    public function store(Store $re) {        
+         
         $obj = new User();
         $this->pushData($re, $obj);        
        
@@ -54,15 +49,9 @@ class PacientesController extends Controller
         return view('app/pacientes/show')->with('obj', $obj);
     }
 
-    public function update(Request $re, $id) {                
-
-        if($re->email != NULL) {
-            $check = User::where('email', 'LIKE', $re->email)->first();
-            if($check != NULL)
-                if($check->id != $id) 
-                    return back()->with('error', 'Correo repetido "'. $re->email . '" - No se puede tener mas de un usuario con el mismo correo');
-        }        
-
+    public function update(Update $re, $id) 
+    {                
+ 
         $obj = User::find($id);
         $this->pushData($re, $obj);       
             

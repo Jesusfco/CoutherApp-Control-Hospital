@@ -1,18 +1,18 @@
 @extends('blades.app')
 
-@section('title', 'Controles')
+@section('title', 'Antecedentes')
 
 @section('css')
 @endsection
 
 @section('content')
 
-    <h5>Controles / Lista</h5>
+    <h5>Antecedentes / Lista</h5>
     @if(Auth::user()->user_type == 2)
-    <a href="{{ url('app/control/crear') }}"><button class="btn orange">Crear Control</button></a>
+    <a href="{{ url('app/antecedentes/create') }}"><button class="btn orange">Crear Control</button></a>
     @endif
     <form method="GET" class="navbar-form row">
-        <div class="input-field col l10">
+        <div class="input-field col l8">
             <i class="material-icons prefix">search</i>
             <input name="term" type="search" value="{{ request('term')}}" class="form-control" autofocus>
             <label>Buscar Termino</label>
@@ -26,7 +26,8 @@
               
             </select>
         </div>
-        <div class="col l12">
+        <div class="col l2">
+            <br>            
             <button class="btn blue">Buscar</button>            
         </div>
    </form> 
@@ -43,16 +44,18 @@
         @foreach($objects as $n)
         
         <tr id="id{{$n->id}}">            
-            <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->fullname() }} </a></td>
-            <td>{{ $n->medico->fullname() }}</td>
+            <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->nombre_completo }} </a></td>
+            <td>{{ $n->medico->nombre_completo }}</td>
             <td>{{ $n->getFechaFormat() }}</td>                        
             <td>{{ $n->getHourFormat() }} HRS</td>                        
             <td>               
-                <a href="{{ url('app/control/ver', $n->id) }}" class="btn green">Ver</a>
-                {{-- @if(Auth::user()->user_type  == 3)  --}}
-                <a href="{{ url('app/control/editar/'.$n->id.'') }}" class="btn blue">Editar </a>                
+                <a href="{{ url('app/antecedentes/', $n->id) }}" class="btn green">Ver</a>
+                <a href="{{ url('app/antecedentes/'. $n->id . "/pdf") }}" class="btn orange">PDF</a>
+                
+                @if(Auth::user()->user_type  >= 2) 
+                <a href="{{ url('app/antecedentes/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                
                 <a onclick="eliminar({{ $n->id }}, '{{ $n->name }}')" class="btn red"> Eliminar</a>
-                {{-- @endif --}}
+                @endif
             </td>
         </tr>
         

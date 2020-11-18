@@ -16,15 +16,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Jesus Fco',
             'email' => 'jfcr@live.com',
             'password' => bcrypt('secret'),
+            // 'password' => 'secret',
             'paterno' => 'Rodriguez',            
             'user_type' => 10,
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Jessica',
-            'email' => 'jessica@gmail.com',
+            'name' => 'Administrador',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('secret'),
-            'paterno' => 'Gumeta',            
+            'paterno' => 'Couther',            
             'user_type' => 1,
         ]);
     }

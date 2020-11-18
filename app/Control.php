@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\Helpers\MyCarbon;
-use Carbon\Carbon;
+use App\TraitsModel\FechaHoraTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Control extends Model
 {
+    use FechaHoraTrait;
     protected $fillable = [
         'paciente_id', 
         'medico_id', 
@@ -42,19 +42,5 @@ class Control extends Model
         ]);
     }
 
-    public function getFechaFormat() {
-        
-        $date = Carbon::parse($this->created_at);
-        
-        
-        $text = MyCarbon::getDayWeekName($date->dayOfWeek) . " ";
-        $text .= $date->day . " de " . MyCarbon::getMonthName($date->month) . " " . $date->year;
-
-        return $text;
-    }
-
-    public function getHourFormat() {
-        $date = Carbon::parse($this->created_at);
-        return $date->hour . ":" . $date->minute;
-    }
+    
 }

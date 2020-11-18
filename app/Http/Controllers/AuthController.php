@@ -27,10 +27,9 @@ class AuthController extends Controller
         
     }
 
-    public function signIn(Request $re) {
-
-        $credentials = $re->only('email', 'password');
-
+    public function signIn(Request $re) 
+    {
+        $credentials = $re->only('email', 'password');        
         if (Auth::attempt($credentials)) 
 
             if(Auth::user()->user_type == 2)

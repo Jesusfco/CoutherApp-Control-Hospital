@@ -91,6 +91,7 @@
                 @endif
                 <li><a href="{{ url('app/pacientes') }}">Pacientes</a></li>
                 <li><a href="{{ url('app/control') }}">Control</a></li>
+                <li><a href="{{ url('app/antecedentes') }}">Antecedentes</a></li>
                 
                 {{-- <li><a href="{{ url('app/perfil') }}">Mi Perfil</a></li> --}}
                 <li><a href="{{ url('logout') }}">Cerrar Sesión</a></li>
@@ -111,7 +112,9 @@
                 <div class="panelNavFake"></div>                
 
                 <div class="container">
-                  @yield('content')
+                  <div class="card" style="padding: 12px; margin-top: 40px; min-height: 88vh">
+                    @yield('content')
+                  </div>
                 </div>
               </div>
               

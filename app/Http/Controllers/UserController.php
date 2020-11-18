@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Direccion;
+use App\Http\Requests\User\Store;
+use App\Http\Requests\User\Update;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -28,16 +30,10 @@ class UserController extends Controller
         return view('app/user/create');
     }
 
-    public function store(Request $re) {        
-        $check = NULL;
-        if( $re->email != NULL)
-            $check = User::where('email', 'LIKE', $re->email)->first();        
-        if($check != NULL) 
-            return back()
-            ->with('error', 'Correo repetido "'. $re->email . '" - No se puede crear otro usuario con el mismo correo')
-            ->withErrors(['email.unique', 'Correo repetido "'. $re->email . '"'])
-            ->withInput();
+    public function store(Store $re) {        
+        
         $obj = new User();
+        
         $this->pushData($re, $obj);        
        
         // $this->show($obj->id);
@@ -45,32 +41,24 @@ class UserController extends Controller
         return redirect('app/usuarios/ver/' . $obj->id)->with('msj', 'Se ha creado un usuario con exito');
     }
 
-    public function edit($id) {
-        $obj = User::find($id);
-        return view('app/user/edit')->with('obj', $obj);
+    public function edit($id) 
+    {
+        return view('app/user/edit')->with('obj', User::findOrFail($id));
     }
     public function show($id) {
         $obj = User::find($id);
         return view('app/user/show')->with('obj', $obj);
     }
 
-    public function update(Request $re, $id) {
-        
-        $obj = User::find($id);
-        $check = User::where('email', 'LIKE', $re->email)->first();
-
-        if($check != NULL)
-            if($check->id != $id) 
-                return back()->with('error', 'Correo repetido "'. $re->email . '" - No se puede tener mas de un usuario con el mismo correo');
-
-        $this->pushData($re, $obj);       
-            
+    public function update(Update $re, $id) 
+    {        
+        $obj = User::find($id);       
+        $this->pushData($re, $obj);                   
         return back()->with('success', 'Se ha actualizado el usuario con exito');
-
     }
 
-    public function delete($id) {
-        
+    public function delete($id) 
+    {        
         $n = User::find($id);          
         $n->delete();
         return 'true';

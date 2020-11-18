@@ -2,19 +2,57 @@
 
 namespace App;
 
+use App\TraitsModel\FechaHoraTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Antecedente extends Model
 {
+    use FechaHoraTrait;
     protected $fillable = [
-        'id_paciente', 
-        'tiempo_embarazo', 
-        'complicaciones_embarazo', 
-        'complicaciones_parto', 
-        'fumaba_embarazo', 
-        'alcohol_embarazo', 
-        'exposicion_toxicos',
-        'fisuras_padres', 
-        'fisuras_parientes'
+        'paciente_id', 
+        'medico_id', 
+        'alergias', 
+        'heredofamiliares', 
+        'personales_no_patologicos', 
+        'personales_patologicos', 
+        'musculo_esqueletico', 
+        'piel_anexos', 
+        // Datos En tabla
+        'peso', 
+        'mm_hg', 
+        'temperatura', 
+        'frecuencia_respiratoria',
+        'frecuencia_cardiaca',
+        'talla', 
+        // 
+        'habitus_exterior',
+        'cabeza',
+        'cuello',
+        'torax',
+        'abdomen',
+        'genitales',
+        'respiratorio',
+        'cardiovascular',
+        'digestivo',
+        'urinario',
+        'reproductor',
+        'hemolinfatico',
+        'endocrino',
+        'sistema_nervioso',
+        'exploracion_ginecologica',
+        'columna_vertebral',
+        'extremidades',
+        'exploracion_neurologica',
+        'diagnostico',
+        'plan',
     ];
+
+    public function medico()
+    {
+        return $this->belongsTo(User::class, 'medico_id')->withDefault([ 'name' => ' Médico desconocido']);
+    }
+    public function paciente()
+    {
+        return $this->belongsTo(User::class, 'paciente_id')->withDefault([ 'name' => ' Paciente desconocido']);
+    }
 }
