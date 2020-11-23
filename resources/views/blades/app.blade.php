@@ -13,6 +13,7 @@
     <link href="{{ asset('assets/materialize/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('css/admin/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{ asset('assets/sweet/sweetalert.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.1/themes/smoothness/jquery-ui.css">
     @yield('css')
 
     <style>
@@ -40,97 +41,62 @@
       .authData p { margin: 4px}
     </style>
 </head>
-<body>
+<body> 
+<div id="app">
 
+  <div class="panelNav blue darken-4 lighten-1 ">
 
+    <div class="container2">
+    <h5 class="white-text">Aplicación</h5>                  <br><br>
+    <ul class="navLinks">
+      {{-- <li><a href="{{ url('app') }}">Inicio</a></li> --}}
+      @if(Auth::user()->user_type > 2)
+      <li><a href="{{ url('app/usuarios') }}">Usuarios</a></li>
+      @endif
+      
+      <li><a href="{{ url('app/pacientes') }}">Pacientes</a></li>
+      <li><a href="{{ url('app/control') }}">Control</a></li>
+      <li><a href="{{ url('app/antecedentes') }}">Antecedentes</a></li>
+      <li><a href="{{ url('app/analisis') }}">Análisis</a></li>
+      
+      {{-- <li><a href="{{ url('app/perfil') }}">Mi Perfil</a></li> --}}
+      <li><a href="{{ url('logout') }}">Cerrar Sesión</a></li>
+    </ul>
+    </div>
 
-        <!--<nav class="blue darken-4 lighten-1" role="navigation">
-                <div class="nav-wrapper container">
-                  <a id="logo-container" href="{{ url('')}}" class="brand-logo">
-                    <h5>COUTHER</h5>
-                    {{-- <img src="{{ url('img/logo2.png')}}" height="63px;"> --}}
-                  </a>
-                  <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url('app') }}">Inicio</a></li>
-                    @if(Auth::user()->user_type > 2)
-                    <li><a href="{{ url('app/usuarios') }}">Usuarios</a></li>
-                    @endif
-                    <li><a href="{{ url('app/pacientes') }}">Pacientes</a></li>
-                    <li><a href="{{ url('app/control') }}">Control</a></li>
-                    
-                    {{-- <li><a href="{{ url('app/perfil') }}">Mi Perfil</a></li> --}}
-                    <li><a href="{{ url('logout') }}">Cerrar Sesión</a></li>
-                  </ul>
-            
-                  <ul id="nav-mobile" class="sidenav">
-                    <li><h4 class="black-color">Locales Abuela</h4></li>
-                    <li><a href="{{ url('app') }}">Inicio</a></li>
-                    @if(Auth::user()->user_type >= 9)
-                    <li><a href="{{ url('app/usuarios') }}">Usuarios</a></li>
-                    @endif
-                    <li><a href="{{ url('app/recibos') }}">Recibos</a></li>
-                    <li><a href="{{ url('app/locales') }}">Locales</a></li>
-                    <li><a href="{{ url('app/negocios') }}">Negocios</a></li>
-                    <li><a href="{{ url('app/perfil') }}">Mi Perfil</a></li>
-                    <li><a href="{{ url('logout') }}">Cerrar Sesión</a></li>
-                  </ul>
-                  <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                </div>
-              </nav>
+      <div class="authData container">
+        <p>{{ Auth::user()->fullname() }}</p>
+        @if(Auth::user()->user_type == 2)
+        <p>{{ Auth::user()->cedula }}</p>
+        @endif                    
+        <p>{{ Auth::user()->type() }}</p>
+      </div>
+  </div>
 
-            -->
-
-            <div class="panelNav blue darken-4 lighten-1 ">
-
-              <div class="container2">
-              <h5 class="white-text">Aplicación</h5>                  <br><br>
-              <ul class="navLinks">
-                {{-- <li><a href="{{ url('app') }}">Inicio</a></li> --}}
-                @if(Auth::user()->user_type > 2)
-                <li><a href="{{ url('app/usuarios') }}">Usuarios</a></li>
-                @endif
-                <li><a href="{{ url('app/pacientes') }}">Pacientes</a></li>
-                <li><a href="{{ url('app/control') }}">Control</a></li>
-                <li><a href="{{ url('app/antecedentes') }}">Antecedentes</a></li>
-                <li><a href="{{ url('app/analisis') }}">Análisis</a></li>
+    <div class="flex "> 
                 
-                {{-- <li><a href="{{ url('app/perfil') }}">Mi Perfil</a></li> --}}
-                <li><a href="{{ url('logout') }}">Cerrar Sesión</a></li>
-              </ul>
-              </div>
+      <div class="panelNavFake"></div>                
 
-                <div class="authData container">
-                  <p>{{ Auth::user()->fullname() }}</p>
-                  @if(Auth::user()->user_type == 2)
-                  <p>{{ Auth::user()->cedula }}</p>
-                  @endif                    
-                  <p>{{ Auth::user()->type() }}</p>
-                </div>
-            </div>
-
-              <div class="flex "> 
-                         
-                <div class="panelNavFake"></div>                
-
-                <div class="container">
-                  <div class="card" style="padding: 12px; margin-top: 40px; min-height: 88vh">
-                    @yield('content')
-                  </div>
-                </div>
-              </div>
-              
-
-              <br>
-
+      <div class="container">
+        <div class="card" style="padding: 12px; margin-top: 40px; min-height: 88vh">
+          @yield('content')
+        </div>
+      </div>
+    </div>
     
+    <br> 
+
+</div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.min.js" ></script>      
     {{-- OPTIMIZADO VUE --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> --}}
-    <script src="{{ asset('assets/materialize/materialize.js') }}"></script>    
-    <script src="{{ asset('assets/sweet/sweetalert.min.js')}}"></script>
-    <script src="{{ asset('js/delete.js')}}"></script>
+    {{-- <script src="{{ asset('assets/materialize/materialize.js') }}"></script>     --}}
+    <script src="{{ asset('assets/sweet/sweetalert.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="{{ asset('js/delete.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script>
 
       (function($){
@@ -144,11 +110,11 @@
 
       const actualUrl = "{{ url()->current() }}"
 
-            $(document).ready(function(){
-               $('select').formSelect();
-               $('.fixed-action-btn').floatingActionButton();
-               $('.tooltipped').tooltip();
-           })
+          $(document).ready(function(){
+            $('select').formSelect();
+            $('.fixed-action-btn').floatingActionButton();
+            $('.tooltipped').tooltip();
+          })
            
            @if(session('msj'))    
                M.toast({html: '{{session('msj')}}', displayLength: 5000})        

@@ -15,6 +15,9 @@ class CreateAnalisisPhotosTable extends Migration
     {
         Schema::create('analisis_photos', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('analisis_id');
+            $table->string('path');
+            $table->integer('order_position')->nullable();
             $table->timestamps();
         });
     }

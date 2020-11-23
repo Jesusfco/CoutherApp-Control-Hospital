@@ -15,6 +15,12 @@ class CreateAnalisesTable extends Migration
     {
         Schema::create('analises', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('paciente_id');
+            $table->bigInteger('creator_id');
+            $table->string('tipo');
+            $table->string('descripcion');
+            $table->text('observacion')->nullable();
+            $table->date('fecha')->nullable();
             $table->timestamps();
         });
     }

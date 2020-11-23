@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Analisis;
+use App\Http\Requests\Analisis\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AnalisisController extends Controller
@@ -24,9 +26,9 @@ class AnalisisController extends Controller
         }  
 
         $objects = $objects->orderBy('created_at','DESC')   
-            ->with('paciente', 'medico')->paginate(20); 
+            ->with('paciente')->paginate(20); 
                     
-        return view('app/antecedentes/list')->with('objects', $objects);
+        return view('app/analisis/list')->with('objects', $objects);
     }
 
     /**
@@ -36,7 +38,7 @@ class AnalisisController extends Controller
      */
     public function create()
     {
-        //
+        return view('app/analisis/create');
     }
 
     /**
@@ -45,9 +47,12 @@ class AnalisisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        //
+        $request = $request->all();
+        $request['creator_id'] = Auth::id();
+        $analisis = Analisis::create($request);
+        return redirect('app/analisis/'. $analisis->id . '/edit')->with('msj', 'Análisis creado');
     }
 
     /**
@@ -58,7 +63,8 @@ class AnalisisController extends Controller
      */
     public function show($id)
     {
-        //
+        $analisis = Analisis::with('images')->find($id);
+        return response($analisis);
     }
 
     /**
@@ -69,7 +75,8 @@ class AnalisisController extends Controller
      */
     public function edit($id)
     {
-        //
+        $analisis = Analisis::find($id);
+        return view('app/analisis/edit')->with('analisis', $analisis);
     }
 
     /**
