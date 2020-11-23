@@ -24,7 +24,7 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            //
+            'paciente_id' => 'required|'
         ];
     }
 }

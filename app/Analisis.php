@@ -17,7 +17,7 @@ class Analisis extends Model
         'fecha',
     ];
 
-    public function analisisPhotos() 
+    public function images() 
     {
         return $this->hasMany(AnalisisPhoto::class);
     }

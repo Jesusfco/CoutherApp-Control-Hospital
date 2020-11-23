@@ -8,3 +8,9 @@ Vue.component('input-suggest-pacient', require('./components/Forms/InputSuggestP
 const app = new Vue({
     el: '#app'
 });
+
+let nombre = "Rosita"
+const apellido = "Herrera"
+var edad = 16
+
+let
