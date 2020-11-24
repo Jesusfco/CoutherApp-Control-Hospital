@@ -3,6 +3,7 @@
 @section('title', 'Editar análisis')
 
 @section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/myDropzone/dropzone.css') }}">
 <style>
   textarea {
     resize: none;
@@ -16,9 +17,10 @@
 @section('content')
 <h5><a href="{{ url('app/analisis') }}">Análisis </a> / Crear Analisis</h5>
 
-<form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()" action="{{url('app/analisis')}}">
+  <form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()" action="{{url('app/analisis')}}">
     {{ csrf_field() }}    
     
+    <input type="hidden" name="register_id" id="register_id" value="{{ $analisis->id  }}">    
     <div class="form-group col s12">
       <label for="exampleInputEmail1">Paciente</label>
       <input type="text" name="search" class="form-control" id="search_pacient" value="{{ $analisis->paciente->nombre_completo  }}"  placeholder="Nombre" required  autofocus>
@@ -46,10 +48,43 @@
     </div>
   </form>
 
-  <div id="analisis-loader">
-    <h3>Galería de Propiedad</h3>
-    {{-- <p>{{images}}</p> --}}
-    <p v-if="images.length == 0">Es necesario cargar una fotografía del lugar para que los visitantes puedan ver la propiedad</p>
+  <div id="analisis-loader" class="drop">
+    <h3>Galería de Análisis</h3>
+    <div class="col l12">
+      <div  id="drop" >
+        <div class="dropInputContainer">
+            <input id="files" type="file" multiple name="files" v-on:change="handleInputFile" >
+            <i class="material-icons">add_photo_alternate</i>
+        </div>            
+
+        <div v-if="files.length > 0" >
+          <button  v-on:click="startUploadImages" class="btn orange"> Cargar Imagenes</button>
+          <div class="filePreviewContainer" v-if="files.length > 0" >
+
+            <div v-for="file in files" class="fileDiv" v-bind:class="{ activeDrop: file.status == 1, 
+            'errorUpload': file.status < 0 }">
+                <img :src=file.bits :id=file.id>
+
+                <div class="iconsDiv">
+                  <i class="material-icons" v-on:click="deleteFile(file)">delete</i>
+                  <i class="material-icons" v-on:click="setPrincipalFile(file)" v-bind:class="{ heartActive: file.principal}">favorite</i>
+                </div>
+                
+                <div v-if="file.status == 1" class="progress">
+                  <div class="percent" id="percent"></div>
+                </div>
+                <div v-if="file.status == -1" class="alertDrop">
+                    <p>Error en la carga</p>
+                </div>                  
+            </div>
+
+          </div>    
+        </div>    
+
+      </div>
+    </div>
+    
+    <p v-if="images.length == 0">Aun no se ha cargado ninguna imagen</p>
     <div class="row imagesGrid" v-if="images.length > 0">
 
       <div v-if="image_principal " class="fileDiv col l8">
@@ -74,6 +109,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
 <script src="{{ url('js/admin/autocomplete_pacient.js') }}"></script>
 <script src="{{ url('js/admin/analisis_loader_images.js') }}"></script>
 <script>

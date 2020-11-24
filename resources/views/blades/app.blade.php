@@ -88,14 +88,15 @@
 
 </div>
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.min.js" ></script>      
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>    
     {{-- OPTIMIZADO VUE --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> --}}
-    {{-- <script src="{{ asset('assets/materialize/materialize.js') }}"></script>     --}}
+    <script src="{{ asset('assets/materialize/materialize.js') }}"></script>    
     <script src="{{ asset('assets/sweet/sweetalert.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.min.js" ></script>      
     <script src="{{ asset('js/delete.js') }}"></script>
+    
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script>
 
@@ -127,6 +128,7 @@
                M.toast({html: '{{session('success')}}', classes: 'green', displayLength: 6500})        
            @endif
     </script>
+    
     @yield('scripts')
     
 

@@ -9,102 +9,26 @@ var appForm = new Vue({
         files: [],
         fileCharging: 0,            
     }, created: function() {
-      let id
-      try {
-        id = document.getElementById('idInput').value  
-        console.log("ID", id)
-      } catch (error) {
-        //ESTAMOS EN COMPONENTE CREATE
-        return
-      }
-              
-      
-       
-        
-      axios.get(baseUrl + '/app/analisis/' + this.id)
-  
+      this.id = document.getElementById('register_id').value    
+      axios.get(window.location.origin + '/app/analisis/' + this.id)  
         .then( (response) => {
-          
+          console.log(response)
           for(let element in this.property) {
             this.property[element] = response.data[element]
-          }
-  
-          this.property.property_type = response.data.type.name          
-          this.property.property_type_id = response.data.type.id          
-          
-          CKEDITOR.instances['editor1'].insertHtml(this.property.description);
-  
+          } 
           response.data.images.forEach(element => {
-            element.file = baseUrl  + "/img/propiedades/" + this.property.id + "/" + element.file
-              if(element.principal == 1)
-                  element.principal = true
-              else
-                  element.principal = false
+            element.file = element.full_path             
           });        
   
-          this.images = response.data.images
-          this.image_principal = response.data.image_principal
-          this.image_principal.file = baseUrl  + "/img/propiedades/" + this.property.id + "/" + this.image_principal.file
+          this.images = response.data.images          
                      
         }).catch((error) => {
-          this.uploading = false            
+          
         });
   
     },
     methods: {
-  
-      easyViewNumber (number) {
-        if(number == null) return ""      
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      },
-      submit: function(e) {    
-  
-        e.preventDefault()    
-        
-        this.property.description = CKEDITOR.instances.editor1.getData()                   
-  
-        if (this.uploading == true) return;            
-  
-        this.uploading = true;        
-  
-        this.property.property_type = (this.property.property_type + "").toUpperCase()
-        let cloneProperty =  JSON.parse( JSON.stringify(this.property)   )
-        cloneProperty.imgFile = null;                            
-        
-        var formData = new FormData();          
-        formData.append("dataProperty", JSON.stringify(cloneProperty))
-        
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            progress: (progressEvent) => {
-                var percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                let element = document.getElementById('progressBar1');
-                element.style.width = percent + "%";                
-            }
-        }
-  
-        axios.post(baseUrl + '/app/propiedades/store-update', formData, config)
-        .then( (response) => {
-          
-            this.uploading = false
-            
-            if(this.property.id == null){
-              window.location.replace("administrar/" + response.data.id);                                    
-              localStorage.setItem('created_property', '1')
-            }
-            else 
-              M.toast({html: 'La propiedad ha sido actualizada', classes: 'green', displayLength: 4500})        
-  
-        }).catch((error) => {
-  
-            this.uploading = false
-            M.toast({html: 'Los datos no pudieron ser actualizados, verifique su conexión a internet, si el problema persiste contacte al administrador', classes: 'red', displayLength: 10000})        
-  
-        });
-      },
-  
+   
       startUploadImages: function() {
         this.files.forEach((element) => {
             element.status = 0
@@ -114,119 +38,67 @@ var appForm = new Vue({
       },
   
       nextFileToSend: function() {
-            for (let i = 0; i < this.files.length; i++) {
-  
-                if (this.files[i].status == 0) {
-                    this.sendImageFile(i);
-                    break;
-                }
-  
-            }
-        },
-      sendImageFile: function(i) {                        
-  
-          if (this.uploading == true || this.files.length == 0) return;
-  
-          this.uploading = true;        
-  
-          this.property.property_type = (this.property.property_type + "").toUpperCase()
-          let cloneProperty =  JSON.parse( JSON.stringify(this.property)   )
-          cloneProperty.imgFile = null;                            
-          
-          var formData = new FormData();  
-          formData.append("imgFile", this.files[i].file)          
-          formData.append("principal", this.files[i].principal)          
-          
-          //charging
-          this.files[i].status = 1
-          const config = {
-              headers: {
-                  'Content-Type': 'multipart/form-data'
-              },
-              progress: (progressEvent) => {
-                  var percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                  let element = document.getElementById('percent');
-                  element.style.width = percent + "%";
-              }
+        for (let i = 0; i < this.files.length; i++) {
+          if (this.files[i].status == 0) {
+              this.sendImageFile(i);
+              break;
           }
+        }
+      },
+      sendImageFile: function(i) {                          
+        if (this.uploading == true || this.files.length == 0) {
+          return;
+        }
   
-        axios.post(baseUrl + '/app/propiedades/store-images/' + this.property.id, formData, config)
+        this.uploading = true;        
+                              
+        var formData = new FormData();  
+        formData.append("img_file", this.files[i].file)                  
+        formData.append("analisis_id", this.id)                  
+        
+        //charging
+        this.files[i].status = 1
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            progress: (progressEvent) => {
+                var percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                let element = document.getElementById('percent');
+                element.style.width = percent + "%";
+            }
+        }
   
+        axios.post(window.location.origin  + '/app/analisis-photos', formData, config)  
           .then( (response) => {            
-  
-              console.log(response)
+                
               this.uploading = false          
-              this.deleteFile(this.files[i])
-  
-              response.data.file =  baseUrl  + "/img/propiedades/" + this.property.id + "/" + response.data.file
-  
-              if(response.data.principal) {
-                  this.images.forEach((element) => {
-                      element.principal = false
-                  })
-  
-                  this.image_principal = response.data
-              }
-  
+              this.deleteFile(this.files[i])  
+              response.data.file = response.data.full_path                  
               this.images.push(response.data)  
               setTimeout(() => this.nextFileToSend(),200)        
-              
-  
+                
         }).catch((error) => {
             console.log(error)
             this.files[i].status = -1
             this.uploading = false
-            setTimeout(() => this.nextFileToSend(),200)        
-            // app.errorHandler(error, i);
+            setTimeout(() => this.nextFileToSend(),200)                    
   
         });
   
       },
   
-      getFile: function() {
-  
+      handleInputFile: function() {  
         var input = document.getElementById('files');
-        var momentFiles = input.files;
-        
-        for (let i = 0; i < momentFiles.length; i++) {
-  
-          if (this.validateImageFile(momentFiles[i].type)) continue;
-  
-          this.getElementsFromFile(momentFiles[i], i);            
-  
-        }                
-        setTimeout(() => this.checkIfThereIsAPrincipalImg(), 200)        
-        
-        input.value = null;
-  
-      },
-  
-      checkIfThereIsAPrincipalImg: function () {
-        var thereIsPrincipal = false;
-        
-        if(this.files.length > 0) {          
-  
-          for(let img of this.images){
-              
-            if(img.principal == true){
-              thereIsPrincipal = true
-              console.log("Hay principal")
-              break
-            }
-          }
-  
-          this.files.forEach((element) => {
-            if(element.principal)
-              thereIsPrincipal  = true
-          })
-  
-          if(!thereIsPrincipal) 
-            this.files[0].principal = true
-          
-        }
-  
-  
-      },
+        var momentFiles = input.files;        
+        for (let i = 0; i < momentFiles.length; i++) {  
+          if (this.validateImageFile(momentFiles[i].type)) {
+            continue;
+          }  
+          this.getElementsFromFile(momentFiles[i], i);              
+        }                                
+        input.value = null;  
+      }, 
   
       validateImageFile: function(type) {
         let validation = true;
@@ -246,8 +118,7 @@ var appForm = new Vue({
             file: file,
             bits: null,
             status: 0,
-            id: 0,
-            principal: false
+            id: 0,            
         };
   
         let reader = new FileReader();

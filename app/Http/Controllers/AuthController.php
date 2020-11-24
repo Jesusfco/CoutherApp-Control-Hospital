@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function logout(){
         try {
-            $user = Auth::user()->fullname();
+            $user = Auth::user()->nombre_completo;
             Auth::logout();
             return redirect('/')->with('msj', 'Tu sesion ha sido cerrada ' . $user);
         } catch (\Throwable $th) {

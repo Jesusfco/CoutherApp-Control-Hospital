@@ -60,6 +60,7 @@ Route::prefix('app')->group(function () {
         Route::get('delete/{id}', 'ControlController@delete');
     });
 
+    Route::resource('analisis-photos', 'AnalisisController');
     Route::resource('analisis', 'AnalisisController');
     Route::resource('antecedentes', 'AntecedentesController');
     Route::get('antecedentes/{id}/pdf', 'AntecedentesController@getPDF');

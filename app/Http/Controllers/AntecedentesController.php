@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class AntecedentesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('myAuth');
+        // $this->middleware('doctor');
+        // $this->middleware('admin', ['only' => ['delete', 'update', 'edit']]); 
+    }
     /**
      * Display a listing of the resource.
      *

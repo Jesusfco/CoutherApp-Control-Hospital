@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnalisisPhoto extends Model
 {
-    public function analisisPhotos() 
+    public function analisis() 
     {
-        return $this->hasMany(AnalisisPhoto::class);
+        return $this->belongsTo(Analisis::class);
     }
 }

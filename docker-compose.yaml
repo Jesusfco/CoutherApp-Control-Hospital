@@ -1,0 +1,65 @@
+version: '3'
+services:
+  # PHP Main Backend Service
+  laravel:
+    container_name: couther-php
+    build:
+      context: .
+      dockerfile: Dockerfile    
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+       - .:/var/www    
+    ports:
+      - "9000:9000"
+    expose:
+      -  9000
+    networks:
+      - couther_network
+
+  webserver:        
+    image: nginx:alpine 
+    restart: always
+    tty: true
+    
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - ./:/var/www     
+        - ./docker/nginx/conf.d/:/etc/nginx/conf.d/   
+    networks:
+        - couther_network     
+
+  mysql:
+    image: mysql:5.7.29
+    container_name: couther-mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+        - "3309:3306"
+    environment:
+        MYSQL_DATABASE: wfs-new
+        MYSQL_USER: root
+        MYSQL_PASSWORD: secret
+        MYSQL_ROOT_PASSWORD: secret                        
+    networks:
+        - couther_network
+    volumes:
+        - ./docker/volumes/mysql:/var/lib/mysql
+  # redis:
+  #   image: "redis:alpine"    
+  #   expose:
+  #       -  6379  
+  #   # ports:
+  #   #     - "6379:6379"            
+  #   environment:
+  #       - REDIS_REPLICATION_MODE=master    
+  #   networks:
+  #       - couther_network
+
+networks:
+    couther_network:
+        driver: bridge
+        
