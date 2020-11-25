@@ -35,7 +35,7 @@ Route::prefix('app')->group(function () {
         Route::post('editar/{id}', 'UserController@update');
         Route::get('crear', 'UserController@create');
         Route::post('crear', 'UserController@store');            
-        Route::get('delete/{id}', 'UserController@delete');
+        Route::delete('{id}', 'UserController@delete');
     });
 
     Route::prefix('pacientes')->group(function () {  
@@ -46,25 +46,20 @@ Route::prefix('app')->group(function () {
         Route::post('editar/{id}', 'PacientesController@update');
         Route::get('crear', 'PacientesController@create');
         Route::post('crear', 'PacientesController@store');            
-        Route::get('delete/{id}', 'PacientesController@delete');
+        Route::delete('{id}', 'PacientesController@delete');
     });
+     
 
-    Route::prefix('control')->group(function () {  
-        Route::get('', 'ControlController@list');
-        Route::get('ver/{id}', 'ControlController@show');
-        Route::get('pdf/{id}', 'ControlController@pdf');
-        Route::get('editar/{id}', 'ControlController@edit');
-        Route::post('editar/{id}', 'ControlController@update');
-        Route::get('crear', 'ControlController@create');
-        Route::post('crear', 'ControlController@store');            
-        Route::get('delete/{id}', 'ControlController@delete');
-    });
+    Route::resource('control', 'ControlController');
+    Route::get('control/{id}/pdf', 'ControlController@pdf');
 
     Route::resource('analisis-photos', 'AnalisisPhotosController');
     Route::resource('analisis', 'AnalisisController');
     Route::get('analisis/{id}/api', 'AnalisisController@show_api');
+
     Route::resource('antecedentes', 'AntecedentesController');
     Route::get('antecedentes/{id}/pdf', 'AntecedentesController@getPDF');
+
     Route::resource('monitoreos', 'MonitoreoGlucosaController');
     Route::get('monitoreos/{id}/pdf', 'MonitoreoGlucosaController@getPDF');
 });

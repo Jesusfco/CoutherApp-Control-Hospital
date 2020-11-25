@@ -58,7 +58,8 @@ class AntecedentesController extends Controller
     public function store(Request $request)
     {
         $antecedente = Antecedente::create($request->all());
-        return redirect("app/antecedentes/{$antecedente->id}/edit")->with('msj', 'Antecedente Creado Correctamente');
+        
+        return redirect("app/antecedentes/{$antecedente->id}")->with('msj', 'Antecedente Creado Correctamente');
     }
 
     /**
@@ -69,7 +70,7 @@ class AntecedentesController extends Controller
      */
     public function show(Antecedente $antecedente)
     {
-        //
+        return view('app/antecedentes/show')->with('obj', $antecedente);
     }
 
     /**

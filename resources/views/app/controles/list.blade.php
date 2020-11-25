@@ -7,12 +7,12 @@
 
 @section('content')
 
-    <h5>Controles / Lista</h5>
+    <h5>Nota Clínica / Lista</h5>
     {{-- @if(Auth::user()->user_type == 2) --}}
-    <a href="{{ url('app/control/crear') }}"><button class="btn orange">Crear Control</button></a>
+    <a href="{{ url('app/control/create') }}"><button class="btn orange">Crear Nota Clínica</button></a>
     {{-- @endif --}}
     <form method="GET" class="navbar-form row">
-        <div class="input-field col l10">
+        <div class="input-field col l8">
             <i class="material-icons prefix">search</i>
             <input name="term" type="search" value="{{ request('term')}}" class="form-control" autofocus>
             <label>Buscar Termino</label>
@@ -21,12 +21,15 @@
             <label>Tipo de Busqueda</label>
             <select name="search_type" class="browser-default">        
                
-              <option value="1" @if( request('search_type') == 1) selected @endif>Paciente</option>        
-              <option value="2" @if( request('search_type') == 2) selected @endif>Doctor</option>
+              <option value="1" @if( request('search_type') == 1) selected @endif>Paciente</option>     
+              @if(Auth::user()->user_type == 3)   
+                <option value="2" @if( request('search_type') == 2) selected @endif>Doctor</option>
+              @endif
               
             </select>
         </div>
-        <div class="col l12">
+        <div class="col l2">
+            <br>
             <button class="btn blue">Buscar</button>            
         </div>
    </form> 
@@ -43,16 +46,16 @@
         @foreach($objects as $n)
         
         <tr id="id{{$n->id}}">            
-            <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->fullname() }} </a></td>
-            <td>{{ $n->medico->fullname() }}</td>
+            <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->nombre_completo }} </a></td>
+            <td>{{ $n->medico->nombre_completo }}</td>
             <td>{{ $n->getFechaFormat() }}</td>                        
             <td>{{ $n->getHourFormat() }} HRS</td>                        
             <td>               
-                <a href="{{ url('app/control/ver', $n->id) }}" class="btn green">Ver</a>
-                {{-- @if(Auth::user()->user_type  == 3)  --}}
-                <a href="{{ url('app/control/editar/'.$n->id.'') }}" class="btn blue">Editar </a>                
+                <a href="{{ url('app/control', $n->id) }}" class="btn green">Ver</a>
+                @if(Auth::user()->user_type  >= 3) 
+                {{-- <a href="{{ url('app/control/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                 --}}
                 <a onclick="eliminar({{ $n->id }}, '{{ $n->name }}')" class="btn red"> Eliminar</a>
-                {{-- @endif --}}
+                @endif
             </td>
         </tr>
         

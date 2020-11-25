@@ -44,10 +44,10 @@
 <body> 
 <div id="app">
 
-  <div class="panelNav blue darken-4 lighten-1 ">
+  <div class="panelNav blue darken-1 lighten-1 ">
 
     <div class="container2">
-    <h5 class="white-text">Aplicación</h5>                  <br><br>
+    <h5 class="white-text">Servicio Médico</h5>                  <br><br>
     <ul class="navLinks">
       {{-- <li><a href="{{ url('app') }}">Inicio</a></li> --}}
       @if(Auth::user()->user_type > 2)
@@ -55,8 +55,8 @@
       @endif
       
       <li><a href="{{ url('app/pacientes') }}">Pacientes</a></li>
-      <li><a href="{{ url('app/control') }}">Control</a></li>
-      <li><a href="{{ url('app/antecedentes') }}">Antecedentes</a></li>
+      <li><a href="{{ url('app/control') }}">Nota Clínica</a></li>
+      <li><a href="{{ url('app/antecedentes') }}">Expedientes</a></li>
       <li><a href="{{ url('app/analisis') }}">Análisis</a></li>
       <li><a href="{{ url('app/monitoreos') }}">Automonitoreo</a></li>
       
@@ -128,6 +128,9 @@
            @if(session('success'))    
                M.toast({html: '{{session('success')}}', classes: 'green', displayLength: 6500})        
            @endif
+           @if(session()->get('errors'))
+            M.toast({html: '{{ session()->get('errors')->first() }}', classes: 'red', displayLength: 6500})        
+        @endif
     </script>
     
     @yield('scripts')

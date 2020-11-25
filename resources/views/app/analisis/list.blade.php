@@ -50,8 +50,8 @@
                 <a href="{{ url('app/analisis', $n->id) }}" class="btn green">Ver</a>
                 {{-- <a href="{{ url('app/analisis/'. $n->id . "/pdf") }}" class="btn orange">PDF</a> --}}
                 
-                @if(Auth::user()->user_type  >= 2) 
                 <a href="{{ url('app/analisis/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                
+                @if(Auth::user()->user_type  > 2) 
                 <a onclick="eliminar({{ $n->id }}, '{{ $n->name }}')" class="btn red"> Eliminar</a>
                 @endif
             </td>

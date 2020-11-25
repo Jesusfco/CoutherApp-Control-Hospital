@@ -30,15 +30,9 @@ class AuthController extends Controller
     public function signIn(Request $re) 
     {
         $credentials = $re->only('email', 'password');        
-        if (Auth::attempt($credentials)) 
-
-            if(Auth::user()->user_type == 2)
-                return redirect('/app/control');
-            else                 
-                return redirect('/app/usuarios');
-
+        if (Auth::attempt($credentials))             
+            return redirect('/app');
         else 
-
             return back()->with('error', "La contraseña o correo son incorrectos")->withInput();
 
     }

@@ -41,7 +41,7 @@
                 
                 <a href="{{ url('app/pacientes/editar/'.$n->id.'') }}" class="btn blue">Editar </a>
                 <a href="{{ url('app/pacientes/ver', $n->id) }}" class="btn green">Ver</a>
-                @if(Auth::user()->user_type  == 3) 
+                @if(Auth::user()->user_type  >= 3) 
                     <a  onclick="eliminar({{ $n->id }}, '{{ $n->name }}')" class="btn red"> Eliminar</a>
                 @endif
             </td>

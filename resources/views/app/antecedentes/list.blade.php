@@ -7,9 +7,9 @@
 
 @section('content')
 
-    <h5>Antecedentes / Lista</h5>
+    <h5>Expedientes  / Lista</h5>
     {{-- @if(Auth::user()->user_type == 2) --}}
-    <a href="{{ url('app/antecedentes/create') }}"><button class="btn orange">Crear Control</button></a>
+    <a href="{{ url('app/antecedentes/create') }}"><button class="btn orange">Crear Expediente Clínico</button></a>
     {{-- @endif --}}
     <form method="GET" class="navbar-form row">
         <div class="input-field col l8">
@@ -49,10 +49,10 @@
             <td>{{ $n->getFechaFormat() }}</td>                        
             <td>{{ $n->getHourFormat() }} HRS</td>                        
             <td>               
-                <a href="{{ url('app/antecedentes/', $n->id) }}" class="btn green">Ver</a>
+                {{-- <a href="{{ url('app/antecedentes/', $n->id) }}" class="btn green">Ver</a> --}}
                 <a href="{{ url('app/antecedentes/'. $n->id . "/pdf") }}" class="btn orange">PDF</a>
                 
-                @if(Auth::user()->user_type  >= 2) 
+                @if(Auth::user()->user_type  > 2) 
                 <a href="{{ url('app/antecedentes/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                
                 <a onclick="eliminar({{ $n->id }}, '{{ $n->name }}')" class="btn red"> Eliminar</a>
                 @endif

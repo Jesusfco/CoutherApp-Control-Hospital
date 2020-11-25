@@ -17,7 +17,7 @@ class ControlController extends Controller
         $this->middleware('admin', ['only' => ['delete', 'update', 'edit']]); 
     }
 
-    public function list(Request $re) {
+    public function index(Request $re) {
 
         $objects = Control::whereNotNull('id');        
 
@@ -44,7 +44,7 @@ class ControlController extends Controller
     public function store(Request $re) {                
         $obj = new Control();
         $this->pushData($re, $obj);                
-        return redirect('app/control/ver/' . $obj->id)->with('msj', 'Se ha creado un Control con exito');
+        return redirect('app/control/' . $obj->id)->with('msj', 'Se ha creado un Control con exito');
     }
 
     public function edit($id) {

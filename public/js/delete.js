@@ -15,12 +15,16 @@ function eliminar(id) {
         function() {
 
             let actualUrl = window.location.href;
-
+            let token = $('meta[name="csrf-token"]').attr('content')
+                        
             $.ajax({
-                type: "GET",
-                url: actualUrl + "/delete/" + id,
+                type: "post",                
+                url: actualUrl + "/" + id,
                 async: true,
-
+                data: {
+                    _method: 'delete',
+                    _token: token,
+                },
                 success: function(data) {
                     //                alert(data);
                     setTimeout(function() {

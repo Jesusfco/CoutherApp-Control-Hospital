@@ -25,4 +25,12 @@ class Analisis extends Model
     {
         return $this->belongsTo(User::class, 'paciente_id')->withDefault([ 'name' => ' Paciente desconocido']);
     }
+
+    public function delete()
+    {
+        foreach ($this->images as $image) {
+            $image->delete();
+        }
+        parent::delete();
+    }
 }

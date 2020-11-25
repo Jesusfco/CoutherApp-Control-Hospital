@@ -1,13 +1,13 @@
 @extends('blades.app')
 
-@section('title', "")
+@section('title', "Nota Clínica")
 
 @section('css')
 @endsection
 
 @section('content')
 
-<h5><a href="{{ url('app/control') }}">Controles </a> >> Ver Control</h5>
+<h5><a href="{{ url('app/control') }}">Nota Clínica </a> / Ver Nota Clínica</h5>
 
 <div>
   @if(Auth::user()->user_type  == 3) 
@@ -22,6 +22,9 @@
 
 <div class="row ">      
 
+  <div class="form-group col l12">    
+    <p><strong>No. Expediente: </strong> {{ $obj->id}}</p>
+  </div>
   <div class="form-group col l12">    
     <p><strong>Doctor: </strong>
       <a href="{{ url('app/usuarios/ver', $obj->medico_id) }}" target="_blank">

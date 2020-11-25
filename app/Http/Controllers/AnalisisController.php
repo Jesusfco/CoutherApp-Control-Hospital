@@ -114,6 +114,8 @@ class AnalisisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $analisis = Analisis::find($id);
+        $analisis->delete();
+        return response(['msj' => 'Análisis deleted']);
     }
 }

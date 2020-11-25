@@ -46,6 +46,7 @@
     {{-- <img src="{{ asset('img/topImg.jpg') }}" width="100%" class="topImg"> --}}
     <img src="./img/topImg.jpg" width="100%" class="topImg">
     <br><br>
+    <h3>Historia Clínica</h3>
     <div class="topTables">
 
     <table style="width:100%" class="linesTable w3-table">
@@ -81,6 +82,10 @@
         <tr>
             <th class="m1">AREA</th>
             <td>{{ $obj->paciente->area }}</td>            
+            <th class="m1">No. Folio</th>
+            <td>{{ $obj->no_folio }}</td>            
+            <th class="m1">No. Expediente</th>
+            <td>{{ $obj->id }}</td>            
         </tr>
     </table>
 

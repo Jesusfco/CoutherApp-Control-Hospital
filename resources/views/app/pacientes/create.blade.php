@@ -33,7 +33,7 @@
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Correo</label>
-      <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+      <input type="email" name="email" class="form-control" value="{{ old('email') }}">      
     </div>        
 
     <div class="form-group col l6">

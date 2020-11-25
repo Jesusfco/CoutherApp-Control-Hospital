@@ -13,6 +13,11 @@
     .center-text {
         text-align: center
     }
+
+    .table-font-middle {
+        font-size: 11.5px !important;
+        padding: 1px !important;
+    }
     .linesTable tr th, .linesTable tr td {
         border: 1px solid black;
         padding: 1px !important;
@@ -44,83 +49,63 @@
 <body>
 
     {{-- <img src="{{ asset('img/topImg.jpg') }}" width="100%" class="topImg"> --}}
-    <img src="./img/topImg.jpg" width="100%" class="topImg">
+    <img src="./img/pdf/monitoreoTopBar.png" width="100%" class="topImg">
     <br><br>
     <div class="topTables">
 
-    <table style="width:100%" class="linesTable w3-table">
-        <tr>
-            <th class="m1">FECHA</th>
-            <td class="m3">{{ $obj->getFechaFormat() }}</td>
-            <th class="m1">HORA</th>
-            <td class="m3">{{ $obj->getHourFormat() }} HRS</td>
-        </tr>
-    </table>
-
-    <table style="width:100%" class="linesTable w3-table">
-        <tr>
-            <th class="m1">NOMBRE</th>
-            <td class="m3">{{ $obj->paciente->fullname() }}</td>
-            <th class="m1">EDAD</th>
-            <td class="m1">{{ $obj->paciente->edad() }}</td>
-            <th class="m1">TELEFONO</th>
-            <td class="m1">{{ $obj->telefono }}</td>
-        </tr>
-    </table>
-
-    <table style="width:100%" class="linesTable w3-table">
-        <tr>
-            <th class="m1">NO. DE EMPL</th>
-            <td class="m3">{{ $obj->paciente->no_empleado }}</td>
-            <th class="m2 centerText">STATUS</th>
-            <td class="m2">{{ $obj->paciente->status }}</td>
-        </tr>
-    </table>
-
-    <table style="width:100%" class="linesTable w3-table">
-        <tr>
-            <th class="m1">AREA</th>
-            <td>{{ $obj->paciente->area }}</td>            
-        </tr>
-    </table>
+        <table style="width:100%" class="w3-table table-font-middle">
+            <tr>
+                <th class="" style="width: 9%">Fecha:</th>
+                <td class="2">{{ $obj->getFechaFormat() }}</td>                
+            </tr>
+        </table>
+        <table style="width:100%" class="w3-table table-font-middle">
+            <tr>
+                <th class="m1" style="width: 9%">Nombre:</th>
+                <td class="" style="width: 35%">{{ $obj->paciente->nombre_completo }}</td>                
+                <th class="" style="width: 17%">No. De Empleado:</th>
+                <td class="2">{{ $obj->paciente->no_empleado }}</td>                
+                <th class="" style="width: 15%">No. De Folio:</th>
+                <td class="2">{{ $obj->paciente->id }}</td>                
+            </tr>
+        </table>
 
      
  
     <table class="linesTable w3-table">
         <thead>    
             <tr>
-                <th>Peso Actual kg</th>
-                <th>Presión Arterial <strong>mmHg</strong></th>
-                <th>Temperatura <strong>°C</strong></th>
-                <th>Frec. Respiratoria <strong>x minuto</strong></th>
-                <th>Talla <strong>cm</strong></th>
-                <th>Frecuencia Cardiaca <strong>x minuto</strong></th>
+                <th>Dia</th>
+                <th>Antes</th>
+                <th>Desayuno</th>
+                <th>Después</th>
+                <th>Antes</th>
+                <th>Comida</th>
+                <th>Después</th>
+                <th>Antes</th>
+                <th>Cena</th>
+                <th>Después</th>                
             </tr>        
         </thead>
         <tbody>
-            <tr>
-                <td>{{ $obj->peso }}</td>
-                <td>{{ $obj->mm_hg }}</td>
-                <td>{{ $obj->temperatura }}</td>
-                <td>{{ $obj->frecuencia_respiratoria }}</td>
-                <td>{{ $obj->frecuencia_cardiaca }}</td>
-                <td>{{ $obj->talla }}</td>
-            </tr>
+            @for ($i = 0; $i < 31; $i++)
+                <tr>
+                    <td>{{ $i + 1 }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>                
+            @endfor                            
         </tbody>
     </table>    
-
     
-    
-    <table style="width:100%" class="linesTable w3-table">
-        <tr>
-            <th class="m1 center-text" style="width:50%">{{ $obj->medico->nombre_completo }}</th>
-            <th class="center-text" style="width:50%">{{ $obj->medico->cedula }}</td>            
-        </tr>
-        <tr>
-            <th class="m1 center-text">Nombre y Firma del Médico</th>
-            <th class="center-text">Cedula</td>            
-        </tr>
-    </table>
+    <p style="text-align: right; font-size: 14px">{{ $obj->medico->nombre_completo }}<br> {{ $obj->medico->cedula }}</p>    
     
 </body>
 </html>

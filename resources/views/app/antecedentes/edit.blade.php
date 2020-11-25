@@ -1,12 +1,12 @@
 @extends('blades.app')
-@section('title', ' Actualizar Antecedente')
+@section('title', ' Actualizar Expediente Clínico')
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.1/themes/smoothness/jquery-ui.css">
 @endsection
 
 @section('content')
-<h5><a href="{{ url('app/antecedentes') }}">Antecedentes </a> /  Actualizar Antecedente</h5>
+<h5><a href="{{ url('app/antecedentes') }}">Expediente  </a> /  Actualizar Expediente Clínico</h5>
 
 <form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()" id="form2" action="{{url('app/antecedentes/' . $obj->id)}}">
     {{ csrf_field() }}    
@@ -169,7 +169,7 @@
     </div>
     
     <div class="col s12"><br>
-      <button type="submit" class="btn blue"> Actualizar Antecedente</button>
+      <button type="submit" class="btn blue"> Actualizar Expediente Clínico</button>
     </div>
   </form>
 

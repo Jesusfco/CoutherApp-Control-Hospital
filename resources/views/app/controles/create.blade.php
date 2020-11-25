@@ -1,15 +1,18 @@
 @extends('blades.app')
 
-@section('title', 'Crear Control')
+@section('title', 'Crear Nota Clínica')
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.1/themes/smoothness/jquery-ui.css">
 @endsection
 
 @section('content')
-<h5><a href="{{ url('app/control') }}">Controles </a> / Crear Control</h5>
+<h5><a href="{{ url('app/control') }}">Notas Clínica </a> / Crear Nota Clínica</h5>
 
-<form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()" id="form2">
+<form class="row" role="form" method="POST" enctype="multipart/form-data" 
+  onsubmit="return submitForm()" 
+  action="{{ url('app/control') }}"
+  id="form2">
     {{ csrf_field() }}    
 
     <input type="hidden" name="paciente_id" id="paciente_id" value="{{ old('paciente_id') }}">
@@ -115,7 +118,7 @@
     </div>
     
     <div class="col l12"><br>
-      <button type="submit" class="btn blue">Crear Control</button>
+      <button type="submit" class="btn blue">Crear Nota Clínica</button>
     </div>
   </form>
 

@@ -1,0 +1,5 @@
+id => no expediente --- se genera automaticamente
+no_folio => es asignado manualmente
+
+
+actualizar campos de expediente clinico en pdf cambiar diseño y agrego no_folio a la tabla

@@ -46,15 +46,15 @@
         <tr id="id{{$n->id}}">            
             <td>{{ $n->id }}</td>
             <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->nombre_completo }} </a></td>
-            <td>{{ $n->medico->no_empleado }}</td>
+            <td>{{ $n->medico->nombre_completo }}</td>
             <td>{{ $n->getFechaFormat() }}</td>
             
             <td>               
-                <a href="{{ url('app/monitoreos/', $n->id) }}" class="btn green">Ver</a>
+                {{-- <a href="{{ url('app/monitoreos/', $n->id) }}" class="btn green">Ver</a> --}}
                 <a href="{{ url('app/monitoreos/'. $n->id . "/pdf") }}" class="btn orange">PDF</a>
                 
-                @if(Auth::user()->user_type  >= 2) 
-                <a href="{{ url('app/monitoreos/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                
+                @if(Auth::user()->user_type  > 2) 
+                {{-- <a href="{{ url('app/monitoreos/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                 --}}
                 <a onclick="eliminar({{ $n->id }}, '{{ $n->name }}')" class="btn red"> Eliminar</a>
                 @endif
             </td>

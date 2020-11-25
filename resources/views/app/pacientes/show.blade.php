@@ -13,6 +13,8 @@
   <a class="btn blue" href="{{ url('app/pacientes/editar', $obj->id) }}">Editar</a>
   <a class="btn blue" href="{{ url('app/control?term=' . $obj->nombre_completo .'&search_type=1') }}">Controles</a>
   <a class="btn blue" href="{{ url('app/antecedentes?term=' . $obj->nombre_completo .'&search_type=1') }}">Antecedentes</a>
+  <a class="btn blue" href="{{ url('app/monitoreos?term=' . $obj->nombre_completo .'&search_type=1') }}">Monitoreos</a>
+  <a class="btn blue" href="{{ url('app/analisis?term=' . $obj->nombre_completo .'&search_type=1') }}">Analisis</a>
   {{-- <a class="btn" href="{{ url()->current() }}/negocios">Negocios</a>
   <a class="btn" href="{{ url()->current() }}/recibos">Recibos</a>
   <a class="btn" href="{{ url()->current() }}/direcciones">Direcciones</a> --}}

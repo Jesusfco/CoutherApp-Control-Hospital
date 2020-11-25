@@ -1,13 +1,15 @@
 @extends('blades.app')
 
-@section('title', 'Inicio - Estadisticas y resumen')
+@section('title', 'Inicio')
 
 @section('css')
 @endsection
 
 @section('content')
-<h3>Inicio</h3>
-    
+	<h5>Bienvenido: {{ Auth::user()->nombre_completo }}</h5>
+    <div>
+		<img src="{{ url('img/logo-tuchtlan-square.png') }}" alt="" style="width: 75%; margin: 0 auto; display: block">
+	</div>
     
 @endsection
 
@@ -53,5 +55,5 @@ google.charts.load('current', {'packages':['corechart']});
 		
 	} --}}
 
-</script>
+{{-- </script> --}}
 @endsection
