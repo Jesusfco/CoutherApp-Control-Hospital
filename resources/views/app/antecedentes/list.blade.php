@@ -8,9 +8,9 @@
 @section('content')
 
     <h5>Antecedentes / Lista</h5>
-    @if(Auth::user()->user_type == 2)
+    {{-- @if(Auth::user()->user_type == 2) --}}
     <a href="{{ url('app/antecedentes/create') }}"><button class="btn orange">Crear Control</button></a>
-    @endif
+    {{-- @endif --}}
     <form method="GET" class="navbar-form row">
         <div class="input-field col l8">
             <i class="material-icons prefix">search</i>

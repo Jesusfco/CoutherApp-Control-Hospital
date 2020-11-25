@@ -91,6 +91,13 @@
     top:  10px;
     right: 10px;
 }
+.drop .fileDiv .iconsDiv i {
+    cursor: pointer;
+    transition: .3s;
+}
+.drop .fileDiv .iconsDiv .trash:hover {
+    color: rgb(201, 30, 30);
+}
 
 .drop .fileDiv .iconsDiv .heartActive {
     color: rgb(201, 30, 30);

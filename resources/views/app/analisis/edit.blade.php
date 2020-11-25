@@ -15,11 +15,16 @@
 @endsection
 
 @section('content')
-<h5><a href="{{ url('app/analisis') }}">Análisis </a> / Crear Analisis</h5>
+<h5><a href="{{ url('app/analisis') }}">Análisis </a> / Actualizar Analisis</h5>
 
-  <form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()" action="{{url('app/analisis')}}">
+<form class="row" role="form" 
+  method="POST" 
+  enctype="multipart/form-data" 
+  onsubmit="return submitForm()" 
+  action="{{ route('analisis.update', $analisis->id) }}"
+>
     {{ csrf_field() }}    
-    
+    @method('PUT')
     <input type="hidden" name="register_id" id="register_id" value="{{ $analisis->id  }}">    
     <div class="form-group col s12">
       <label for="exampleInputEmail1">Paciente</label>
@@ -98,8 +103,8 @@
       <div v-for="img in images" v-if="!isSameImgThanPrincipal(img)" class="fileDiv col l4">
         <img :src=img.file>
         <div class="iconsDiv">
-          <i class="material-icons" v-on:click="deleteImg(img)">delete</i>
-          <i class="material-icons" v-on:click="setPrincipalImg(img)">favorite</i>
+          <i class="material-icons trash" v-on:click="deleteImg(img)">delete</i>
+          {{-- <i class="material-icons" v-on:click="setPrincipalImg(img)">favorite</i> --}}
         </div>
       </div>      
       

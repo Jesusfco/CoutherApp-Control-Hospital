@@ -17,8 +17,8 @@ class UserController extends Controller
         $this->middleware('admin');
     }
 
-    public function list(Request $re) {
-
+    public function list(Request $re) 
+    {        
         $objects = User::whereName($re->term)
             ->where('user_type', '>', 1)
             ->orderBy('name','asc')            

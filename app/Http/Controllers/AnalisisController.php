@@ -69,8 +69,14 @@ class AnalisisController extends Controller
      */
     public function show($id)
     {
+        $analisis = Analisis::with('images')->find($id);        
+        return view('app/analisis/show')->with('analisis', $analisis);
+    }
+    public function show_api($id)
+    {
         $analisis = Analisis::with('images')->find($id);
         return response($analisis);
+        
     }
 
     /**
@@ -94,7 +100,10 @@ class AnalisisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $analisis = Analisis::find($id);
+        $analisis->fill($request->all());
+        $analisis->save();
+        return back()->with('msj', 'Análisis updated');
     }
 
     /**

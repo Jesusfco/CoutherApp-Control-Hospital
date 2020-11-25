@@ -40,7 +40,7 @@ class AnalisisPhotosController extends Controller
         $analisisPhoto->save();
         $analisisPhoto->path = $analisisPhoto->id."_".$analisisPhoto->path;
         $analisisPhoto->save();
-        Storage::disk('analisis')->put($analisisPhoto->path, $img_file);
+        Storage::disk('analisis')->put($analisisPhoto->path, file_get_contents($img_file));
         return response($analisisPhoto);
     }
 
@@ -77,6 +77,7 @@ class AnalisisPhotosController extends Controller
      */
     public function destroy(AnalisisPhoto $analisisPhoto)
     {
-        //
+        $analisisPhoto->delete();
+        return response("success");
     }
 }

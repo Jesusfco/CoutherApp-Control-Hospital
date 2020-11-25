@@ -1,15 +1,15 @@
 @extends('blades.app')
 
-@section('title', 'Análisis')
+@section('title', 'Antecedentes')
 
 @section('css')
 @endsection
 
 @section('content')
 
-    <h5>Análisis / Lista</h5>
+    <h5>Monitoreos / Lista</h5>
     {{-- @if(Auth::user()->user_type == 2) --}}
-        <a href="{{ url('app/analisis/create') }}"><button class="btn orange">Crear Ánalisis</button></a>
+    <a href="{{ url('app/monitoreos/create') }}"><button class="btn orange">Crear Monitoreo</button></a>
     {{-- @endif --}}
     <form method="GET" class="navbar-form row">
         <div class="input-field col l8">
@@ -22,7 +22,7 @@
             <select name="search_type" class="browser-default">        
                
               <option value="1" @if( request('search_type') == 1) selected @endif>Paciente</option>        
-              {{-- <option value="2" @if( request('search_type') == 2) selected @endif>Doctor</option> --}}
+              <option value="2" @if( request('search_type') == 2) selected @endif>Doctor</option>
               
             </select>
         </div>
@@ -34,24 +34,27 @@
 
    <table class="striped responsive-table">
         <thead>            
-            <th>Paciente</th>                        
+            <th>No. de folio</th>                                
+            <th>Paciente</th>                                                      
+            <th>Médico</th>                                
             <th>Fecha</th>                                
-            <th>Hora</th>                                
             <th>Acciones</th>
         </thead>
         <tbody>
         @foreach($objects as $n)
         
         <tr id="id{{$n->id}}">            
-            <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->nombre_completo }} </a></td>            
-            <td>{{ $n->getFechaFormat() }}</td>                        
-            <td>{{ $n->getHourFormat() }} HRS</td>                        
+            <td>{{ $n->id }}</td>
+            <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->nombre_completo }} </a></td>
+            <td>{{ $n->medico->no_empleado }}</td>
+            <td>{{ $n->getFechaFormat() }}</td>
+            
             <td>               
-                <a href="{{ url('app/analisis', $n->id) }}" class="btn green">Ver</a>
-                {{-- <a href="{{ url('app/analisis/'. $n->id . "/pdf") }}" class="btn orange">PDF</a> --}}
+                <a href="{{ url('app/monitoreos/', $n->id) }}" class="btn green">Ver</a>
+                <a href="{{ url('app/monitoreos/'. $n->id . "/pdf") }}" class="btn orange">PDF</a>
                 
                 @if(Auth::user()->user_type  >= 2) 
-                <a href="{{ url('app/analisis/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                
+                <a href="{{ url('app/monitoreos/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                
                 <a onclick="eliminar({{ $n->id }}, '{{ $n->name }}')" class="btn red"> Eliminar</a>
                 @endif
             </td>

@@ -56,7 +56,7 @@ return [
         ],
         'analisis' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('../public/img/analisis'),
             'url' => env('APP_URL').'/public/img/analisis',
             'visibility' => 'public',
         ],

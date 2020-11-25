@@ -60,8 +60,11 @@ Route::prefix('app')->group(function () {
         Route::get('delete/{id}', 'ControlController@delete');
     });
 
-    Route::resource('analisis-photos', 'AnalisisController');
+    Route::resource('analisis-photos', 'AnalisisPhotosController');
     Route::resource('analisis', 'AnalisisController');
+    Route::get('analisis/{id}/api', 'AnalisisController@show_api');
     Route::resource('antecedentes', 'AntecedentesController');
     Route::get('antecedentes/{id}/pdf', 'AntecedentesController@getPDF');
+    Route::resource('monitoreos', 'MonitoreoGlucosaController');
+    Route::get('monitoreos/{id}/pdf', 'MonitoreoGlucosaController@getPDF');
 });

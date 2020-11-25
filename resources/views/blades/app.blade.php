@@ -58,6 +58,7 @@
       <li><a href="{{ url('app/control') }}">Control</a></li>
       <li><a href="{{ url('app/antecedentes') }}">Antecedentes</a></li>
       <li><a href="{{ url('app/analisis') }}">Análisis</a></li>
+      <li><a href="{{ url('app/monitoreos') }}">Automonitoreo</a></li>
       
       {{-- <li><a href="{{ url('app/perfil') }}">Mi Perfil</a></li> --}}
       <li><a href="{{ url('logout') }}">Cerrar Sesión</a></li>

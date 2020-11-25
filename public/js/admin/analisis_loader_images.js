@@ -10,7 +10,11 @@ var appForm = new Vue({
         fileCharging: 0,            
     }, created: function() {
       this.id = document.getElementById('register_id').value    
-      axios.get(window.location.origin + '/app/analisis/' + this.id)  
+      axios.get(window.location.origin + '/app/analisis/' + this.id + "/api", {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })  
         .then( (response) => {
           console.log(response)
           for(let element in this.property) {
@@ -179,42 +183,13 @@ var appForm = new Vue({
         });
   
         file.principal = true
-      },
-  
-      setPrincipalImg(img) {
-          axios.post(baseUrl + '/app/propiedades/principal-image', img)
-          .then( (response) => {            
-              img.principal = true
-              this.image_principal = img
-              this.images.forEach(element => {
-                  if(img.id != element.id)
-                      element.principal = false
-                  else 
-                      element.principal = true
-              });
-              
-  
-        }).catch((error) => {
-            
-  
-        });
-      },
+      }, 
   
       deleteImg(img)  {
-          axios.get(baseUrl + '/app/propiedades/delete-image/' + img.id, )
-          .then( (response) => {            
-              
+          axios.delete(window.location.origin + '/app/analisis-photos/' + img.id, )
+          .then( (response) => {                          
             const index = this.images.indexOf(img)
-            this.images.splice(index, 1)
-  
-            if(img.principal) {
-              if(this.images.length > 0){
-                this.images[0].principal = true
-                this.setPrincipalImg(this.images[0])
-              }
-            }
-            
-  
+            this.images.splice(index, 1) 
           }).catch((error) => {
             
   

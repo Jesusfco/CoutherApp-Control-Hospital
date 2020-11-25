@@ -21,7 +21,7 @@ class CreateAntecendesTable extends Migration
             $table->text('heredofamiliares')->nullable();
             $table->text('personales_no_patologicos')->nullable();
             $table->text('personales_patologicos')->nullable();
-            $table->text('musculo_esquelito')->nullable();
+            $table->text('musculo_esqueletico')->nullable();
             $table->text('piel_anexos')->nullable();
             // exploracion_fisica
             $table->double('peso')->nullable();
