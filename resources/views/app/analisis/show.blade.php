@@ -39,7 +39,7 @@
 
   <div class="form-group col l12">    
     <p><strong>Paciente: </strong>
-      <a href="{{ url('app/usuarios/ver', $analisis->medico_id) }}" target="_blank">
+      <a href="{{ url('app/pacientes/ver', $analisis->medico_id) }}" target="_blank">
         {{ $analisis->paciente->nombre_completo }}
       </a>
       </p>

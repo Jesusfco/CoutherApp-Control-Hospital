@@ -27,7 +27,7 @@
   </div>
   <div class="form-group col l12">    
     <p><strong>Doctor: </strong>
-      <a href="{{ url('app/usuarios/ver', $obj->medico_id) }}" target="_blank">
+      <a href="{{ url('app/pacientes/ver', $obj->medico_id) }}" target="_blank">
         {{ $obj->medico->fullname() }}
       </a>
       </p>
