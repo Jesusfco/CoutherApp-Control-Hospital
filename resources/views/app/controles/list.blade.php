@@ -35,7 +35,9 @@
    </form> 
 
    <table class="striped responsive-table">
-        <thead>            
+        <thead>           
+            <th>No. Nota</th>                                
+            <th>No. Folio</th> 
             <th>Paciente</th>            
             <th>Doctor</th>            
             <th>Fecha</th>                                
@@ -45,13 +47,16 @@
         <tbody>
         @foreach($objects as $n)
         
-        <tr id="id{{$n->id}}">            
+        <tr id="id{{$n->id}}">    
+            <td>{{ $n->id }}</td>
+            <td>{{ $n->paciente->no_folio }}</td>        
             <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->nombre_completo }} </a></td>
             <td>{{ $n->medico->nombre_completo }}</td>
             <td>{{ $n->getFechaFormat() }}</td>                        
             <td>{{ $n->getHourFormat() }} HRS</td>                        
             <td>               
                 <a href="{{ url('app/control', $n->id) }}" class="btn green">Ver</a>
+                <a href="{{ url('app/control/'. $n->id . "/pdf") }}" class="btn orange">PDF</a>
                 @if(Auth::user()->user_type  >= 3) 
                 {{-- <a href="{{ url('app/control/'.$n->id.'/edit') }}" class="btn blue">Editar </a>                 --}}
                 <a onclick="eliminar({{ $n->id }}, '{{ $n->name }}')" class="btn red"> Eliminar</a>

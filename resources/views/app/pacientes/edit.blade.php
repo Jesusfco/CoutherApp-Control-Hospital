@@ -32,10 +32,13 @@
     </div>
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Correo</label>
-      <input type="email" name="email" class="form-control" value="{{ $obj->email }}">
-      
-      
+      <input type="email" name="email" class="form-control" value="{{ $obj->email }}">            
     </div>        
+
+    <div class="form-group col l6">
+      <label>No. Folio</label>
+      <input type="text" name="no_folio" class="form-control" value="{{ $obj->no_folio }}" required>
+    </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Curp</label>
@@ -55,9 +58,13 @@
       <label for="exampleInputEmail1">Area</label>
       <input type="text" name="area" class="form-control" value="{{ $obj->area }}" required>
     </div>
+    <div class="form-group col l4">
+      <label for="exampleInputEmail1">Lugar de nacimiento</label>
+      <input type="text" name="lugar_nacimiento" class="form-control" value="{{  $obj->lugar_nacimiento }}" required>
+    </div>
 
     <div class="form-group col l4">
-      <label>Status</label>
+      <label>Estatus</label>
       <select name="status" class="browser-default">   
         <option selected>{{ $obj->status }}</option>        
         <option>Contrato</option>        

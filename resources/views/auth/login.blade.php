@@ -44,6 +44,7 @@
 
     <div class="container">
 
+        <h3 class="title center-text" style="text-align: center; font-size: 32px">Plataforma para pacientes con enfermedades no transmisibles<br>(Diabetes e Hipertención Arterial)</h3>  
         <h4 class="title center-text" style="text-align: center">Iniciar Sesión</h4>  
         <div class="flex">
             <div class="logoContainer">
@@ -55,10 +56,10 @@
                     {{ csrf_field() }}
     
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email">Correo</label>
+                        <label for="email">Cédula/Correo</label>
     
                         <div class="col-md-12">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                            <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
     
                             @if ($errors->has('email'))
                                 <span class="help-block">
@@ -80,9 +81,9 @@
                         Acceder
                     </button>
                     <br>   
-                    <a class="forget-link" href="{{ url('recuperar') }}">
+                    {{-- <a class="forget-link" href="{{ url('recuperar') }}">
                         ¿Olvidaste tu contraseña?
-                    </a>
+                    </a> --}}
                         
                     
                 </form>

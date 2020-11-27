@@ -41,6 +41,11 @@
     </div>
 
     <div class="form-group col l6">
+      <label>No. Folio</label>
+      <input type="text" name="no_folio" class="form-control" value="{{ old('no_folio') }}" required>
+    </div>
+
+    <div class="form-group col l6">
       <label for="exampleInputEmail1">Curp</label>
       <input type="tel" name="curp" class="form-control" value="{{ old('curp') }}">
     </div>
@@ -52,7 +57,7 @@
     
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Cedula</label>
-      <input type="text" name="cedula" class="form-control" value="{{ old('cedula') }}">
+      <input type="text" name="cedula" class="form-control" value="{{ old('cedula') }}" required>
     </div>
 
     <div class="form-group col l4">

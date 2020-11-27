@@ -7,7 +7,7 @@
 
 @section('content')
 
-<h5><a href="{{ url('app/usuarios') }}">Usuarios </a> >> Editar usuario</h5>
+<h5><a href="{{ url('app/usuarios') }}">Usuarios </a> / Editar usuario</h5>
 <div>
   <a class="btn blue" href="{{ url('app/usuarios/ver', $obj->id) }}">Ver Usuario</a>
 </div>
@@ -27,14 +27,19 @@
       <label for="exampleInputEmail1">A. Materno</label>
       <input type="text" name="materno" class="form-control" value="{{ $obj->materno }}"  placeholder="Apellido Materno">
     </div>
-    <div class="form-group col l6">
+    <div class="form-group col l4">
       <label for="exampleInputEmail1">Correo</label>
       <input type="email" name="email" class="form-control" value="{{ $obj->email }}">
     </div>
     
-    <div class="form-group col l6">
+    <div class="form-group col l4">
       <label for="exampleInputEmail1">Contraseña</label>
       <input type="password" name="password" class="form-control" value=""  placeholder="**********">
+    </div>
+
+    <div class="form-group col l4">
+      <label>No. Folio</label>
+      <input type="text" name="no_folio" class="form-control" value="{{ $obj->no_folio }}" required>
     </div>
 
     <div class="form-group col l6">
@@ -49,7 +54,7 @@
     
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Cedula</label>
-      <input type="text" name="cedula" class="form-control" value="{{ $obj->cedula }}">
+      <input type="text" name="cedula" class="form-control" value="{{ $obj->cedula }}" required>
     </div>
 
     <div class="form-group col l6">

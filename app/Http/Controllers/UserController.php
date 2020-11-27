@@ -30,14 +30,10 @@ class UserController extends Controller
         return view('app/user/create');
     }
 
-    public function store(Store $re) {        
-        
-        $obj = new User();
-        
-        $this->pushData($re, $obj);        
-       
-        // $this->show($obj->id);
-        
+    public function store(Store $re) 
+    {
+        $obj = new User();        
+        $this->pushData($re, $obj);                 
         return redirect('app/usuarios/ver/' . $obj->id)->with('msj', 'Se ha creado un usuario con exito');
     }
 
@@ -74,9 +70,12 @@ class UserController extends Controller
         $obj->nacimiento = $re->nacimiento;
         $obj->especialidad = $re->especialidad;
         $obj->cedula = $re->cedula;
+        $obj->no_folio = $re->no_folio;
+        $obj->no_empleado = $re->no_empleado;
+        $obj->lugar_nacimiento = $re->lugar_nacimiento;
         $obj->sexo = $re->sexo;
-        if($re->password == NULL && $obj->id == NULL) $obj->password = bcrypt('secret');        
-        else $obj->password = bcrypt($re->password);                               
+        if($re->password == NULL && $obj->id == NULL) $obj->password = 'secret';        
+        else $obj->password = $re->password;                               
         $obj->user_type = $re->user_type;   
         $obj->save();
 

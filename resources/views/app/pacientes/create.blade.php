@@ -37,6 +37,11 @@
     </div>        
 
     <div class="form-group col l6">
+      <label>No. Folio</label>
+      <input type="text" name="no_folio" class="form-control" value="{{ old('no_folio') }}" required>
+    </div>
+
+    <div class="form-group col l6">
       <label for="exampleInputEmail1">CURP</label>
       <input type="tel" name="curp" class="form-control" value="{{ old('curp') }}">
     </div>
@@ -55,11 +60,15 @@
       <label for="exampleInputEmail1">Area</label>
       <input type="text" name="area" class="form-control" value="{{ old('area') }}" required>
     </div>
+    <div class="form-group col l4">
+      <label for="exampleInputEmail1">Lugar de nacimiento</label>
+      <input type="text" name="lugar_nacimiento" class="form-control" value="{{ old('lugar_nacimiento') }}" required>
+    </div>
 
     
     
     <div class="form-group col l4">
-      <label>Status</label>
+      <label>Estatus</label>
       <select name="status" class="browser-default">   
         <option>Contrato</option>        
         <option>Confianza</option>        

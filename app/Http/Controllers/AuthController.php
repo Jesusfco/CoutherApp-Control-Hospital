@@ -30,10 +30,16 @@ class AuthController extends Controller
     public function signIn(Request $re) 
     {
         $credentials = $re->only('email', 'password');        
-        if (Auth::attempt($credentials))             
+        if (Auth::attempt($credentials)) {             
             return redirect('/app');
-        else 
+        }  else  {
+            $credentials['cedula'] = $credentials['email'];
+            unset($credentials['email']);
+            if (Auth::attempt($credentials)) {
+                return redirect('/app');
+            } 
             return back()->with('error', "La contraseña o correo son incorrectos")->withInput();
+        }
 
     }
 }

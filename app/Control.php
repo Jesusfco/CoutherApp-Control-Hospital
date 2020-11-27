@@ -28,7 +28,8 @@ class Control extends Model
         'a', 
         'diagnostico', 
         'pronostico', 
-        'plan',         
+        'plan',    
+        'no_folio',                      
     ];
 
     public function paciente(){

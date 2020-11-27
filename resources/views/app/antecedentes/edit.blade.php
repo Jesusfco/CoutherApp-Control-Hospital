@@ -26,7 +26,7 @@
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Cédula</label>
       <input class="form-control" value="{{ $obj->medico->cedula }}" disabled>
-    </div> 
+    </div>  
 
     <div class="form-group col s12">
       <h5>Interrogatorio</h5>

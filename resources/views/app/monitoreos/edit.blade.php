@@ -17,8 +17,8 @@
     <div class="form-group col s12">
       <label for="exampleInputEmail1">Paciente</label>
       <input type="text" name="search" class="form-control" id="search" value="{{ $obj->paciente->nombre_completo }}"  placeholder="Nombre" required  autofocus>
-    </div>
-
+    </div> 
+    
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Doctor</label>
       <input class="form-control" value="{{ $obj->medico->nombre_completo }}" disabled>

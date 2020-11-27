@@ -20,9 +20,9 @@
 
    <table class="striped responsive-table">
         <thead>
-            {{-- <th>ID</th> --}}
+            <th>No. Folio</th>            
             <th>Nombre</th>            
-            <th>Correo</th>            
+                       
             <th>Curp</th>                     
             <th>Edad</th>            
             <th>Estatus</th>            
@@ -32,13 +32,12 @@
         @foreach($objects as $n)
         
         <tr id="id{{$n->id}}">            
+            <td>{{ $n->no_folio }}</td>
             <td>{{ $n->fullname() }}</td>
-            <td>{{ $n->email }}</td>
             <td>{{ $n->curp }}</td>            
             <td>{{ $n->edad() }}</td>                                    
             <td>{{ $n->status }}</td>                                    
-            <td>
-                
+            <td> 
                 <a href="{{ url('app/pacientes/editar/'.$n->id.'') }}" class="btn blue">Editar </a>
                 <a href="{{ url('app/pacientes/ver', $n->id) }}" class="btn green">Ver</a>
                 @if(Auth::user()->user_type  >= 3) 

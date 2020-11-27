@@ -15,6 +15,10 @@
         padding: 1px !important;
         font-size: 10px !important;
     }
+    .tableWithoutLines tr th, .tableWithoutLines tr td { 
+        padding: 1px !important;
+        font-size: 10px !important;
+    }
     .datitos th, .datitos td {
         width: 11%;
     }
@@ -44,7 +48,7 @@
     <br>
     <div class="topTables">
 
-    <table style="width:100%" class="linesTable w3-table">
+    <table style="width:100%" class="tableWithoutLines w3-table">
         <tr>
             <th class="m1">FECHA</th>
             <td class="m3">{{ $obj->getFechaFormat() }}</td>
@@ -52,8 +56,8 @@
             <td class="m3">{{ $obj->getHourFormat() }} HRS</td>
         </tr>
     </table>
-
-    <table style="width:100%" class="linesTable w3-table">
+<br>
+    <table style="width:100%" class="tableWithoutLines w3-table">
         <tr>
             <th class="m1">NOMBRE</th>
             <td class="m3">{{ $obj->paciente->fullname() }}</td>
@@ -63,28 +67,32 @@
             <td class="m1">{{ $obj->telefono }}</td>
         </tr>
     </table>
-
-    <table style="width:100%" class="linesTable w3-table">
+    <br>
+    <table style="width:100%" class="tableWithoutLines w3-table">
         <tr>
             <th class="m1">NO. DE EMPL</th>
-            <td class="m3">{{ $obj->paciente->no_empleado }}</td>
-            <th class="m2 centerText">STATUS</th>
+            <td class="m2">{{ $obj->paciente->no_empleado }}</td>
+            <th class="m1">NO. DE FOLIO</th>
+            <td class="m2">{{ $obj->paciente->no_folio }}</td>
+            <th class="m1 centerText">ESTATUS</th>
             <td class="m2">{{ $obj->paciente->status }}</td>
         </tr>
     </table>
-
-    <table style="width:100%" class="linesTable w3-table">
+    <br>
+    <table style="width:100%" class="tableWithoutLines w3-table">
         <tr>
             <th class="m1">AREA</th>
             <td>{{ $obj->paciente->area }}</td>            
-        </tr>
-    </table>
-
-    <table style="width:100%" class="linesTable w3-table">
-        <tr>
             <th class="m1">F. DE NAC</th>
             <td class="m3">{{ $obj->paciente->getNacimientoFormat() }}</td>
-            <th class="m1">ALERGIAS</th>
+        </tr>
+    </table>
+    <br>
+    <table style="width:100%" class="tableWithoutLines w3-table">
+        <tr>            
+            <th class="m1">ALERGIAS</th>            
+        </tr>
+        <tr>                        
             <td class="m3">{{ $obj->alergias }}</td>
         </tr>
     </table>

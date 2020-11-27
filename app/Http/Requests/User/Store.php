@@ -24,7 +24,10 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users,email'
+            'email' => 'required|unique:users,email',
+            'cedula' => 'required|unique:users,cedula',
+            'no_folio' => 'required|unique:users,cedula',
+            'no_empleado' => 'required',
         ];
     }
 }

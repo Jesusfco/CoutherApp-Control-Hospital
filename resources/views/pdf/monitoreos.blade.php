@@ -66,7 +66,7 @@
                 <th class="" style="width: 17%">No. De Empleado:</th>
                 <td class="2">{{ $obj->paciente->no_empleado }}</td>                
                 <th class="" style="width: 15%">No. De Folio:</th>
-                <td class="2">{{ $obj->paciente->id }}</td>                
+                <td class="2">{{ $obj->paciente->no_folio }}</td>                
             </tr>
         </table>
 

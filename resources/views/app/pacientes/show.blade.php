@@ -1,6 +1,6 @@
 @extends('blades.app')
 
-@section('title', $obj->fullname())
+@section('title', $obj->nombre_completo)
 
 @section('css')
 @endsection
@@ -11,13 +11,9 @@
 
 <div>
   <a class="btn blue" href="{{ url('app/pacientes/editar', $obj->id) }}">Editar</a>
-  <a class="btn blue" href="{{ url('app/control?term=' . $obj->nombre_completo .'&search_type=1') }}">Controles</a>
-  <a class="btn blue" href="{{ url('app/antecedentes?term=' . $obj->nombre_completo .'&search_type=1') }}">Antecedentes</a>
-  <a class="btn blue" href="{{ url('app/monitoreos?term=' . $obj->nombre_completo .'&search_type=1') }}">Monitoreos</a>
-  <a class="btn blue" href="{{ url('app/analisis?term=' . $obj->nombre_completo .'&search_type=1') }}">Analisis</a>
-  {{-- <a class="btn" href="{{ url()->current() }}/negocios">Negocios</a>
-  <a class="btn" href="{{ url()->current() }}/recibos">Recibos</a>
-  <a class="btn" href="{{ url()->current() }}/direcciones">Direcciones</a> --}}
+  <a class="btn blue" href="{{ url('app/control?term=' . $obj->nombre_completo .'&search_type=1') }}">Notas clinica</a>
+  <a class="btn blue" href="{{ url('app/antecedentes?term=' . $obj->nombre_completo .'&search_type=1') }}">Expedientes</a>
+  <a class="btn blue" href="{{ url('app/analisis?term=' . $obj->nombre_completo .'&search_type=1') }}">Analisis</a>  
 </div>
 
 <div class="row ">
@@ -36,6 +32,10 @@
             <label for="exampleInputEmail1">A. Materno</label>
             <input type="text" name="matern" class="form-control" value="{{ $obj->materno }}"  placeholder="Apellido Materno" disabled>
           </div> --}}
+          <div class="form-group col l4">
+            <label>No. Folio</label>
+            <input type="text" name="no_folio" class="form-control" value="{{ $obj->no_folio }}" required disabled>
+          </div>
           <div class="form-group col l4">
             <label for="exampleInputEmail1">Correo</label>
             <input type="email" name="email" class="form-control" value="{{ $obj->email }}"  disabled>
@@ -56,17 +56,21 @@
             <label for="exampleInputEmail1">Numero de empleado</label>
             <input class="form-control" value="{{ $obj->no_empleado }}" disabled>
           </div>
-          <div class="form-group col l4">
+          <div class="form-group col l3">
             <label for="exampleInputEmail1">Estatus</label>
             <input class="form-control" value="{{ $obj->status }}" disabled>
           </div>
-          <div class="form-group col l4">
+          <div class="form-group col l3">
             <label for="exampleInputEmail1">Area</label>
             <input class="form-control" value="{{ $obj->area }}" disabled>
           </div>
-          <div class="form-group col l4">
+          <div class="form-group col l3">
             <label for="exampleInputEmail1">Sexo</label>
             <input class="form-control" value="{{ $obj->sexo }}" disabled>
+          </div>
+          <div class="form-group col l3">
+            <label for="exampleInputEmail1">Lugar de nacimiento</label>
+            <input class="form-control" value="{{ $obj->lugar_nacimiento }}" disabled>
           </div>
 
           <div class="form-group col l12">

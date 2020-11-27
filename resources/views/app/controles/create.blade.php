@@ -26,12 +26,8 @@
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Doctor</label>
       <input class="form-control" value="{{ Auth::user()->fullname() }}" disabled>
-    </div>
-
-    {{-- <div class="form-group col l4">
-      <label for="exampleInputEmail1">Paciente Seleccionado</label>
-      <input class="form-control" value="" disabled v-model="paciente">
-    </div> --}}
+    </div> 
+ 
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Teléfono</label>

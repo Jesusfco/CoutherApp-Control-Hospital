@@ -33,7 +33,9 @@
    </form> 
 
    <table class="striped responsive-table">
-        <thead>            
+        <thead>          
+            <th>No. Expediente</th>                                
+            <th>No. Folio</th>   
             <th>Paciente</th>            
             <th>Doctor</th>            
             <th>Fecha</th>                                
@@ -43,7 +45,9 @@
         <tbody>
         @foreach($objects as $n)
         
-        <tr id="id{{$n->id}}">            
+        <tr id="id{{$n->id}}">       
+            <td>{{ $n->id }}</td>
+            <td>{{ $n->paciente->no_folio }}</td>       
             <td><a href="{{ url('app/pacientes/ver', $n->paciente_id) }}"> {{ $n->paciente->nombre_completo }} </a></td>
             <td>{{ $n->medico->nombre_completo }}</td>
             <td>{{ $n->getFechaFormat() }}</td>                        

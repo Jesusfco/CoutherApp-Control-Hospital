@@ -24,7 +24,9 @@ class Update extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users,email,' . request()->route()->parameters('id')
+            'email' => 'unique:users,email,' . $this->id,
+            'no_folio' => 'required|unique:users,no_folio,' . $this->id,
+            'no_empleado' => 'required',
         ];
     }
 }

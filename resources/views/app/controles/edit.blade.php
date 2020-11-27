@@ -28,7 +28,7 @@
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Doctor</label>
       <input class="form-control" value="{{ $obj->medico->fullname() }}" disabled>
-    </div>
+    </div> 
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Teléfono</label>

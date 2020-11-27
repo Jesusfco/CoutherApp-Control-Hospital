@@ -44,6 +44,8 @@
 <body> 
 <div id="app">
 
+
+  <div style="position: fixed; top: 0; right: 0;"><a href="{{ url('logout') }}" class="btn red">Cerrar Sesión</a></div>
   <div class="panelNav blue darken-1 lighten-1 ">
 
     <div class="container2">
@@ -61,7 +63,7 @@
       <li><a href="{{ url('app/monitoreos') }}">Automonitoreo</a></li>
       
       {{-- <li><a href="{{ url('app/perfil') }}">Mi Perfil</a></li> --}}
-      <li><a href="{{ url('logout') }}">Cerrar Sesión</a></li>
+      
     </ul>
     </div>
 

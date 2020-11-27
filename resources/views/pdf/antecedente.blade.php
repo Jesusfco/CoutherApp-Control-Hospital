@@ -18,6 +18,10 @@
         padding: 1px !important;
         font-size: 10px !important;
     }
+    .tableWithoutLines tr th, .tableWithoutLines tr td { 
+        padding: 1px !important;
+        font-size: 10px !important;
+    }
     .datitos th, .datitos td {
         width: 11%;
     }
@@ -45,11 +49,11 @@
 
     {{-- <img src="{{ asset('img/topImg.jpg') }}" width="100%" class="topImg"> --}}
     <img src="./img/topImg.jpg" width="100%" class="topImg">
-    <br><br>
+    <br>
     <h3>Historia Clínica</h3>
     <div class="topTables">
 
-    <table style="width:100%" class="linesTable w3-table">
+    <table style="width:100%" class="tableWithoutLines w3-table">
         <tr>
             <th class="m1">FECHA</th>
             <td class="m3">{{ $obj->getFechaFormat() }}</td>
@@ -58,48 +62,60 @@
         </tr>
     </table>
 
-    <table style="width:100%" class="linesTable w3-table">
+    <p>I.- Ficha de Identificación</p>
+    <table style="width:100%" class="tableWithoutLines w3-table">
         <tr>
-            <th class="m1">NOMBRE</th>
-            <td class="m3">{{ $obj->paciente->fullname() }}</td>
-            <th class="m1">EDAD</th>
-            <td class="m1">{{ $obj->paciente->edad() }}</td>
-            <th class="m1">TELEFONO</th>
-            <td class="m1">{{ $obj->telefono }}</td>
+            <th class="m2">No. De Expediente:</th>
+            <td class="m2">{{ $obj->id }}</td>
+            <th class="m2">No. De Empleado:</th>
+            <td class="m2">{{ $obj->paciente->no_empleado }}</td>
         </tr>
     </table>
-
-    <table style="width:100%" class="linesTable w3-table">
+    <table style="width:100%" class="tableWithoutLines w3-table">
         <tr>
-            <th class="m1">NO. DE EMPL</th>
-            <td class="m3">{{ $obj->paciente->no_empleado }}</td>
-            <th class="m2 centerText">STATUS</th>
+            <th class="m2">No. De Folio:</th>
+            <td class="m2">{{ $obj->paciente->no_folio }}</td>
+            <th class="m2">Area:</th>
+            <td class="m2">{{ $obj->paciente->area }}</td>
+        </tr>
+    </table>
+    <table style="width:100%" class="tableWithoutLines w3-table">
+        <tr>
+            <th class="m2">Nombre:</th>
+            <td class="m2">{{ $obj->paciente->nombre_completo }}</td>
+            <th class="m2">Estatus:</th>
             <td class="m2">{{ $obj->paciente->status }}</td>
         </tr>
     </table>
-
-    <table style="width:100%" class="linesTable w3-table">
+    <table style="width:100%" class="tableWithoutLines w3-table">
         <tr>
-            <th class="m1">AREA</th>
-            <td>{{ $obj->paciente->area }}</td>            
-            <th class="m1">No. Folio</th>
-            <td>{{ $obj->no_folio }}</td>            
-            <th class="m1">No. Expediente</th>
-            <td>{{ $obj->id }}</td>            
+            <th class="m2">Edad:</th>
+            <td class="m2">{{ $obj->paciente->edad() }}</td>
+            <th class="m2">Sexo:</th>
+            <td class="m2">{{ $obj->paciente->sexo }}</td>
+        </tr>
+    </table>
+    
+    <br>
+    
+    <p><strong>Alergias:</strong></p>    
+    <div style="margin: 0 auto; width: 75%; padding: 4px; border: 2px solid black"> 
+        <p>{!! nl2br($obj->personales_no_patologicos) !!} </p>
+    </div>
+    <table style="width:100%" class="tableWithoutLines w3-table">
+        <tr>
+            <th class="m2">Lugar y Fecha de Nacimiento:</th>
+            <td class="">{{ $obj->paciente->lugar_nacimiento }} {{ $obj->paciente->nacimiento }}</td>            
         </tr>
     </table>
 
-     
-
-    <br>
-    
-    <p><strong>Alergias:</strong><br><br> {!! nl2br($obj->alergias) !!} </p>    
+    <p>II.- Interrogatorio</p>
     <p><strong>Antecedentes Heredofamiliares:</strong><br><br> {!! nl2br($obj->heredofamiliares) !!} </p>    
     <p><strong>Antecedentes Persnolaes No Patológicos:</strong><br><br> {!! nl2br($obj->personales_no_patologicos) !!} </p>    
     <p><strong>Antecedentes Persnolaes Patológicos:</strong><br><br> {!! nl2br($obj->personales_patologicos) !!} </p>    
     <p><strong>Musculo-Esquelético:</strong><br><br> {!! nl2br($obj->musculo_esqueletico) !!} </p>    
     <p><strong>Piel y Anexos:</strong><br><br> {!! nl2br($obj->piel_anexos) !!} </p>    
-    <h4>Exploración Fisica</h4>
+    <p>III. Exploración Fisica</p>
     <table class="linesTable w3-table">
         <thead>    
             <tr>
@@ -143,18 +159,29 @@
     <p><strong>Extremidades Superiores e Inferiores:</strong><br><br> {!! nl2br($obj->extremidades) !!} </p>    
     <p><strong>Exploración Neurologica:</strong><br><br> {!! nl2br($obj->exploracion_neurologica) !!} </p>            
      
-    <p><strong>DIAGNOSTICO:</strong><br><br> {!! nl2br($obj->diagnostico) !!} </p>        
-    <p><strong>PLAN:</strong><br><br> {!! nl2br($obj->plan) !!} </p>    
+    <p><strong>IV. DIAGNOSTICO:</strong></p>        
+    <p style="text-align: center">DIAGNOSTICO</p>
+    <p>{!! nl2br($obj->diagnostico) !!} </p>        
+    <p><strong>PLAN A SEGUIR:</strong><br><br> {!! nl2br($obj->plan) !!} </p>    
     
-    <table style="width:100%" class="linesTable w3-table">
+
+    <br><br><br>
+    <table style="width:100%" class="w3-table">
         <tr>
-            <th class="m1 center-text" style="width:50%">{{ $obj->medico->nombre_completo }}</th>
-            <th class="center-text" style="width:50%">{{ $obj->medico->cedula }}</td>            
+            <th class="m1 center-text" style="width:50%">
+                <div style="text-align: center; ">
+                    <div style="border-bottom: 1px solid black; font-size: 10px">{{ $obj->medico->nombre_completo }}</div>
+                    <div style="font-size: 12px">Nombre y Firma del Médico</div>
+                </div>
+            </th>
+            <th class="center-text" style="width:50%">
+                <div style="text-align: center; ">
+                    <div style="border-bottom: 1px solid black; font-size: 10px">{{ $obj->medico->cedula }}</div>
+                    <div style="font-size: 12px">Cédula Profesional</div>
+                </div>    
+            </td>            
         </tr>
-        <tr>
-            <th class="m1 center-text">Nombre y Firma del Médico</th>
-            <th class="center-text">Cedula</td>            
-        </tr>
+    
     </table>
     
 </body>

@@ -23,7 +23,9 @@ class User extends Authenticatable
         'name', 'email', 'password', 'paterno', 'materno', 
         'nacimiento', 'curp', 'user_type', 'sexo',
         'cedula', 'especialidad', #Medicos
-        'status','no_empleado', 'area' #pacientes
+        'status','no_empleado', 'area', #pacientes,
+        'no_folio',                 
+        'lugar_nacimiento'
     ];
 
     /**
@@ -45,10 +47,10 @@ class User extends Authenticatable
         'created_at' => 'datetime',
     ];
 
-    // public function setPasswordAttribute($value)
-    // {
-    //     $this->attributes['password'] = bcrypt($value);
-    // }
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
     public function direccion() {
         return $this->hasOne('App\Direccion')->withDefault();
     }

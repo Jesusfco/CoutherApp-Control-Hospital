@@ -11,6 +11,7 @@ class MonitoreoGlucosa extends Model
     protected $fillable = [ 
         'paciente_id',
         'medico_id',                 
+        'no_folio',                 
     ];
     
     public function medico()
