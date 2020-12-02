@@ -17,8 +17,8 @@ class ControlController extends Controller
         $this->middleware('admin', ['only' => ['delete', 'update', 'edit']]); 
     }
 
-    public function index(Request $re) {
-
+    public function index(Request $re) 
+    {
         $objects = Control::whereNotNull('id');        
 
         if($re->search_type == 1) {
@@ -37,42 +37,46 @@ class ControlController extends Controller
         return view('app/controles/list')->with('objects', $objects);
     }
 
-    public function create(){        
+    public function create()
+    {        
         return view('app/controles/create');
     }
 
-    public function store(Request $re) {                
+    public function store(Request $re) 
+    {                
         $obj = new Control();
         $this->pushData($re, $obj);                
         return redirect('app/control/' . $obj->id)->with('msj', 'Se ha creado un Control con exito');
     }
 
-    public function edit($id) {
+    public function edit($id) 
+    {
         $obj = Control::find($id);
         return view('app/controles/edit')->with('obj', $obj);
     }
-    public function show($id) {
+    public function show($id) 
+    {
         $obj = Control::find($id);
         return view('app/controles/show')->with('obj', $obj);
     }
 
-    public function update(Request $re, $id) {                
-
+    public function update(Request $re, $id) 
+    {
         $obj = Control::find($id);
         $this->pushData($re, $obj);                   
         return back()->with('success', 'Se ha actualizado el Control con exito');
 
     }
 
-    public function delete($id) {
-        
+    public function destroy($id) 
+    {        
         $n = Control::find($id);          
         $n->delete();
         return 'true';
     }
 
-    private function pushData(Request $re, Control $obj) {
-        
+    private function pushData(Request $re, Control $obj) 
+    {    
         if($obj->id > 0)$obj->medico_id = $re->medico_id;
         else $obj->medico_id = Auth::id();
         
@@ -97,13 +101,11 @@ class ControlController extends Controller
         $obj->plan = $re->plan;
         
         $obj->save();
-
-        
-                              
+                    
     }
 
-    public function pdf($id) {
-
+    public function pdf($id) 
+    {
         $obj = Control::find($id);
         // return view('pdf/control', ['obj' => $obj]);
         return PDF::loadView('pdf/control',['obj' => $obj])

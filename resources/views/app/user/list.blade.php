@@ -20,7 +20,7 @@
 
    <table class="striped responsive-table">
         <thead>
-            {{-- <th>ID</th> --}}
+            <th>No. Folio</th>
             <th>Nombre</th>            
             <th>Correo</th>            
             <th>Curp</th>
@@ -32,6 +32,7 @@
         @foreach($objects as $n)
         
         <tr id="id{{$n->id}}">            
+            <td>{{ $n->id }}</td>
             <td>{{ $n->fullname() }}</td>
             <td>{{ $n->email }}</td>
             <td>{{ $n->curp }}</td>            

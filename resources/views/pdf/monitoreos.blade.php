@@ -71,39 +71,45 @@
         </table>
 
      
- 
-    <table class="linesTable w3-table">
-        <thead>    
-            <tr>
-                <th>Dia</th>
-                <th>Antes</th>
-                <th>Desayuno</th>
-                <th>Después</th>
-                <th>Antes</th>
-                <th>Comida</th>
-                <th>Después</th>
-                <th>Antes</th>
-                <th>Cena</th>
-                <th>Después</th>                
-            </tr>        
-        </thead>
-        <tbody>
-            @for ($i = 0; $i < 31; $i++)
+    <div style="width: 75%; margin: 0 auto">    
+        <table class="linesTable w3-table">
+            <thead>    
                 <tr>
-                    <td>{{ $i + 1 }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>                
-            @endfor                            
-        </tbody>
-    </table>    
+                    <th style="width: 6%">Día</th>
+                    <th class="centerText" style="width: 31%">Desayuno</th>
+                    <th class="centerText" style="width: 31%">Comida</th>
+                    <th class="centerText" style="width: 31%">Cena</th>             
+                </tr>        
+            </thead>
+        </table>
+        <table class="linesTable w3-table">
+            
+            <thead>    
+                <tr>
+                    <th style="width: 6%"></th>
+                    <th>Antes</th> 
+                    <th>Después</th>
+                    <th>Antes</th> 
+                    <th>Después</th>
+                    <th>Antes</th> 
+                    <th>Después</th>                
+                </tr>        
+            </thead>
+            <tbody>
+                @for ($i = 0; $i < 31; $i++)
+                    <tr>
+                        <td>{{ $i + 1 }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>                    
+                    </tr>                
+                @endfor                            
+            </tbody>
+        </table>    
+    </div>
     
     <p style="text-align: right; font-size: 14px">{{ $obj->medico->nombre_completo }}<br> {{ $obj->medico->cedula }}</p>    
     

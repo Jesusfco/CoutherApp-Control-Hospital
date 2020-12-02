@@ -41,6 +41,10 @@
       <label>No. Folio</label>
       <input type="text" name="no_folio" class="form-control" value="{{ $obj->no_folio }}" required>
     </div>
+    <div class="form-group col l4">
+      <label>No. Empledo</label>
+      <input type="text" name="no_empleado" class="form-control" value="{{ $obj->no_empleado }}" required>
+    </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Curp</label>
