@@ -35,12 +35,11 @@
     <strong>Paciente:</strong>  <a href="{{ url('app/pacientes/ver', $obj->paciente) }}">{{ $obj->paciente->nombre_completo}}</a>
   </div>
   <div class="col s12">
-    Doctor: {{ $obj->medico->nombre_completo}}</a>
+    Médico: {{ $obj->medico->nombre_completo}}</a>
   </div>
   <div class="col s12">
     
-  
-  <p><strong>Alergias:</strong><br><br> {!! nl2br($obj->alergias) !!} </p>    
+    
   <p><strong>Antecedentes Heredofamiliares:</strong><br><br> {!! nl2br($obj->heredofamiliares) !!} </p>    
   <p><strong>Antecedentes Persnolaes No Patológicos:</strong><br><br> {!! nl2br($obj->personales_no_patologicos) !!} </p>    
   <p><strong>Antecedentes Persnolaes Patológicos:</strong><br><br> {!! nl2br($obj->personales_patologicos) !!} </p>    

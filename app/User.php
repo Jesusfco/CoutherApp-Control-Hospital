@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function type() {
         if($this->user_type  == 1) return 'Paciente';
-        if($this->user_type  == 2) return 'Doctor';
+        if($this->user_type  == 2) return 'Médico';
         return "Administrador";
     }
 

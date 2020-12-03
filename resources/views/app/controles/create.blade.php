@@ -24,7 +24,7 @@
     </div>
 
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">Doctor</label>
+      <label for="exampleInputEmail1">Médico</label>
       <input class="form-control" value="{{ Auth::user()->fullname() }}" disabled>
     </div> 
  

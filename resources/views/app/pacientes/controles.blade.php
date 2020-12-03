@@ -22,7 +22,7 @@
    <table class="striped responsive-table">
         <thead>            
             
-            <th>Doctor</th>            
+            <th>Médico</th>            
             <th>Fecha</th>                                
             <th>Acciones</th>
         </thead>

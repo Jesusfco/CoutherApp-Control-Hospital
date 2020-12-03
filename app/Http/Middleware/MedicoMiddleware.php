@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class DoctorMiddleware
+class MedicoMiddleware
 {
     /**
      * Handle an incoming request.

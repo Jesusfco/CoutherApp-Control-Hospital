@@ -14,7 +14,7 @@ class PacientesController extends Controller
     public function __construct()
     {
         $this->middleware('myAuth');
-        $this->middleware('doctor');
+        $this->middleware('medico');
     }
 
     public function list(Request $re) {

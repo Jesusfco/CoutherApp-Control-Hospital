@@ -13,7 +13,7 @@ class AnalisisController extends Controller
     public function __construct()
     {
         $this->middleware('myAuth');
-        // $this->middleware('doctor');
+        // $this->middleware('medico');
         // $this->middleware('admin', ['only' => ['delete', 'update', 'edit']]); 
     }
     /**

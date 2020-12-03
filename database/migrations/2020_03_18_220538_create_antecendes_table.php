@@ -17,7 +17,7 @@ class CreateAntecendesTable extends Migration
             $table->id();
             $table->bigInteger('paciente_id');
             $table->bigInteger('medico_id');
-            $table->text('alergias')->nullable();
+            // $table->text('alergias')->nullable();
             $table->text('heredofamiliares')->nullable();
             $table->text('personales_no_patologicos')->nullable();
             $table->text('personales_patologicos')->nullable();
@@ -25,7 +25,7 @@ class CreateAntecendesTable extends Migration
             $table->text('piel_anexos')->nullable();
             // exploracion_fisica
             $table->double('peso')->nullable();
-            $table->double('mm_hg')->nullable();
+            $table->text('mm_hg')->nullable();
             $table->double('temperatura')->nullable();
             $table->double('frecuencia_respiratoria')->nullable();
             $table->double('frecuencia_cardiaca')->nullable();

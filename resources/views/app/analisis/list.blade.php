@@ -22,7 +22,7 @@
             <select name="search_type" class="browser-default">        
                
               <option value="1" @if( request('search_type') == 1) selected @endif>Paciente</option>        
-              {{-- <option value="2" @if( request('search_type') == 2) selected @endif>Doctor</option> --}}
+              {{-- <option value="2" @if( request('search_type') == 2) selected @endif>Médico</option> --}}
               
             </select>
         </div>

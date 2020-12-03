@@ -99,6 +99,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.min.js" ></script>      
     <script src="{{ asset('js/delete.js') }}"></script>
+    <script src="{{ asset('js/admin/helper-function.js') }}"></script>
     
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script>
