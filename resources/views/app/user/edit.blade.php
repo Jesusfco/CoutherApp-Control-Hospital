@@ -8,7 +8,7 @@
 @section('content')
 <h5><a href="{{ url('app/usuarios') }}">Usuarios </a> / Actualizar usuario</h5>
 
-<form class="row" id="form2" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()">
+<form class="row" id="form2" role="form" method="POST" enctype="multipart/form-data" onsubmit="return appForm.submit(event)">
     {{ csrf_field() }}
 
     <div class="form-group col l12">
@@ -68,7 +68,7 @@
     </div>
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Curp</label>
-      <input type="text" name="curp" class="form-control" value="{{ $obj->curp }}" maxlength="18">
+      <input type="text" name="curp" class="form-control" value="{{ $obj->curp }}" maxlength="18" v-model="curp" required pattern="([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)">
     </div>
 
     <div class="form-group col l4">
@@ -94,16 +94,14 @@
     <input type="hidden" name="especialidad" class="form-control"  v-if="!have_especialidad" v-model="especialidad"> 
     <div class="form-group col l4" v-else>
       <label for="exampleInputEmail1">Especialidad</label>
-      <input type="text" name="especialidad" class="form-control" required v-model="especialidad">
+      <input type="text" name="especialidad" class="form-control" required v-model="especialidad" onkeypress="return onlyAlphabeticCharacterKey(event)">
     </div>    
     
     <div class="form-group col l4">
       <label>Tipo de Usuario</label>
-      <select name="user_type" class="browser-default">        
-         
+      <select name="user_type" class="browser-default">                 
         <option value="2" @if($obj->user_type == 2) selected @endif>Médico</option>        
-        <option value="3" @if($obj->user_type == 3) selected @endif>Administrador</option>
-        
+        <option value="3" @if($obj->user_type == 3) selected @endif>Administrador</option>        
       </select>
     </div>
 
@@ -119,78 +117,14 @@
     <input v-model="sexo" required v-if="sexo_selection == 'Masculino' || sexo_selection == 'Femenino'" name="sexo" type="hidden">
     <div class="form-group col l4" v-else>
       <label>Sexo</label>
-      <input v-model="sexo" required name="sexo" type="text" maxlength="20">
+      <input v-model="sexo" required name="sexo" type="text" maxlength="20" onkeypress="return onlyAlphabeticCharacterKey(event)">
     </div> 
 
     <div class="form-group col l12">
       <h4>Dirección</h4>
     </div>
     
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Calle</label>
-      <input type="text" name="calle" class="form-control" value="{{ $obj->calle }}" maxlength="50">
-    </div>
-    
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Colonia</label>
-      <input type="text" name="colonia" class="form-control" value="{{ $obj->colonia }}" maxlength="30">
-    </div>
-
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Numero Exterior</label>
-      <input type="number" name="numero" class="form-control" value="{{ $obj->numero }}" onkeypress="return onlyNumberKey(event)" max="9999999">
-    </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Numero Interior</label>
-      <input type="text" name="numero_int" class="form-control" value="{{ $obj->numero_int }}"  maxlength="8">
-    </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Codigo Postal</label>
-      <input type="number" name="cp" class="form-control" value="{{ $obj->cp }}" onkeypress="return onlyNumberKey(event)" max="9999999">
-    </div>
-
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Ciudad</label>
-      <input type="text" name="ciudad" class="form-control" value="{{ $obj->ciudad }}" maxlength="40" onkeypress="return onlyAlphabeticCharacterKey(event)">
-    </div>
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Estado</label>
-      <select class="browser-default" name="estado">
-        <option>{{$obj->estado}}</option>
-        <option>Aguascalientes</option>
-        <option>Baja California</option>
-        <option>Baja California Sur</option>
-        <option>Campeche</option>
-        <option>Chiapas</option>
-        <option>Chihuahua</option>
-        <option>Ciudad de México</option>
-        <option>Coahuila</option>
-        <option>Colima</option>
-        <option>Durango</option>
-        <option>Estado de México</option>
-        <option>Guanajuato</option>
-        <option>Guerrero</option>
-        <option>Hidalgo</option>
-        <option>Jalisco</option>
-        <option>Michoacán</option>
-        <option>Morelos</option>
-        <option>Nayarit</option>
-        <option>Nuevo León</option>
-        <option>Oaxaca</option>
-        <option>Puebla</option>
-        <option>Querétaro</option>
-        <option>Quintana Roo</option>
-        <option>San Luis Potosí</option>
-        <option>Sinaloa</option>
-        <option>Sonora</option>
-        <option>Tabasco</option>
-        <option>Tamaulipas</option>
-        <option>Tlaxcala</option>
-        <option>Veracruz</option>
-        <option>Yucatán</option>
-        <option>Zacatecas</option>
-      </select>
-    </div>
+    @include('app.utils.address-edit')
 
     <div class="col l12"><br>
       <button type="submit" class="btn blue">Actualizar Usuario</button>
@@ -202,7 +136,7 @@
 @section('scripts')
 
 <script>
-var app = new Vue({
+var appForm = new Vue({
   el: '#form2',
     data: {
       have_especialidad: false,
@@ -217,7 +151,8 @@ var app = new Vue({
       sexo: "{{$obj->sexo}}",
       email_name: "",
       email_domain: "",
-      email: "{{ $obj->email }}"
+      email: "{{ $obj->email }}",
+      curp:"{{ $obj->curp }}",
       
     }, created: function () {
       if(this.sexo != 'Masculino' || this.sexo != 'Femenino') {
@@ -228,8 +163,8 @@ var app = new Vue({
       }
 
       let strings = this.email.split("@")
-      this.email_name = string[0]
-      this.email_domain = "@" + string[1]
+      this.email_name = strings[0]
+      this.email_domain = "@" + strings[1]
     },
     methods: {      
       handlerSexoChange(){
@@ -244,6 +179,14 @@ var app = new Vue({
             this.sexo = ''
             break;
         }
+      },
+
+      submit(e) {        
+        if(!validateCurp(this.curp) || !validateSecurePassword(this.password)) {
+          e.preventDefault();          
+          return false
+        }
+        return true
       }
 
     }

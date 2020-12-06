@@ -13,8 +13,7 @@ function onlyNumberIntegersKey(evt)
     return true; 
 } 
 function onlyNumberKey(evt) 
-{
-    // Only ASCII charactar in that range allowed 
+{    
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode     
     if(ASCIICode == 46) return true
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
@@ -24,7 +23,8 @@ function onlyNumberKey(evt)
 
 function onlyAlphabeticCharacterKey(e) 
 {
-    return (e.charCode > 64 && e.charCode < 91) || (e.charCode > 96 && e.charCode < 123) || e.charCode == 32;
+    var regex = '[A-Za-zÀ-ÖØ-öø-ÿ]'
+    return e.key.match(regex) ? true: false    
 }
 
 function validateBirthday(e)
@@ -37,18 +37,22 @@ function validateBirthday(e)
 
 }
 
-function validateCurp() 
-{
-    
+function validateCurp( curp) 
+{    
+    var regex = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
+    var validado = curp.match(regex);
+    if(curp.match(regex) || curp.length == 0) return true
+    M.toast({html: 'La curp no tiene el formato correcto', classes: 'red', displayLength: 6500})        
+    return false    
 }
 
 function validateSecurePassword(password) 
 {        
-    if (password.match(/[a-z]/g) && str.match( 
-            /[A-Z]/g) && str.match( 
-            /[0-9]/g) && str.match( 
-            /[^a-zA-Z\d]/g) && password.length >= 8) 
+    if ((password.match(/[a-z]/g) && str.match(  /[A-Z]/g) && str.match(  /[0-9]/g) && str.match(  /[^a-zA-Z\d]/g) && password.length >= 8) || password.length == 0) 
+    {
         return true
-    else 
-        return false    
+    }
+    
+    M.toast({html: 'Contaseña debe contenar almenos 1 mayuscula, 1 minuscula, 1 número', classes: 'red', displayLength: 6500})        
+    return false    
 }
