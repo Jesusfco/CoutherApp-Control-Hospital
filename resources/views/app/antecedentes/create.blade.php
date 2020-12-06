@@ -66,12 +66,12 @@
         </thead>
         <tbody>
           <tr>
-            <td><input type="number" step="0.01" max="9999999" name="peso" value="{{ old('peso') }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="peso" value="{{ old('peso') }}"></td>
             <td><input type="text" maxlength="15" name="mm_hg" value="{{ old('mm_hg') }}"></td>
-            <td><input type="number" step="0.01" max="9999999" name="temperatura" value="{{ old('temperatura') }}"></td>
-            <td><input type="number" step="0.01" max="9999999" name="frecuencia_respiratoria" value="{{ old('frecuencia_respiratoria') }}"></td>
-            <td><input type="number" step="0.01" max="9999999" name="talla" value="{{ old('talla') }}"></td>
-            <td><input type="number" step="0.01" max="9999999" name="frecuencia_cardiaca" value="{{ old('frecuencia_cardiaca') }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="temperatura" value="{{ old('temperatura') }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="frecuencia_respiratoria" value="{{ old('frecuencia_respiratoria') }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="talla" value="{{ old('talla') }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="frecuencia_cardiaca" value="{{ old('frecuencia_cardiaca') }}"></td>
           </tr>
         </tbody>
       </table>

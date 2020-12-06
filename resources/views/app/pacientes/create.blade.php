@@ -18,17 +18,17 @@
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Nombres</label>
-      <input type="text" name="name" class="form-control" value="{{ old('name') }}" onkeypress="return onlyLetterKey(event)" placeholder="Nombre" required autofocus maxlength="50">
+      <input type="text" name="name" class="form-control" value="{{ old('name') }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Nombre" required autofocus maxlength="50">
     </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Apellido Paterno</label>
-      <input type="text" name="paterno" class="form-control" value="{{ old('paterno') }}" onkeypress="return onlyLetterKey(event)" placeholder="Apellido Paterno" required maxlength="50">
+      <input type="text" name="paterno" class="form-control" value="{{ old('paterno') }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Paterno" required maxlength="50">
     </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Apellido Materno</label>
-      <input type="text" name="materno" class="form-control" value="{{ old('materno') }}" onkeypress="return onlyLetterKey(event)" placeholder="Apellido Materno" required maxlength="50">
+      <input type="text" name="materno" class="form-control" value="{{ old('materno') }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Materno" required maxlength="50">
     </div>
 
     <div class="form-group col l6">
@@ -94,70 +94,7 @@
       <h4>Dirección</h4>
     </div>
     
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Calle</label>
-      <input type="text" name="calle" class="form-control" value="{{ old('calle') }}" maxlength="50">
-    </div>
-    
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Colonia</label>
-      <input type="text" name="colonia" class="form-control" value="{{ old('colonia') }}" maxlength="30">
-    </div>
-
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Numero Exterior</label>
-      <input type="number" name="numero" class="form-control" value="{{ old('numero') }}" onkeypress="return onlyNumberKey(event)" max="9999999">
-    </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Numero Interior</label>
-      <input type="text" name="numero_int" class="form-control" value="{{ old('numero_int') }}" maxlength="8">
-    </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Codigo Postal</label>
-      <input type="number" name="cp" class="form-control" value="{{ old('cp') }}" onkeypress="return onlyNumberKey(event)" max="9999999">
-    </div>
-
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Ciudad</label>
-      <input type="text" name="ciudad" class="form-control" value="{{ old('ciudad') }}" maxlength="40" onkeypress="return onlyLetterKey(event)">
-    </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Estado</label>
-      <select class="browser-default" name="estado">
-        <option>Aguascalientes</option>
-        <option>Baja California</option>
-        <option>Baja California Sur</option>
-        <option>Campeche</option>
-        <option>Chiapas</option>
-        <option>Chihuahua</option>
-        <option>Ciudad de México</option>
-        <option>Coahuila</option>
-        <option>Colima</option>
-        <option>Durango</option>
-        <option>Estado de México</option>
-        <option>Guanajuato</option>
-        <option>Guerrero</option>
-        <option>Hidalgo</option>
-        <option>Jalisco</option>
-        <option>Michoacán</option>
-        <option>Morelos</option>
-        <option>Nayarit</option>
-        <option>Nuevo León</option>
-        <option>Oaxaca</option>
-        <option>Puebla</option>
-        <option>Querétaro</option>
-        <option>Quintana Roo</option>
-        <option>San Luis Potosí</option>
-        <option>Sinaloa</option>
-        <option>Sonora</option>
-        <option>Tabasco</option>
-        <option>Tamaulipas</option>
-        <option>Tlaxcala</option>
-        <option>Veracruz</option>
-        <option>Yucatán</option>
-        <option>Zacatecas</option>
-      </select>
-    </div>
+    @include('app.utils.address-create')
 
     <div class="col l12"><br>
       <button type="submit" class="btn blue">Crear Nuevo Paciente</button>

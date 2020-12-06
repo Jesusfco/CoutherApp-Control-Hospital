@@ -17,27 +17,44 @@
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Nombres</label>
-      <input type="text" name="name" class="form-control" value="{{ $obj->name }}" onkeypress="return onlyLetterKey(event)" placeholder="Nombre" required autofocus maxlength="50">
+      <input type="text" name="name" class="form-control" value="{{ $obj->name }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Nombre" required autofocus maxlength="30">
     </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Apellido Paterno</label>
-      <input type="text" name="paterno" class="form-control" value="{{ $obj->paterno }}" onkeypress="return onlyLetterKey(event)" placeholder="Apellido Paterno" required maxlength="50">
+      <input type="text" name="paterno" class="form-control" value="{{ $obj->paterno }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Paterno" required maxlength="30">
     </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Apellido Materno</label>
-      <input type="text" name="materno" class="form-control" value="{{ $obj->materno }}" onkeypress="return onlyLetterKey(event)" placeholder="Apellido Materno" required maxlength="50">
+      <input type="text" name="materno" class="form-control" value="{{ $obj->materno }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Materno" required maxlength="30">
     </div>
 
     <div class="form-group col l6">
-      <label for="exampleInputEmail1">Correo</label>
-      <input type="email" name="email" class="form-control" value="{{ $obj->email }}" required maxlength="50">
+      <input type="hidden" name="email" v-model="email">
+      <div class="row">
+        <div class="col s7">
+          <label for="exampleInputEmail1">Correo</label>
+          <input type="text" class="form-control" v-model="email_name" required maxlength="15" onkeypress="return withoutAt(event)">
+        </div>
+        <div class="col s5">     
+          <br>     
+          <select name="" v-model="email_domain">
+            <option>@outlook.es</option>
+            <option>@outlook.com</option>
+            <option>@gmail.com</option>
+            <option>@hotmail.com</option>
+            <option>@icloud.com</option>
+            <option>@yahoo.com</option>
+          </select>
+        </div>
+      </div>
+      
     </div>
     
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Contraseña</label>
-      <input type="password" name="password" class="form-control">
+      <input type="password" name="password" class="form-control" minlength="8" maxlength="16">
     </div>
 
     <div class="form-group col l4">
@@ -61,7 +78,7 @@
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Cedula</label>
-      <input type="text" name="cedula" class="form-control" value="{{ $obj->cedula }}" onkeypress="return onlyNumberKey(event)"  required>
+      <input type="text" name="cedula" class="form-control" value="{{ $obj->cedula }}" onkeypress="return onlyNumberKey(event)"  required maxlength="10">
     </div>
 
     <div class="form-group col l4">
@@ -134,7 +151,7 @@
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Ciudad</label>
-      <input type="text" name="ciudad" class="form-control" value="{{ $obj->ciudad }}" maxlength="40" onkeypress="return onlyLetterKey(event)">
+      <input type="text" name="ciudad" class="form-control" value="{{ $obj->ciudad }}" maxlength="40" onkeypress="return onlyAlphabeticCharacterKey(event)">
     </div>
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Estado</label>
@@ -197,7 +214,10 @@ var app = new Vue({
       @else
         sexo_selection: 'otro',
       @endif
-      sexo: "{{$obj->sexo}}"
+      sexo: "{{$obj->sexo}}",
+      email_name: "",
+      email_domain: "",
+      email: "{{ $obj->email }}"
       
     }, created: function () {
       if(this.sexo != 'Masculino' || this.sexo != 'Femenino') {
@@ -206,6 +226,10 @@ var app = new Vue({
       if(this.especialidad != '') {
         this.have_especialidad = true
       }
+
+      let strings = this.email.split("@")
+      this.email_name = string[0]
+      this.email_domain = "@" + string[1]
     },
     methods: {      
       handlerSexoChange(){

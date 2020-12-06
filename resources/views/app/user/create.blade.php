@@ -17,27 +17,44 @@
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Nombres</label>
-      <input type="text" name="name" class="form-control" value="{{ old('name') }}" onkeypress="return onlyLetterKey(event)" placeholder="Nombre" required autofocus maxlength="50">
+      <input type="text" name="name" class="form-control" value="{{ old('name') }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Nombre" required autofocus maxlength="30">
     </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Apellido Paterno</label>
-      <input type="text" name="paterno" class="form-control" value="{{ old('paterno') }}" onkeypress="return onlyLetterKey(event)" placeholder="Apellido Paterno" required maxlength="50">
+      <input type="text" name="paterno" class="form-control" value="{{ old('paterno') }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Paterno" required maxlength="30">
     </div>
 
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Apellido Materno</label>
-      <input type="text" name="materno" class="form-control" value="{{ old('materno') }}" onkeypress="return onlyLetterKey(event)" placeholder="Apellido Materno" required maxlength="50">
+      <input type="text" name="materno" class="form-control" value="{{ old('materno') }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Materno" required maxlength="30">
     </div>
 
     <div class="form-group col l6">
-      <label for="exampleInputEmail1">Correo</label>
-      <input type="email" name="email" class="form-control" value="{{ old('email') }}" required maxlength="50">
+      <input type="hidden" name="email" v-model="email">
+      <div class="row">
+        <div class="col s7">
+          <label for="exampleInputEmail1">Correo</label>
+          <input type="text" class="form-control" v-model="email_name" required maxlength="15" onkeypress="return withoutAt(event)">
+        </div>
+        <div class="col s5">     
+          <br>     
+          <select name="" v-model="email_domain">
+            <option>@outlook.es</option>
+            <option>@outlook.com</option>
+            <option>@gmail.com</option>
+            <option>@hotmail.com</option>
+            <option>@icloud.com</option>
+            <option>@yahoo.com</option>
+          </select>
+        </div>
+      </div>
+      
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Contraseña</label>
-      <input type="password" name="password" class="form-control" value="{{ old('password') }}">
+      <input type="password" name="password" class="form-control" value="{{ old('password') }}" minlength="8" maxlength="16">
     </div>
 
     <div class="form-group col l4">
@@ -61,7 +78,7 @@
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Cedula</label>
-      <input type="text" name="cedula" class="form-control" value="{{ old('cedula') }}" onkeypress="return onlyNumberKey(event)"  required>
+      <input type="text" name="cedula" class="form-control" value="{{ old('cedula') }}" onkeypress="return onlyNumberKey(event)"  required maxlength="10">
     </div>
 
     <div class="form-group col l4">
@@ -108,70 +125,7 @@
       <h4>Dirección</h4>
     </div>
     
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Calle</label>
-      <input type="text" name="calle" class="form-control" value="{{ old('calle') }}" maxlength="50">
-    </div>
-    
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Colonia</label>
-      <input type="text" name="colonia" class="form-control" value="{{ old('colonia') }}" maxlength="30">
-    </div>
-
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Numero Exterior</label>
-      <input type="number" name="numero" class="form-control" value="{{ old('numero') }}" onkeypress="return onlyNumberKey(event)" max="9999999">
-    </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Numero Interior</label>
-      <input type="text" name="numero_int" class="form-control" value="{{ old('numero_int') }}" maxlength="8">
-    </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Codigo Postal</label>
-      <input type="number" name="cp" class="form-control" value="{{ old('cp') }}" onkeypress="return onlyNumberKey(event)" max="9999999">
-    </div>
-
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Ciudad</label>
-      <input type="text" name="ciudad" class="form-control" value="{{ old('ciudad') }}" maxlength="40" onkeypress="return onlyLetterKey(event)">
-    </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Estado</label>
-      <select class="browser-default" name="estado">
-        <option>Aguascalientes</option>
-        <option>Baja California</option>
-        <option>Baja California Sur</option>
-        <option>Campeche</option>
-        <option>Chiapas</option>
-        <option>Chihuahua</option>
-        <option>Ciudad de México</option>
-        <option>Coahuila</option>
-        <option>Colima</option>
-        <option>Durango</option>
-        <option>Estado de México</option>
-        <option>Guanajuato</option>
-        <option>Guerrero</option>
-        <option>Hidalgo</option>
-        <option>Jalisco</option>
-        <option>Michoacán</option>
-        <option>Morelos</option>
-        <option>Nayarit</option>
-        <option>Nuevo León</option>
-        <option>Oaxaca</option>
-        <option>Puebla</option>
-        <option>Querétaro</option>
-        <option>Quintana Roo</option>
-        <option>San Luis Potosí</option>
-        <option>Sinaloa</option>
-        <option>Sonora</option>
-        <option>Tabasco</option>
-        <option>Tamaulipas</option>
-        <option>Tlaxcala</option>
-        <option>Veracruz</option>
-        <option>Yucatán</option>
-        <option>Zacatecas</option>
-      </select>
-    </div>
+    @include('app.utils.address-create')
 
     <div class="col l12"><br>
       <button type="submit" class="btn blue">Crear Nuevo Usuario</button>
@@ -191,12 +145,30 @@ var app = new Vue({
       nacimiento: "",
       edad: null,
       sexo_selection: 'Masculino',
-      sexo: "Masculino"
+      sexo: "Masculino",
+      email_name: "",
+      email_domain: "@outlook.es",
+      email: "",
+      password: ""
       
     }, created: function () {
       // this.countLines()
     },
-    methods: {      
+    watch: {
+      email_domain: function() {
+        this.concactEmailParameters()
+      },
+      email_name: function() {
+        this.concactEmailParameters()  
+      }
+    },
+    methods: {     
+      // submit(event)  {
+      //   if(!validateSecurePassword(this.password))
+      // }
+      concactEmailParameters() {
+        this.email = this.email_name + this.email_domain
+      },
       handlerSexoChange(){
         switch (this.sexo_selection) {
           case "Masculino":
@@ -210,6 +182,10 @@ var app = new Vue({
             break;
         }
       }
+
+      // validatePassword() {
+      //   validateSecurePassword(this.password)
+      // }
 
     }
 })

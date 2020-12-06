@@ -69,12 +69,12 @@
         </thead>
         <tbody>
           <tr>
-            <td><input type="number" name="peso" value="{{ $obj->peso }}"></td>
-            <td><input type="number" name="mm_hg" value="{{ $obj->mm_hg }}"></td>
-            <td><input type="number" name="temperatura" value="{{ $obj->temperatura }}"></td>
-            <td><input type="number" name="frecuencia_respiratoria" value="{{ $obj->frecuencia_respiratoria }}"></td>
-            <td><input type="number" name="talla" value="{{ $obj->talla }}"></td>
-            <td><input type="number" name="frecuencia_cardiaca" value="{{ $obj->frecuencia_cardiaca }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="peso" value="{{ $obj->peso }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="mm_hg" value="{{ $obj->mm_hg }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="temperatura" value="{{ $obj->temperatura }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="frecuencia_respiratoria" value="{{ $obj->frecuencia_respiratoria }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="talla" value="{{ $obj->talla }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="frecuencia_cardiaca" value="{{ $obj->frecuencia_cardiaca }}"></td>
           </tr>
         </tbody>
       </table>

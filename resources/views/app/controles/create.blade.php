@@ -45,43 +45,43 @@
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Peso (kg)</label>
-      <input type="number" step="0.01" name="peso" class="form-control" value="{{ old('peso') }}" required>
+      <input type="number" step="0.01" name="peso" class="form-control" value="{{ old('peso') }}" required onkeypress="return onlyNumberKey(event)">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Talla (cm)</label>
-      <input type="number" name="talla" class="form-control" value="{{ old('talla') }}" required>
+      <input type="number" name="talla" class="form-control" value="{{ old('talla') }}" required onkeypress="return onlyNumberKey(event)">
     </div>
 
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">IMC</label>
-      <input type="number" step="0.01" name="IMC" class="form-control" value="{{ old('IMC') }}" required>
+      <input type="number" step="0.01" name="IMC" class="form-control" value="{{ old('IMC') }}" required onkeypress="return onlyNumberKey(event)">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Temperatura °C</label>
-      <input type="number" step="0.01" name="temperatura" class="form-control" value="{{ old('temperatura') }}" required>
+      <input type="number" step="0.01" name="temperatura" class="form-control" value="{{ old('temperatura') }}" required onkeypress="return onlyNumberKey(event)">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">SPO2</label>
-      <input type="number" step="0.01" name="SPO2" class="form-control" value="{{ old('SPO2') }}" required>
+      <input type="number" step="0.01" name="SPO2" class="form-control" value="{{ old('SPO2') }}" required onkeypress="return onlyNumberKey(event)">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FC</label>
-      <input type="number" step="0.01" name="FC" class="form-control" value="{{ old('FC') }}" required>
+      <input type="number" step="0.01" name="FC" class="form-control" value="{{ old('FC') }}" required onkeypress="return onlyNumberKey(event)">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FR</label>
-      <input type="number" step="0.01" name="FR" class="form-control" value="{{ old('FR') }}" required>
+      <input type="number" step="0.01" name="FR" class="form-control" value="{{ old('FR') }}" required onkeypress="return onlyNumberKey(event)">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">DXTX( mg/dl):</label>
-      <input type="number" step="0.01" name="DXTX" class="form-control" value="{{ old('DXTX') }}" required>
+      <input type="number" step="0.01" name="DXTX" class="form-control" value="{{ old('DXTX') }}" required onkeypress="return onlyNumberKey(event)">
     </div>
     
     <div class="form-group col l12">
