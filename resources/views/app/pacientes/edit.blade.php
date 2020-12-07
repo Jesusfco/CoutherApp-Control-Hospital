@@ -103,7 +103,7 @@ var appForm = new Vue({
       curp:"{{ $obj->curp }}",
       
     }, created: function () {      
-      if(this.sexo != 'Masculino' || this.sexo != 'Femenino') {
+      if(this.sexo != 'Masculino' && this.sexo != 'Femenino') {
         this.sexo_selection = 'Otro'
       }
       try {

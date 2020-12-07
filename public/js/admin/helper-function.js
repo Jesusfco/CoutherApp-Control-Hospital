@@ -51,8 +51,7 @@ function validateSecurePassword(password)
     if ((password.match(/[a-z]/g) && password.match(  /[A-Z]/g) && password.match(  /[0-9]/g) && password.match(  /[^a-zA-Z\d]/g) && password.length >= 8) || password.length == 0) 
     {
         return true
-    }
-    
-    M.toast({html: 'Contaseña debe contenar almenos 1 mayuscula, 1 minuscula, 1 número', classes: 'red', displayLength: 6500})        
+    }    
+    M.toast({html: 'Contaseña debe contenar almenos 1 mayuscula, 1 minuscula, 1 número y 1 caracter especial', classes: 'red', displayLength: 6500})        
     return false    
 }

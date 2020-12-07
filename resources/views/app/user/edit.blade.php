@@ -34,7 +34,7 @@
     
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Contraseña</label>
-      <input type="password" v-model="password" name="password" class="form-control" minlength="8" maxlength="16">
+      <input type="password" v-model="password" name="password" class="form-control" minlength="8" maxlength="16" :required="password.length > 0">
     </div>
 
     <div class="form-group col l4">
@@ -119,9 +119,11 @@ var appForm = new Vue({
       email_domain: "",
       email: "{{ $obj->email }}",
       curp:"{{ $obj->curp }}",
+      password: '',
       
     }, created: function () {
-      if(this.sexo != 'Masculino' || this.sexo != 'Femenino') {
+      console.log(this.sexo == 'Masculino')
+      if(this.sexo != 'Masculino' && this.sexo != 'Femenino') {
         this.sexo_selection = 'Otro'
       }
       if(this.especialidad != '') {
