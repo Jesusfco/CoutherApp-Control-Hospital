@@ -58,7 +58,7 @@
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">TA/mm/hg</label>
-      <input type="text" name="TA" class="form-control" value="{{ $obj->TA }}" required maxlength="5">
+      <input type="text" name="TA" class="form-control" value="{{ $obj->TA }}" required maxlength="6">
     </div>
 
     <div class="form-group col l4">
