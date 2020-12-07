@@ -19,7 +19,7 @@ class CreateDireccionsTable extends Migration
             $table->string('calle')->nullable();
             $table->string('colonia')->nullable();
             $table->integer('numero')->nullable();
-            $table->integer('numero_int')->nullable();
+            $table->string('numero_int')->nullable();
             $table->integer('cp')->nullable();
             $table->string('ciudad')->nullable();
             $table->string('estado')->nullable();

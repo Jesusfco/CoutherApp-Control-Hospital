@@ -26,7 +26,7 @@ class Update extends FormRequest
         return [            
             'email' => 'required|unique:users,email,' . $this->id,
             'cedula' => 'required|unique:users,cedula,' . $this->id,
-            'no_folio' => 'required|unique:users,cedula,' . $this->id,
+            'no_folio' => 'required|unique:users,no_folio,' . $this->id,
             'no_empleado' => 'required',
         ];
     }

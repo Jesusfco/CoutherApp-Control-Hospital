@@ -26,7 +26,7 @@ class Store extends FormRequest
         return [
             'email' => 'required|unique:users,email',
             'cedula' => 'required|unique:users,cedula',
-            'no_folio' => 'required|unique:users,cedula',
+            'no_folio' => 'required|unique:users,no_folio',
             'no_empleado' => 'required',
         ];
     }

@@ -22,7 +22,7 @@ function onlyNumberKey(evt)
 } 
 
 function onlyAlphabeticCharacterKey(e) 
-{
+{   if(e.key== ' ') return true
     var regex = '[A-Za-zÀ-ÖØ-öø-ÿ]'
     return e.key.match(regex) ? true: false    
 }

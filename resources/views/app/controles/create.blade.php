@@ -27,41 +27,40 @@
       <label for="exampleInputEmail1">Médico</label>
       <input class="form-control" value="{{ Auth::user()->fullname() }}" disabled>
     </div> 
- 
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Teléfono</label>
-      <input type="text" name="telefono" class="form-control" value="{{ old('telefono') }}"  placeholder="961-122-1222" required>
+      <input type="text" name="telefono" class="form-control" value="{{ old('telefono') }}"  placeholder="961-122-1222" required onkeypress="return onlyNumberIntegersKey(event)" maxlength="10"> 
     </div>
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Alergias</label>
-      <input type="text" name="alergias" class="form-control" value="{{ old('alergias') }}" required>
+      <input type="text" name="alergias" class="form-control" value="{{ old('alergias') }}" required onkeypress="return onlyAlphabeticCharacterKey(event)" maxlength="50">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">TA/mm/hg</label>
-      <input type="text" name="TA" class="form-control" value="{{ old('TA') }}" required>
+      <input type="text" name="TA" class="form-control" value="{{ old('TA') }}" required maxlength="5">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Peso (kg)</label>
-      <input type="number" step="0.01" name="peso" class="form-control" value="{{ old('peso') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="number" step="0.01" name="peso" class="form-control" value="{{ old('peso') }}" required onkeypress="return onlyNumberKey(event)" max="999">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Talla (cm)</label>
-      <input type="number" name="talla" class="form-control" value="{{ old('talla') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="number" step="0.01" name="talla" class="form-control" value="{{ old('talla') }}" required onkeypress="return onlyNumberKey(event)" max="400">
     </div>
 
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">IMC</label>
-      <input type="number" step="0.01" name="IMC" class="form-control" value="{{ old('IMC') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="number" step="0.01" name="IMC" class="form-control" value="{{ old('IMC') }}" required onkeypress="return onlyNumberKey(event)" max="100">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Temperatura °C</label>
-      <input type="number" step="0.01" name="temperatura" class="form-control" value="{{ old('temperatura') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="number" step="0.01" name="temperatura" class="form-control" value="{{ old('temperatura') }}" required onkeypress="return onlyNumberKey(event)" max="70">
     </div>
     
     <div class="form-group col l4">
@@ -71,17 +70,17 @@
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FC</label>
-      <input type="number" step="0.01" name="FC" class="form-control" value="{{ old('FC') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="number" step="0.01" name="FC" class="form-control" value="{{ old('FC') }}" required>
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FR</label>
-      <input type="number" step="0.01" name="FR" class="form-control" value="{{ old('FR') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="number" step="0.01" name="FR" class="form-control" value="{{ old('FR') }}" required>
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">DXTX( mg/dl):</label>
-      <input type="number" step="0.01" name="DXTX" class="form-control" value="{{ old('DXTX') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="number" step="0.01" name="DXTX" class="form-control" value="{{ old('DXTX') }}" required>
     </div>
     
     <div class="form-group col l12">
