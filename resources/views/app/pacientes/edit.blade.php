@@ -8,7 +8,7 @@
 @section('content')
 <h5><a href="{{ url('app/pacientes') }}">Pacientes </a> / Actualizar Paciente</h5>
 
-<form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()" id="form2">
+<form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return appForm.submit(event)" id="form2">
     {{ csrf_field() }}
 
     <div class="form-group col l12">
@@ -31,15 +31,9 @@
       <input type="text" name="materno" class="form-control" value="{{ $obj->materno }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Materno" required maxlength="50">
     </div>
 
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Correo</label>
-      <input type="email" name="email" class="form-control" value="{{ $obj->email }}"  maxlength="50">
-    </div>
-
-    
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">CURP</label>
-      <input type="tel" name="curp" class="form-control" value="{{ $obj->curp }}" maxlength="18">
+    {{-- @include('app.utils.forms.curp.edit')  --}}    
+    <div class="form-group col l4">
+      @include('app.utils.forms.curp.edit')
     </div>
     
     <div class="form-group col l6">
@@ -75,25 +69,12 @@
       </select>
     </div>
 
-    <div class="form-group col l4">
-      <label>Sexo</label>
-      <select name="sexo" class="browser-default" v-model="sexo_selection" v-on:change="handlerSexoChange">           
-        <option value="Masculino">Masculino</option>        
-        <option value="Femenino">Femenino</option>  
-        <option value="Otro">Otro</option>                
-      </select>
-    </div>
-
-    <input v-model="sexo" required v-if="sexo_selection == 'Masculino' || sexo_selection == 'Femenino'" name="sexo" type="hidden">
-    <div class="form-group col l4" v-else>
-      <label>Sexo</label>
-      <input v-model="sexo" required name="sexo" type="text" maxlength="20">
-    </div>
+    @include('app.utils.forms.sexo') 
 
     <div class="form-group col l12">
       <h4>Dirección</h4>
     </div>
-    @include('app.utils.address-edit')
+    @include('app.utils.forms.address.edit')
   
 
     <div class="col l12"><br>
@@ -106,23 +87,46 @@
 @section('scripts')
 
 <script>
-var app = new Vue({
+var appForm = new Vue({
   el: '#form2',
     data: { 
       nacimiento: "", 
       @if($obj->sexo === 'Masculino' || $obj->sexo == 'Femenino')
-      sexo_selection: '{{$obj->sexo}}',
+        sexo_selection: '{{$obj->sexo}}',
       @else
-        sexo_selection: 'otro',
+        sexo_selection: 'Otro',
       @endif
-      sexo: "{{$obj->sexo}}"
+      sexo: "{{$obj->sexo}}",
+      email_name: "",
+      email_domain: "",
+      email: "{{ $obj->email }}",
+      curp:"{{ $obj->curp }}",
       
-    }, created: function () {
-      console.log(this.sexo)
-    
+    }, created: function () {      
+      if(this.sexo != 'Masculino' || this.sexo != 'Femenino') {
+        this.sexo_selection = 'Otro'
+      }
+      try {
+        let strings = this.email.split("@")
+        this.email_name = strings[0]
+        this.email_domain = "@" + strings[1]  
+      } catch (error) {
+        
+      }
       
     },
+    watch: {
+      email_domain: function() {
+        this.concactEmailParameters()
+      },
+      email_name: function() {
+        this.concactEmailParameters()  
+      }
+    },
     methods: {      
+      concactEmailParameters() {
+        this.email = this.email_name.length > 0 ? this.email_name + this.email_domain : ''
+      },  
       handlerSexoChange(){
         switch (this.sexo_selection) {
           case "Masculino":
@@ -135,6 +139,13 @@ var app = new Vue({
             this.sexo = ''
             break;
         }
+      },
+      submit(e) {        
+        if(!validateCurp(this.curp)) {
+          e.preventDefault();          
+          return false
+        }
+        return true
       }
 
     }

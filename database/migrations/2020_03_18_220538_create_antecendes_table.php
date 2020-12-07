@@ -38,6 +38,7 @@ class CreateAntecendesTable extends Migration
             $table->text('abdomen')->nullable();
             $table->text('genitales')->nullable();
             // INTERROGACION POR APARATOR Y SISTEMAS
+            $table->text('sintomas_generales')->nullable();
             $table->text('respiratorio')->nullable();
             $table->text('cardiovascular')->nullable();
             $table->text('digestivo')->nullable();

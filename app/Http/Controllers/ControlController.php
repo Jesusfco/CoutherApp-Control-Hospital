@@ -107,9 +107,11 @@ class ControlController extends Controller
     public function pdf($id) 
     {
         $obj = Control::find($id);
-        // return view('pdf/control', ['obj' => $obj]);
-        return PDF::loadView('pdf/control',['obj' => $obj])
-        ->stream('control.pdf');
+        
+        $pdf = app('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->loadView('pdf/control', ['obj' => $obj, 'pdf' => $pdf]);        
+        return $pdf->stream('NotaClinica.pdf');
 
     }
 }

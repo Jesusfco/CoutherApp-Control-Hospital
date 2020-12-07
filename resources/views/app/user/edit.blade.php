@@ -30,45 +30,24 @@
       <input type="text" name="materno" class="form-control" value="{{ $obj->materno }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Materno" required maxlength="30">
     </div>
 
-    <div class="form-group col l6">
-      <input type="hidden" name="email" v-model="email">
-      <div class="row">
-        <div class="col s7">
-          <label for="exampleInputEmail1">Correo</label>
-          <input type="text" class="form-control" v-model="email_name" required maxlength="15" onkeypress="return withoutAt(event)">
-        </div>
-        <div class="col s5">     
-          <br>     
-          <select name="" v-model="email_domain">
-            <option>@outlook.es</option>
-            <option>@outlook.com</option>
-            <option>@gmail.com</option>
-            <option>@hotmail.com</option>
-            <option>@icloud.com</option>
-            <option>@yahoo.com</option>
-          </select>
-        </div>
-      </div>
-      
-    </div>
+    @include('app.utils.forms.email') 
     
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Contraseña</label>
-      <input type="password" name="password" class="form-control" minlength="8" maxlength="16">
+      <input type="password" v-model="password" name="password" class="form-control" minlength="8" maxlength="16">
     </div>
 
     <div class="form-group col l4">
       <label>No. Folio</label>
-      <input type="text"  name="no_folio" class="form-control" onkeypress="return onlyNumberKey(event)" value="{{ $obj->no_folio }}" required maxlength="7">
+      <input type="text"  name="no_folio" class="form-control" onkeypress="return onlyNumberIntegersKey(event)" value="{{ $obj->no_folio }}" required maxlength="7">
     </div>
 
     <div class="form-group col l4">
       <label>No. Empledo</label>
-      <input type="text" name="no_empleado" class="form-control" onkeypress="return onlyNumberKey(event)" value="{{ $obj->no_empleado }}" required maxlength="7">
+      <input type="text" name="no_empleado" class="form-control" onkeypress="return onlyNumberIntegersKey(event)" value="{{ $obj->no_empleado }}" required maxlength="7">
     </div>
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">Curp</label>
-      <input type="text" name="curp" class="form-control" value="{{ $obj->curp }}" maxlength="18" v-model="curp" required pattern="([A-Z]{4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[HM](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[A-Z]{3}[0-9A-Z]\d)">
+      @include('app.utils.forms.curp.edit')
     </div>
 
     <div class="form-group col l4">
@@ -78,7 +57,7 @@
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Cedula</label>
-      <input type="text" name="cedula" class="form-control" value="{{ $obj->cedula }}" onkeypress="return onlyNumberKey(event)"  required maxlength="10">
+      <input type="text" name="cedula" class="form-control" value="{{ $obj->cedula }}" onkeypress="return onlyNumberIntegersKey(event)"  required maxlength="9">
     </div>
 
     <div class="form-group col l4">
@@ -105,26 +84,13 @@
       </select>
     </div>
 
-    <div class="form-group col l4">
-      <label>Sexo</label>
-      <select name="sexo" class="browser-default" v-model="sexo_selection" v-on:change="handlerSexoChange">           
-        <option>Masculino</option>        
-        <option>Femenino</option>  
-        <option>Otro</option>                
-      </select>
-    </div>
-
-    <input v-model="sexo" required v-if="sexo_selection == 'Masculino' || sexo_selection == 'Femenino'" name="sexo" type="hidden">
-    <div class="form-group col l4" v-else>
-      <label>Sexo</label>
-      <input v-model="sexo" required name="sexo" type="text" maxlength="20" onkeypress="return onlyAlphabeticCharacterKey(event)">
-    </div> 
+    @include('app.utils.forms.sexo') 
 
     <div class="form-group col l12">
       <h4>Dirección</h4>
     </div>
     
-    @include('app.utils.address-edit')
+    @include('app.utils.forms.address.edit')
 
     <div class="col l12"><br>
       <button type="submit" class="btn blue">Actualizar Usuario</button>
@@ -166,7 +132,18 @@ var appForm = new Vue({
       this.email_name = strings[0]
       this.email_domain = "@" + strings[1]
     },
-    methods: {      
+    watch: {
+      email_domain: function() {
+        this.concactEmailParameters()
+      },
+      email_name: function() {
+        this.concactEmailParameters()  
+      }
+    },
+    methods: {    
+      concactEmailParameters() {
+        this.email = this.email_name.length > 0 && this.email_domain ? this.email_name + this.email_domain : ''
+      },  
       handlerSexoChange(){
         switch (this.sexo_selection) {
           case "Masculino":

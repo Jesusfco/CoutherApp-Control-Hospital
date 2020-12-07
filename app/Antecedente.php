@@ -45,7 +45,8 @@ class Antecedente extends Model
         'exploracion_neurologica',
         'diagnostico',
         'plan',
-        'no_folio',                 
+        'no_folio',         
+        'sintomas_generales',
     ];
 
     public function medico()

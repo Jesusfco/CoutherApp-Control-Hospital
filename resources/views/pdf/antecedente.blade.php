@@ -9,7 +9,7 @@
 </head>
 
 <style>
-
+   
     .center-text {
         text-align: center
     }
@@ -46,8 +46,7 @@
 </style>
 
 <body>
-
-    {{-- <img src="{{ asset('img/topImg.jpg') }}" width="100%" class="topImg"> --}}
+        
     <img src="./img/topImg.jpg" width="100%" class="topImg">
     <br>
     <h3>Historia Clínica</h3>
@@ -109,6 +108,16 @@
     <p><strong>Antecedentes Heredofamiliares:</strong><br><br> {!! nl2br($obj->heredofamiliares) !!} </p>    
     <p><strong>Antecedentes Persnolaes No Patológicos:</strong><br><br> {!! nl2br($obj->personales_no_patologicos) !!} </p>    
     <p><strong>Antecedentes Persnolaes Patológicos:</strong><br><br> {!! nl2br($obj->personales_patologicos) !!} </p>    
+    <h5>Interrogacón Por Aparatos y Sistemas</h5>
+    <p><strong>Síntomas generales:</strong><br><br> {!! nl2br($obj->sintomas_generales) !!} </p>    
+    <p><strong>Respiratorio:</strong><br><br> {!! nl2br($obj->respiratorio) !!} </p>    
+    <p><strong>Cardiovascular:</strong><br><br> {!! nl2br($obj->cardiovascular) !!} </p>    
+    <p><strong>Digestivo:</strong><br><br> {!! nl2br($obj->digestivo) !!} </p>    
+    <p><strong>Urinario:</strong><br><br> {!! nl2br($obj->urinario) !!} </p>    
+    <p><strong>Reproductor:</strong><br><br> {!! nl2br($obj->reproductor) !!} </p>    
+    <p><strong>Hemolinfático:</strong><br><br> {!! nl2br($obj->hemolinfatico) !!} </p>    
+    <p><strong>Endocrino:</strong><br><br> {!! nl2br($obj->endocrino) !!} </p>    
+    <p><strong>Sistema Nervioso:</strong><br><br> {!! nl2br($obj->sistema_nervioso) !!} </p>    
     <p><strong>Musculo-Esquelético:</strong><br><br> {!! nl2br($obj->musculo_esqueletico) !!} </p>    
     <p><strong>Piel y Anexos:</strong><br><br> {!! nl2br($obj->piel_anexos) !!} </p>    
     <p>III. Exploración Fisica</p>
@@ -140,16 +149,7 @@
     <p><strong>Cuello:</strong><br><br> {!! nl2br($obj->cuello) !!} </p>    
     <p><strong>Tórax:</strong><br><br> {!! nl2br($obj->torax) !!} </p>    
     <p><strong>Abdomen:</strong><br><br> {!! nl2br($obj->abdomen) !!} </p>    
-    <p><strong>Genitales:</strong><br><br> {!! nl2br($obj->genitales) !!} </p>    
-    <h5>Interrogacón Por Aparatos y Sistemas</h5>
-    <p><strong>Respiratorio:</strong><br><br> {!! nl2br($obj->respiratorio) !!} </p>    
-    <p><strong>Cardiovascular:</strong><br><br> {!! nl2br($obj->cardiovascular) !!} </p>    
-    <p><strong>Digestivo:</strong><br><br> {!! nl2br($obj->digestivo) !!} </p>    
-    <p><strong>Urinario:</strong><br><br> {!! nl2br($obj->urinario) !!} </p>    
-    <p><strong>Reproductor:</strong><br><br> {!! nl2br($obj->reproductor) !!} </p>    
-    <p><strong>Hemolinfático:</strong><br><br> {!! nl2br($obj->hemolinfatico) !!} </p>    
-    <p><strong>Endocrino:</strong><br><br> {!! nl2br($obj->endocrino) !!} </p>    
-    <p><strong>Sistema Nervioso:</strong><br><br> {!! nl2br($obj->sistema_nervioso) !!} </p>    
+    <p><strong>Genitales:</strong><br><br> {!! nl2br($obj->genitales) !!} </p> 
     <p><strong>Exploración Ginecologica:</strong><br><br> {!! nl2br($obj->exploracion_ginecologica) !!} </p>    
     <p><strong>Columna Vertebral:</strong><br><br> {!! nl2br($obj->columna_vertebral) !!} </p>    
     <p><strong>Extremidades Superiores e Inferiores:</strong><br><br> {!! nl2br($obj->extremidades) !!} </p>    
@@ -160,7 +160,6 @@
     <p>{!! nl2br($obj->diagnostico) !!} </p>        
     <p><strong>PLAN A SEGUIR:</strong><br><br> {!! nl2br($obj->plan) !!} </p>    
     
-
     <br><br><br>
     <table style="width:100%" class="w3-table">
         <tr>
@@ -181,9 +180,17 @@
     </table>
 
     <script type="text/php">
-        if ( isset($pdf) ) {
-            $font = Font_Metrics::get_font("helvetica", "bold");
-            $pdf->page_text(72, 18, "Header: {PAGE_NUM} of {PAGE_COUNT}", $font, 6, array(0,0,0));
+        if (isset($pdf)) {
+            $x = 250;
+            $y = 810;
+            $text = "Página {PAGE_NUM} / {PAGE_COUNT}";
+            $font = null;
+            $size = 8;
+            $color = array(0,0,0);
+            $word_space = 0.0;  //  default
+            $char_space = 0.0;  //  default
+            $angle = 0.0;   //  default
+            $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
         }
     </script>
     

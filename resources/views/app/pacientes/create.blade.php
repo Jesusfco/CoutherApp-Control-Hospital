@@ -8,7 +8,7 @@
 @section('content')
 <h5><a href="{{ url('app/pacientes') }}">Pacientes </a> / Crear Paciente</h5>
 
-<form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()" id="form2">
+<form class="row" role="form" method="POST" enctype="multipart/form-data" onsubmit="return appForm.submit(event)" id="form2">
     {{ csrf_field() }}
 
     <div class="form-group col l12">
@@ -31,15 +31,9 @@
       <input type="text" name="materno" class="form-control" value="{{ old('materno') }}" onkeypress="return onlyAlphabeticCharacterKey(event)" placeholder="Apellido Materno" required maxlength="50">
     </div>
 
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">Correo</label>
-      <input type="email" name="email" class="form-control" value="{{ old('email') }}"  maxlength="50">
-    </div>
-
-    
-    <div class="form-group col l6">
-      <label for="exampleInputEmail1">CURP</label>
-      <input type="tel" name="curp" class="form-control" value="{{ old('curp') }}" maxlength="18">
+    {{-- @include('app.utils.forms.email-paciente')  --}}    
+    <div class="form-group col l4">
+      @include('app.utils.forms.curp.create')
     </div>
     
     <div class="form-group col l6">
@@ -49,21 +43,21 @@
     
     <div class="form-group col l6">
       <label for="exampleInputEmail1">Numero de Empleado</label>
-      <input type="text" name="no_empleado" class="form-control" value="{{ old('no_empleado') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="text" name="no_empleado" class="form-control" value="{{ old('no_empleado') }}" required onkeypress="return onlyNumberIntegersKey(event)">
     </div>
     
     <div class="form-group col l6">
       <label>No. Folio</label>
-      <input type="text" name="no_folio" class="form-control" value="{{ old('no_folio') }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="text" name="no_folio" class="form-control" value="{{ old('no_folio') }}" required onkeypress="return onlyNumberIntegersKey(event)">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Area</label>
-      <input type="text" name="area" class="form-control" value="{{ old('area') }}" required>
+      <input type="text" name="area" class="form-control" value="{{ old('area') }}" required onkeypress="return onlyAlphabeticCharacterKey(event)">
     </div>
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Lugar de nacimiento</label>
-      <input type="text" name="lugar_nacimiento" class="form-control" value="{{ old('lugar_nacimiento') }}" required>
+      <input type="text" name="lugar_nacimiento" class="form-control" value="{{ old('lugar_nacimiento') }}" required onkeypress="return onlyAlphabeticCharacterKey(event)">
     </div> 
     
     <div class="form-group col l4">
@@ -75,26 +69,13 @@
       </select>
     </div>
 
-    <div class="form-group col l4">
-      <label>Sexo</label>
-      <select name="sexo" class="browser-default" v-model="sexo_selection" v-on:change="handlerSexoChange">           
-        <option>Masculino</option>        
-        <option>Femenino</option>  
-        <option>Otro</option>                
-      </select>
-    </div>
-
-    <input v-model="sexo" required v-if="sexo_selection == 'Masculino' || sexo_selection == 'Femenino'" name="sexo" type="hidden">
-    <div class="form-group col l4" v-else>
-      <label>Sexo</label>
-      <input v-model="sexo" required name="sexo" type="text" maxlength="20">
-    </div>
+    @include('app.utils.forms.sexo') 
 
     <div class="form-group col l12">
       <h4>Dirección</h4>
     </div>
     
-    @include('app.utils.address-create')
+    @include('app.utils.forms.address.create')
 
     <div class="col l12"><br>
       <button type="submit" class="btn blue">Crear Nuevo Paciente</button>
@@ -111,12 +92,27 @@ var app = new Vue({
     data: { 
       nacimiento: "", 
       sexo_selection: 'Masculino',
-      sexo: "Masculino"
+      sexo: "Masculino",
+      email_name: "",
+      email_domain: "@outlook.es",
+      email: "",      
+      curp: "",
       
     }, created: function () {
       // this.countLines()
     },
+    watch: {
+      email_domain: function() {
+        this.concactEmailParameters()
+      },
+      email_name: function() {
+        this.concactEmailParameters()  
+      }
+    },
     methods: {      
+      concactEmailParameters() {
+        this.email = this.email_name.length > 0 ? this.email_name + this.email_domain : ''
+      },  
       handlerSexoChange(){
         switch (this.sexo_selection) {
           case "Masculino":
@@ -129,6 +125,14 @@ var app = new Vue({
             this.sexo = ''
             break;
         }
+      },
+     
+      submit(e) {        
+        if(!validateCurp(this.curp)) {
+          e.preventDefault();          
+          return false
+        }
+        return true
       }
 
     }

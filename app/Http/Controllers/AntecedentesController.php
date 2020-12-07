@@ -107,13 +107,16 @@ class AntecedentesController extends Controller
     public function destroy(Antecedente $antecedente)
     {
         $antecedente->delete();
-        return response('Antecente Eliminado');
+        return response('Expediente Eliminado');
     }
 
     public function getPDF($id)
     {
         $antecedente = Antecedente::find($id);
-        return \PDF::loadView('pdf/antecedente',['obj' => $antecedente])
-        ->stream('antecedente.pdf');
+        // $pdf = new \PDF;
+        $pdf = app('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->loadView('pdf/antecedente', ['obj' => $antecedente, 'pdf' => $pdf]);        
+        return $pdf->stream('HistoriaClinica.pdf');
     }
 }

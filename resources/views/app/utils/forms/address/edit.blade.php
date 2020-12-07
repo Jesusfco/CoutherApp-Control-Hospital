@@ -10,7 +10,7 @@
 
 <div class="form-group col l4">
     <label for="exampleInputEmail1">Numero Exterior</label>
-    <input type="text" name="numero" class="form-control" value="{{ $obj->numero }}" onkeypress="return onlyNumberIntegersKey(event)" maxlength="7">
+    <input type="text" name="numero" class="form-control" value="{{ $obj->numero }}" onkeypress="return onlyNumberIntegersKey(event)" maxlength="8">
 </div>
 <div class="form-group col l4">
     <label for="exampleInputEmail1">Numero Interior</label>

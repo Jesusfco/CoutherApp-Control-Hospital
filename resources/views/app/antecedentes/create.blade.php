@@ -105,7 +105,11 @@
       <h5>Interrogación por aparatos y sistemas</h5>
     </div>
     <div class="form-group col s12">
-      <label for="exampleInputEmail1">Respriatorio</label>
+      <label for="exampleInputEmail1">Sintomas Generales</label>
+      <textarea oninput="auto_grow(this)" name="sintomas_generales" class="form-control"  >{{ old('sintomas_generales') }}</textarea>
+    </div>
+    <div class="form-group col s12">
+      <label for="exampleInputEmail1">Respiratorio</label>
       <textarea oninput="auto_grow(this)" name="respiratorio" class="form-control"  >{{ old('respiratorio') }}</textarea>
     </div>
     <div class="form-group col s12">

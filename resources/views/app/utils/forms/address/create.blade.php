@@ -7,8 +7,8 @@
     <input type="text" name="colonia" class="form-control" value="{{ old('colonia') }}" onkeypress="return onlyAlphabeticCharacterKey(event)" maxlength="30">
 </div>
 <div class="form-group col l4">
-    <label for="exampleInputEmail1">Numero Exterior</label>|
-    <input type="text" name="numero" class="form-control" value="{{ old('numero') }}" onkeypress="return onlyNumberIntegersKey(event)" maxlength="7">
+    <label for="exampleInputEmail1">Numero Exterior</label>
+    <input type="text" name="numero" class="form-control" value="{{ old('numero') }}" onkeypress="return onlyNumberIntegersKey(event)" maxlength="8">
 </div>
 <div class="form-group col l4">
     <label for="exampleInputEmail1">Numero Interior</label>

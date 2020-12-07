@@ -134,5 +134,19 @@
     <p><strong>PLAN:</strong> {!! nl2br($obj->plan) !!} </p>    
     <p class="rightText"><strong>DR @if($obj->sexo == "Femenino")A @endif. {{ strtoupper($obj->medico->fullname()) }} CED PROF {{ strtoupper($obj->medico->cedula) }}</strong></p>
     
+    <script type="text/php">
+        if (isset($pdf)) {
+            $x = 250;
+            $y = 810;
+            $text = "Página {PAGE_NUM} / {PAGE_COUNT}";
+            $font = null;
+            $size = 8;
+            $color = array(0,0,0);
+            $word_space = 0.0;  //  default
+            $char_space = 0.0;  //  default
+            $angle = 0.0;   //  default
+            $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
+        }
+    </script>
 </body>
 </html>
