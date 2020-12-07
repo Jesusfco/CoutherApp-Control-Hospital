@@ -10,6 +10,7 @@
 <h5><a href="{{ url('app/control') }}">Notas Clínica </a> / Actualizar Nota Clínica</h5>
 
 <form class="row" role="form" 
+  id="form2"
   method="POST" 
   enctype="multipart/form-data" 
   action="{{ url('app/control', $obj->id) }}"
@@ -32,86 +33,102 @@
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Teléfono</label>
-      <input type="text" name="telefono" class="form-control" value="{{$obj->telefono }}"  placeholder="961-122-1222" required>
+      <input type="text" name="telefono" class="form-control" value="{{ $obj->telefono }}"  placeholder="961-122-1222" required onkeypress="return onlyNumberIntegersKey(event)" maxlength="10"> 
     </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Alergias</label>
-      <input type="text" name="alergias" class="form-control" value="{{$obj->alergias }}" required>
+    
+    <div class="form-group col l12 row">
+      <div class="form-group col l2">
+        <br>
+        <div class="switch">
+        <label>        
+          <input type="checkbox" v-model="have_alergias" v-on:click="toggleHaveAlergias">
+          <span class="lever"></span>
+            Tiene alergía
+          </label>
+        </div>      
+      </div>
+
+      <input type="hidden" name="alergias" class="form-control" v-model="alergias"  v-if="!have_alergias"> 
+      <div class="form-group col l12" v-else>
+        <label for="exampleInputEmail1">Alergías</label>
+        <input type="text" name="alergias" class="form-control" v-model="alergias" required onkeypress="return onlyAlphabeticCharacterKey(event)" maxlength="50">
+      </div>    
+            
     </div>
     
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">TA/mm/hg:</label>
-      <input type="text" name="TA" class="form-control" value="{{$obj->TA }}" required>
+      <label for="exampleInputEmail1">TA/mm/hg</label>
+      <input type="text" name="TA" class="form-control" value="{{ $obj->TA }}" required maxlength="5">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Peso (kg)</label>
-      <input type="number" step="0.01" name="peso" class="form-control" value="{{$obj->peso }}" required>
+      <input type="number" step="0.01" name="peso" class="form-control" value="{{ $obj->peso }}" required onkeypress="return onlyNumberKey(event)" max="999">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Talla (cm)</label>
-      <input type="number" name="talla" class="form-control" value="{{$obj->talla }}" required>
+      <input type="number" step="0.01" name="talla" class="form-control" value="{{ $obj->talla }}" required onkeypress="return onlyNumberKey(event)" max="400">
     </div>
 
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">IMC</label>
-      <input type="number" step="0.01" name="IMC" class="form-control" value="{{$obj->IMC }}" required>
+      <input type="number" step="0.01" name="IMC" class="form-control" value="{{ $obj->IMC }}" required onkeypress="return onlyNumberKey(event)" max="100">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Temperatura °C</label>
-      <input type="number" step="0.01" name="temperatura" class="form-control" value="{{$obj->temperatura }}" required>
+      <input type="number" step="0.01" name="temperatura" class="form-control" value="{{ $obj->temperatura }}" required onkeypress="return onlyNumberKey(event)" max="70">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">SPO2</label>
-      <input type="number" step="0.01" name="SPO2" class="form-control" value="{{$obj->SPO2 }}" required>
+      <input type="number" step="0.01" name="SPO2" class="form-control" value="{{ $obj->SPO2 }}" required onkeypress="return onlyNumberKey(event)">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FC</label>
-      <input type="number" step="0.01" name="FC" class="form-control" value="{{$obj->FC }}" required>
+      <input type="number" step="0.01" name="FC" class="form-control" value="{{ $obj->FC }}" required>
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FR</label>
-      <input type="number" step="0.01" name="FR" class="form-control" value="{{$obj->FR }}" required>
+      <input type="number" step="0.01" name="FR" class="form-control" value="{{ $obj->FR }}" required>
     </div>
     
     <div class="form-group col l4">
-      <label for="exampleInputEmail1">DXTX(mg/dl):</label>
-      <input type="number" step="0.01" name="DXTX" class="form-control" value="{{$obj->DXTX }}" required>
+      <label for="exampleInputEmail1">DXTX( mg/dl):</label>
+      <input type="number" step="0.01" name="DXTX" class="form-control" value="{{ $obj->DXTX }}" required>
     </div>
     
     <div class="form-group col l12">
       <label for="exampleInputEmail1">P</label>
-      <textarea oninput="auto_grow(this)" name="p" class="form-control" required>{{$obj->p }}</textarea>
+      <textarea oninput="auto_grow(this)"  name="p" class="form-control"  rows="20" required>{{ $obj->p }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">S</label>
-      <textarea oninput="auto_grow(this)" name="s" class="form-control" required>{{$obj->s }}</textarea>
+      <textarea oninput="auto_grow(this)"  name="s" class="form-control" required>{{ $obj->s }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">O</label>
-      <textarea oninput="auto_grow(this)" name="o" class="form-control" required>{{$obj->o }}</textarea>
+      <textarea oninput="auto_grow(this)" name="o" class="form-control" required>{{ $obj->o }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">A</label>
-      <textarea oninput="auto_grow(this)" name="a" class="form-control" required>{{$obj->a }}</textarea>
+      <textarea oninput="auto_grow(this)" name="a" class="form-control" required>{{ $obj->a }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">Diagnóstico</label>
-      <textarea oninput="auto_grow(this)" name="diagnostico" class="form-control" required>{{$obj->diagnostico }}</textarea>
+      <textarea oninput="auto_grow(this)" name="diagnostico" class="form-control" required>{{ $obj->diagnostico }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">Pronóstico</label>
-      <textarea oninput="auto_grow(this)" name="pronostico" class="form-control" required>{{$obj->pronostico }}</textarea>
+      <textarea oninput="auto_grow(this)" name="pronostico" class="form-control" required>{{ $obj->pronostico }}</textarea>
     </div>
     <div class="form-group col l12">
       <label for="exampleInputEmail1">Plan</label>
-      <textarea oninput="auto_grow(this)"  name="plan" class="form-control" required>{{$obj->plan }}</textarea>
+      <textarea oninput="auto_grow(this)" name="plan" class="form-control" required>{{ $obj->plan }}</textarea>
     </div>
     
     <div class="col l12"><br>
@@ -134,6 +151,25 @@
 
 <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.min.js" ></script>  
 <script>
+
+  var app = new Vue({
+    el: '#form2',
+    data: {
+
+      alergias: '{{ $obj->alergias }}',
+      have_alergias: true            
+    }, created: function () {
+      if(this.alergias == '') {
+        this.have_alergias = false
+      }
+    },
+    methods: {     
+      toggleHaveAlergias() {
+        this.have_alergias = !this.have_alergias
+        this.alergias = ''
+      }
+    }
+  })
 
 function auto_grow(element) {
     element.style.height = "5px";

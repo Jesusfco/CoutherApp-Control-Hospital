@@ -32,9 +32,25 @@
       <label for="exampleInputEmail1">Teléfono</label>
       <input type="text" name="telefono" class="form-control" value="{{ old('telefono') }}"  placeholder="961-122-1222" required onkeypress="return onlyNumberIntegersKey(event)" maxlength="10"> 
     </div>
-    <div class="form-group col l4">
-      <label for="exampleInputEmail1">Alergias</label>
-      <input type="text" name="alergias" class="form-control" value="{{ old('alergias') }}" required onkeypress="return onlyAlphabeticCharacterKey(event)" maxlength="50">
+
+    <div class="form-group col l12 row">
+      <div class="form-group col l2">
+        <br>
+        <div class="switch">
+        <label>        
+          <input type="checkbox" v-model="have_alergias" v-on:click="toggleHaveAlergias">
+          <span class="lever"></span>
+            Tiene alergía
+          </label>
+        </div>      
+      </div>
+
+      <input type="hidden" name="alergias" class="form-control" v-model="alergias"  v-if="!have_alergias"> 
+      <div class="form-group col l12" v-else>
+        <label for="exampleInputEmail1">Alergías</label>
+        <input type="text" name="alergias" class="form-control" v-model="alergias" required onkeypress="return onlyAlphabeticCharacterKey(event)" maxlength="50">
+      </div>    
+            
     </div>
     
     <div class="form-group col l4">
@@ -135,17 +151,18 @@
 var app = new Vue({
   el: '#form2',
     data: {
-      paciente: "", 
-      nacimiento: "",
-      edad: null      
+      alergias: '',
+      have_alergias: false
+      
       
     }, created: function () {
       // this.countLines()
     },
     methods: {
 
-      countLines: function() { 
-
+      toggleHaveAlergias() {
+        this.have_alergias = !this.have_alergias
+        this.alergias = ''
       }
 
     }

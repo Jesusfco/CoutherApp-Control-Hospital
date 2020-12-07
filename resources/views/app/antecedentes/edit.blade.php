@@ -21,21 +21,17 @@
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Médico</label>
-      <input class="form-control" value="{{ $obj->medico->nombre_completo }}" disabled>
+      <input class="form-control" value="{{ Auth::user()->nombre_completo }}" disabled>
     </div>
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Cédula</label>
-      <input class="form-control" value="{{ $obj->medico->cedula }}" disabled>
+      <input class="form-control" value="{{ Auth::user()->cedula }}" disabled>
     </div>  
 
     <div class="form-group col s12">
       <h5>Interrogatorio</h5>
     </div>
-
-    <div class="form-group col s12">
-      <label for="exampleInputEmail1">Alergias</label>
-      <textarea oninput="auto_grow(this)"  name="alergias" class="form-control"  rows="20"  >{{ $obj->alergias }}</textarea>
-    </div>
+    
     <div class="form-group col s12">
       <label for="exampleInputEmail1">Antecedentes Heredofamiliares</label>
       <textarea oninput="auto_grow(this)"  name="heredofamiliares" class="form-control"  rows="20"  >{{ $obj->heredofamiliares }}</textarea>
@@ -69,12 +65,12 @@
         </thead>
         <tbody>
           <tr>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="peso" value="{{ $obj->peso }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="mm_hg" value="{{ $obj->mm_hg }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="temperatura" value="{{ $obj->temperatura }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="frecuencia_respiratoria" value="{{ $obj->frecuencia_respiratoria }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="talla" value="{{ $obj->talla }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" name="frecuencia_cardiaca" value="{{ $obj->frecuencia_cardiaca }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="peso" value="{{ $obj->peso }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="mm_hg" value="{{ $obj->mm_hg }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="temperatura" value="{{ $obj->temperatura }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="frecuencia_respiratoria" value="{{ $obj->frecuencia_respiratoria }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="talla" value="{{ $obj->talla }}"></td>
+            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="frecuencia_cardiaca" value="{{ $obj->frecuencia_cardiaca }}"></td>
           </tr>
         </tbody>
       </table>
@@ -108,7 +104,11 @@
       <h5>Interrogación por aparatos y sistemas</h5>
     </div>
     <div class="form-group col s12">
-      <label for="exampleInputEmail1">Respriatorio</label>
+      <label for="exampleInputEmail1">Sintomas Generales</label>
+      <textarea oninput="auto_grow(this)" name="sintomas_generales" class="form-control"  >{{ $obj->sintomas_generales }}</textarea>
+    </div>
+    <div class="form-group col s12">
+      <label for="exampleInputEmail1">Respiratorio</label>
       <textarea oninput="auto_grow(this)" name="respiratorio" class="form-control"  >{{ $obj->respiratorio }}</textarea>
     </div>
     <div class="form-group col s12">
@@ -167,6 +167,7 @@
       <label for="exampleInputEmail1">Plan</label>
       <textarea oninput="auto_grow(this)" name="plan" class="form-control"  >{{ $obj->plan }}</textarea>
     </div>
+
     
     <div class="col s12"><br>
       <button type="submit" class="btn blue"> Actualizar Expediente Clínico</button>
