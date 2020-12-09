@@ -11,7 +11,7 @@
 
 <div>
   @if(Auth::user()->user_type  == 3) 
-  <a class="btn blue" href="{{ url('app/antecedentes/editar', $obj->id) }}">Editar</a>
+  <a class="btn blue" href="{{ url('app/antecedentes', $obj->id) }}/edit">Editar</a>
   @endif
   <a class="btn blue" href="{{ url('app/antecedentes', $obj->id) }}/pdf">PDF</a>
   {{-- <a class="btn red" href="{{ url('app/control/pdf', $obj->id) }}">Eliminar</a> --}}

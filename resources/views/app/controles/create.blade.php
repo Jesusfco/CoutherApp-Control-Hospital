@@ -55,7 +55,7 @@
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">TA/mm/hg</label>
-      <input onkeypress="return onlyPresionArterialCharacter(event)" type="text" maxlength="5" name="TA" class="form-control" value="{{ old('TA') }}" required>
+      <input onkeypress="return onlyPresionArterialCharacter(event)" type="text" maxlength="6" name="TA" class="form-control" value="{{ old('TA') }}" required>
     </div>
 
     <div class="form-group col l4">

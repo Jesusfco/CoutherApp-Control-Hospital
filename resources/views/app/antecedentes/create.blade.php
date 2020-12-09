@@ -67,7 +67,7 @@
         <tbody>
           <tr>
             <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="peso" value="{{ old('peso') }}"></td>
-            <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyPresionArterialCharacter(event)" type="text" maxlength="5" name="mm_hg" value="{{ old('mm_hg') }}"></td>
+            <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyPresionArterialCharacter(event)" type="text" maxlength="6" name="mm_hg" value="{{ old('mm_hg') }}"></td>
             <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="temperatura" value="{{ old('temperatura') }}"></td>
             <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="frecuencia_respiratoria" value="{{ old('frecuencia_respiratoria') }}"></td>
             <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="talla" value="{{ old('talla') }}"></td>
