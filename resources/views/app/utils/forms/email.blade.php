@@ -1,12 +1,12 @@
-<div class="form-group col l6 s12">
+<div class="col l6 s12">
     <input type="hidden" name="email" v-model="email">
     <div class="row">
-      <div class="col s7">
+      <div class="col input-field s7">
         <label for="exampleInputEmail1">Correo</label>
         <input type="text" class="form-control" v-model="email_name" required maxlength="15" onkeypress="return withoutAt(event)">
       </div>
-      <div class="col s5">     
-        <br>     
+      <div class="input-field col s5">     
+        
         <select name="" v-model="email_domain">
           <option>@outlook.es</option>
           <option>@outlook.com</option>

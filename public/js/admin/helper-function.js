@@ -55,3 +55,23 @@ function validateSecurePassword(password)
     M.toast({html: 'Contaseña debe contenar almenos 1 mayuscula, 1 minuscula, 1 número y 1 caracter especial', classes: 'red', displayLength: 6500})        
     return false    
 }
+
+function syncPasswordValidation(event) {
+    let password = event.target.value
+    let helperElement = document.getElementById('password-message')
+    if(password.length == 0) {
+        helperElement.innerHTML = ""
+        return;
+    }
+    
+    if (password.match(/[a-z]/g) 
+        && password.match(  /[A-Z]/g) 
+        && password.match(  /[0-9]/g) 
+        && password.match(  /[^a-zA-Z\d]/g) 
+        && password.length >= 8)  
+    {
+        helperElement.innerHTML = ""
+        return
+    }    
+    helperElement.innerHTML="Se require 1 mayuscula, 1 minuscula, 1 número y 1 caracter especial"
+}
