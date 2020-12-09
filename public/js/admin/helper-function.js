@@ -75,3 +75,20 @@ function syncPasswordValidation(event) {
     }    
     helperElement.innerHTML="Se require 1 mayuscula, 1 minuscula, 1 número y 1 caracter especial"
 }
+
+function onlyPresionArterialCharacter (evt) {
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode     
+    console.log(ASCIICode)
+    // if(ASCIICode == 46) return true
+    if(ASCIICode == 47) return true
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
+        return false; 
+    return true; 
+}
+
+function requiredAfterSomeOnInput (e) {
+    
+    let element = e.target
+    if(element.value.length > 0) element.required = true
+    else element.required = false
+}

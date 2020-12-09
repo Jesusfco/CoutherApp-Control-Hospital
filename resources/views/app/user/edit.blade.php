@@ -38,14 +38,16 @@
       <span  class="helper-text red-text" id="password-message"></span>
     </div>
 
-    <div class="input-field col l4">
+    <div class="input-field col l3">
       <label>No. Folio</label>
       <input type="text"  name="no_folio" class="form-control" onkeypress="return onlyNumberIntegersKey(event)" value="{{ $obj->no_folio }}" required maxlength="7">
+      <br>
     </div>
 
-    <div class="input-field col l4">
+    <div class="input-field col l3">
       <label>No. Empledo</label>
       <input type="text" name="no_empleado" class="form-control" onkeypress="return onlyNumberIntegersKey(event)" value="{{ $obj->no_empleado }}" required maxlength="7">
+      <br><br>
     </div>
     <div class="input-field col l4">
       @include('app.utils.forms.curp.edit')
@@ -77,7 +79,7 @@
       <input type="text" name="especialidad" class="form-control" required v-model="especialidad" onkeypress="return onlyAlphabeticCharacterKey(event)">
     </div>    
     
-    <div class="input-field col l4">
+    <div class=" col l4">
       <label>Tipo de Usuario</label>
       <select name="user_type" class="browser-default">                 
         <option value="2" @if($obj->user_type == 2) selected @endif>Médico</option>        

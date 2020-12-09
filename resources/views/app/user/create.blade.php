@@ -52,7 +52,7 @@
       @include('app.utils.forms.curp.create')
     </div>
 
-    <div class="input-field col l4">
+    <div class=" col l4">
       <label for="exampleInputEmail1">Fecha de Nacimiento</label>
       <input type="date" name="nacimiento" class="form-control" onchange="validateBirthday(event)" value="{{ old('nacimiento') }}">
     </div>
@@ -78,7 +78,7 @@
       <input type="text" name="especialidad" class="form-control" required>
     </div>    
     
-    <div class="input-field col l4">
+    <div class=" col l4">
       <label>Tipo de Usuario</label>
       <select name="user_type" class="browser-default">                 
         <option value="2" @if(old('user_type') == 2) selected @endif>Médico</option>        

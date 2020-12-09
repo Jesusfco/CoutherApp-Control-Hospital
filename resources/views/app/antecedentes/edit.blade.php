@@ -65,12 +65,12 @@
         </thead>
         <tbody>
           <tr>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="peso" value="{{ $obj->peso }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="mm_hg" value="{{ $obj->mm_hg }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="temperatura" value="{{ $obj->temperatura }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="frecuencia_respiratoria" value="{{ $obj->frecuencia_respiratoria }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="talla" value="{{ $obj->talla }}"></td>
-            <td><input onkeypress="return onlyNumberKey(event)" type="number" step="0.01" max="9999999" name="frecuencia_cardiaca" value="{{ $obj->frecuencia_cardiaca }}"></td>
+            <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="peso" value="{{ $obj->peso  }}"></td>
+            <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyPresionArterialCharacter(event)" type="text" maxlength="5" name="mm_hg" value="{{ $obj->mm_hg  }}"></td>
+            <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="temperatura" value="{{ $obj->temperatura  }}"></td>
+            <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="frecuencia_respiratoria" value="{{ $obj->frecuencia_respiratoria  }}"></td>
+            <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="talla" value="{{ $obj->talla  }}"></td>
+            <td><input onkeyup="requiredAfterSomeOnInput(event)" onkeypress="return onlyNumberKey(event)" type="number" step="0.1" min=".1" max="99" name="frecuencia_cardiaca" value="{{ $obj->frecuencia_cardiaca  }}"></td>
           </tr>
         </tbody>
       </table>

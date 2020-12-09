@@ -37,7 +37,7 @@
     </div>
     
     <div class="form-group col l12 row">
-      <div class="form-group col l2">
+      <div class="form-group col l4">
         <br>
         <div class="switch">
         <label>        
@@ -58,48 +58,48 @@
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">TA/mm/hg</label>
-      <input type="text" name="TA" class="form-control" value="{{ $obj->TA }}" required maxlength="6">
+      <input onkeypress="return onlyPresionArterialCharacter(event)" type="text" maxlength="5" name="TA" class="form-control" value="{{  $obj->TA }}" required>
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Peso (kg)</label>
-      <input type="number" step="0.01" name="peso" class="form-control" value="{{ $obj->peso }}" required onkeypress="return onlyNumberKey(event)" max="999">
+      <input type="number" name="peso" class="form-control" value="{{  $obj->peso }}" required onkeypress="return onlyNumberKey(event)" step="0.1" min=".1" max="999">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Talla (cm)</label>
-      <input type="number" step="0.01" name="talla" class="form-control" value="{{ $obj->talla }}" required onkeypress="return onlyNumberKey(event)" max="400">
+      <input type="number"   name="talla" class="form-control" value="{{  $obj->talla }}" required onkeypress="return onlyNumberKey(event)" step="0.1" min=".1" max="300">
     </div>
 
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">IMC</label>
-      <input type="number" step="0.01" name="IMC" class="form-control" value="{{ $obj->IMC }}" required onkeypress="return onlyNumberKey(event)" max="100">
+      <input type="number"   name="IMC" class="form-control" value="{{  $obj->IMC }}" required onkeypress="return onlyNumberKey(event)" step="0.1" min=".1" max="100">
     </div>
 
     <div class="form-group col l4">
       <label for="exampleInputEmail1">Temperatura °C</label>
-      <input type="number" step="0.01" name="temperatura" class="form-control" value="{{ $obj->temperatura }}" required onkeypress="return onlyNumberKey(event)" max="70">
+      <input type="number"   name="temperatura" class="form-control" value="{{  $obj->temperatura }}" required onkeypress="return onlyNumberKey(event)" step="0.1" min=".1" max="100">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">SPO2</label>
-      <input type="number" step="0.01" name="SPO2" class="form-control" value="{{ $obj->SPO2 }}" required onkeypress="return onlyNumberKey(event)">
+      <input type="number"   name="SPO2" class="form-control" value="{{  $obj->SPO2 }}" required onkeypress="return onlyNumberKey(event)" step="0.1" min=".1" max="100">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FC</label>
-      <input type="number" step="0.01" name="FC" class="form-control" value="{{ $obj->FC }}" required>
+      <input type="number"   name="FC" class="form-control" value="{{  $obj->FC }}" required  onkeypress="return onlyNumberKey(event)" step="0.1" min=".1" max="999">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">FR</label>
-      <input type="number" step="0.01" name="FR" class="form-control" value="{{ $obj->FR }}" required>
+      <input type="number"   name="FR" class="form-control" value="{{  $obj->FR }}" required  onkeypress="return onlyNumberKey(event)" step="0.1" min=".1" max="999">
     </div>
     
     <div class="form-group col l4">
       <label for="exampleInputEmail1">DXTX( mg/dl):</label>
-      <input type="number" step="0.01" name="DXTX" class="form-control" value="{{ $obj->DXTX }}" required>
+      <input type="number"  name="DXTX" class="form-control" value="{{  $obj->DXTX }}" required  onkeypress="return onlyNumberKey(event)" step="0.1" min=".1" max="999">
     </div>
     
     <div class="form-group col l12">
@@ -182,7 +182,6 @@ function submitForm() {
   alert('Seleccione un paciente de las sugerencias para poder continuar')
   return false
 }
-
 
 $(document).ready(function() {          
     
